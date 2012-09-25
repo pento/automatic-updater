@@ -21,8 +21,8 @@ function auto_updater_init() {
 	$options = get_option( 'automatic-updater', array() );
 
 	if ( empty( $options ) ) {
-		$options = array( 
-					'update' => array( 
+		$options = array(
+					'update' => array(
 								'core' => true,
 								'plugins' => false,
 								'themes' => false,
@@ -64,7 +64,7 @@ function auto_updater_core() {
 	// It's behind a DOING_CRON check, so won't cause much trouble.
 	include_once( ABSPATH . 'wp-admin/includes/update.php' );
 	include_once( ABSPATH . 'wp-admin/includes/file.php' );
-	
+
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
 	$updates = get_core_updates();
@@ -76,19 +76,19 @@ function auto_updater_core() {
 		return;
 
 	$auto_updater_running = true;
-	
+
 	do_action( 'auto_updater_before_update', 'core' );
 
 	$skin = new Auto_Updater_Skin();
 	$upgrader = new Core_Upgrader( $skin );
 	$upgrader->upgrade( $update );
-	
+
 	do_action( 'auto_updater_after_update', 'core' );
-	
+
 	$message = join( "\r\n", $skin->messages );
-	
+
 	wp_mail( get_option( 'admin_email' ), __( 'Core Update', 'automatic-updater' ), $message );
-	
+
 	wp_version_check();
 }
 
@@ -99,7 +99,7 @@ function auto_updater_plugins() {
 
 	include_once( ABSPATH . 'wp-admin/includes/update.php' );
 	include_once( ABSPATH . 'wp-admin/includes/file.php' );
-	
+
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
 	$plugins = apply_filters( 'auto_updater_plugin_updates', array_keys( get_plugin_updates() ) );
@@ -117,9 +117,9 @@ function auto_updater_plugins() {
 	do_action( 'auto_updater_after_update', 'plugins' );
 
 	$message = join( "\r\n", $skin->messages );
-	
+
 	wp_mail( get_option( 'admin_email' ), __( 'Plugin Update', 'automatic-updater' ), $message );
-	
+
 	wp_update_plugins();
 }
 
@@ -130,7 +130,7 @@ function auto_updater_themes() {
 
 	include_once( ABSPATH . 'wp-admin/includes/update.php' );
 	include_once( ABSPATH . 'wp-admin/includes/file.php' );
-	
+
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
 	$themes = apply_filters( 'auto_updater_theme_updates', array_keys( get_theme_updates() ) );
@@ -148,7 +148,7 @@ function auto_updater_themes() {
 	do_action( 'auto_updater_after_update', 'themes' );
 
 	$message = join( "\r\n", $skin->messages );
-	
+
 	wp_mail( get_option( 'admin_email' ), __( 'Theme Update', 'automatic-updater' ), $message );
 
 	wp_update_themes();

@@ -26,7 +26,7 @@ function auto_updater_settings_loader() {
 function auto_updater_settings() {
 	if ( ! current_user_can( 'update_core' ) )
 		wp_die( __( 'You do not have sufficient permissions to access this page.', 'automatic-updater' ) );
-	
+
 	$message = '';
 	if ( ! empty( $_REQUEST['submit'] ) ) {
 		check_admin_referer( 'automatic-updater-settings' );
@@ -73,13 +73,13 @@ function auto_updater_settings() {
 function auto_updater_save_settings() {
 	$types = array( 'core', 'plugins', 'themes' );
 	$options = get_option( 'automatic-updater' );
-	
+
 	foreach ( $types as $type ) {
 		if ( ! empty( $_REQUEST[$type] ) )
 			$options['update'][$type] = true;
 		else
 			$options['update'][$type] = false;
 	}
-	
+
 	update_option( 'automatic-updater', $options );
 }
