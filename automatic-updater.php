@@ -71,15 +71,19 @@ function auto_updater_core() {
 	if ( empty( $updates ) )
 		return;
 
-	$update = find_core_update( $updates[0]->current, $updates[0]->locale );
+	$update = apply_filters( 'auto_updater_core_updates', find_core_update( $updates[0]->current, $updates[0]->locale ) );
 	if ( empty( $update ) )
 		return;
 
 	$auto_updater_running = true;
+	
+	do_action( 'auto_updater_before_update', 'core' );
 
 	$skin = new Auto_Updater_Skin();
 	$upgrader = new Core_Upgrader( $skin );
 	$upgrader->upgrade( $update );
+	
+	do_action( 'auto_updater_after_update', 'core' );
 	
 	$message = join( "\r\n", $skin->messages );
 	
@@ -98,15 +102,19 @@ function auto_updater_plugins() {
 	
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
-	$plugins = array_keys( get_plugin_updates() );
+	$plugins = apply_filters( 'auto_updater_plugin_updates', array_keys( get_plugin_updates() ) );
 	if ( empty( $plugins ) )
 		return;
 
 	$auto_updater_running = true;
 
+	do_action( 'auto_updater_before_update', 'plugins' );
+
 	$skin = new Auto_Updater_Skin();
 	$upgrader = new Plugin_Upgrader( $skin );
 	$upgrader->bulk_upgrade( $plugins );
+
+	do_action( 'auto_updater_after_update', 'plugins' );
 
 	$message = join( "\r\n", $skin->messages );
 	
@@ -125,15 +133,19 @@ function auto_updater_themes() {
 	
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
-	$themes = array_keys( get_theme_updates() );
+	$themes = apply_filters( 'auto_updater_theme_updates', array_keys( get_theme_updates() ) );
 	if ( empty( $themes ) )
 		return;
 
 	$auto_updater_running = true;
 
+	do_action( 'auto_updater_before_update', 'themes' );
+
 	$skin = new Auto_Updater_Skin();
 	$upgrader = new Theme_Upgrader( $skin );
 	$upgrader->bulk_upgrade( $themes );
+
+	do_action( 'auto_updater_after_update', 'themes' );
 
 	$message = join( "\r\n", $skin->messages );
 	
@@ -141,3 +153,4 @@ function auto_updater_themes() {
 
 	wp_update_themes();
 }
+

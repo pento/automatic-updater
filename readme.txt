@@ -39,6 +39,7 @@ You should also be aware that this will only work on WordPress installs that hav
 == Changelog ==
 
 = 0.2 =
+* ADDED: Some useful filters and actions. See the [Documentation](http://pento.net/projects/automatic-updater-for-wordpress/) for details
 * FIXED: s/automattic/automatic/g
 * FIXED: Support forums link
 
