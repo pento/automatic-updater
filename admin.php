@@ -19,7 +19,7 @@ function auto_updater_settings_loader() {
 	get_current_screen()->set_help_sidebar(
 		'<p><strong>' . sprintf( __( 'A Plugin By <a href="%s" target="_blank">Gary</a>', 'automatic-updater' ), 'http://pento.net/' ) . '</strong></p>' .
 		'<p><a href="http://pento.net/donate/">' . __( 'Donations', 'automatic-updater' ) . '</a></p>' .
-		'<p><a href="">' . __( 'Support Forums', 'automatic-updater' ) . '</a></p>'
+		'<p><a href="http://wordpress.org/support/plugin/automatic-updater">' . __( 'Support Forums', 'automatic-updater' ) . '</a></p>'
 	);
 }
 
@@ -43,7 +43,7 @@ function auto_updater_settings() {
 ?>
 	<div class="wrap">
 		<?php screen_icon('tools'); ?>
-		<h2><?php _e( 'Automattic Updater', 'automatic-updater' ); ?></h2>
+		<h2><?php _e( 'Automatic Updater', 'automatic-updater' ); ?></h2>
 <?php
 	if ( ! empty( $message ) ) {
 ?>
