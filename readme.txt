@@ -16,6 +16,8 @@ While this will be useful for the vast majority of sites, please exercise cautio
 
 You should also be aware that this will only work on WordPress installs that have the appropriate file permissions to update through the web interface - it will not work if you usually FTP updates to your server.
 
+There are some Actions and Filters provided, check the [Documentation](http://pento.net/projects/automatic-updater-for-wordpress/) for more details.
+
 == Installation ==
 
 = The Good Way =
