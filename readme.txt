@@ -4,7 +4,7 @@ Donate link: http://pento.net/donate/
 Tags: updates, core, plugins, themes
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 0.1
+Stable tag: 0.2
 
 Automatically update WordPress, your themes and plugins! Never have to click the update button again!
 
