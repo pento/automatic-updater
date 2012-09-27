@@ -36,21 +36,29 @@ function auto_updater_init() {
 	if ( $auto_updater_running )
 		return;
 
-	// Only do this during the wp-cron version check, it'd suck if the upgrade was interrupted.
-	if ( ! defined( 'DOING_CRON' ) || ! DOING_CRON )
-		return;
+	$types = array( 'wordpress' => 'core', 'plugins' => 'plugins', 'themes' => 'themes' );
+	if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
 
-	if ( ! empty( $options['update']['core'] ) ) {
-		add_action( 'set_site_transient_update_core', 'auto_updater_core');
-		add_action( 'set_site_transient__site_transient_update_core', 'auto_updater_core');
+		// We're in a cron, do updates now
+		foreach ( $types as $type ) {
+			if ( ! empty( $options['update'][$type] ) ) {
+				add_action( "set_site_transient_update_$type", "auto_updater_$type" );
+				add_action( "set_site_transient__site_transient_update_$type", "auto_updater_$type" );
+			}
+		}
 	}
-	if ( ! empty( $options['update']['plugins'] ) ) {
-		add_action( 'set_site_transient_update_plugins', 'auto_updater_plugins' );
-		add_action( 'set_site_transient__site_transient_update_plugins', 'auto_updater_plugins' );
-	}
-	if ( ! empty( $options['update']['themes'] ) ) {
-		add_action( 'set_site_transient_update_themes', 'auto_updater_themes' );
-		add_action( 'set_site_transient__site_transient_update_themes', 'auto_updater_themes' );
+	else {
+		include_once( ABSPATH . 'wp-admin/includes/update.php' );
+		$update_data = wp_get_update_data();
+		// Not in a cron, schedule updates to happen in the next cron run
+		foreach ( $types as $internal => $type ) {
+		echo "\n:{$options['update'][$type]}:{$update_data['counts'][$internal]}:$type:$internal\n";
+		var_dump( $update_data );
+		var_dump( $options );
+			if ( ! empty( $options['update'][$type] ) && $update_data['counts'][$internal] > 0 ) {
+				wp_schedule_single_event( time(), "auto_updater_{$type}_event" );
+			}
+		}
 	}
 }
 add_action( 'init', 'auto_updater_init' );
@@ -61,7 +69,6 @@ function auto_updater_core() {
 		return;
 
 	// Forgive me father, for I have sinned. I have included wp-admin files in a plugin.
-	// It's behind a DOING_CRON check, so won't cause much trouble.
 	include_once( ABSPATH . 'wp-admin/includes/update.php' );
 	include_once( ABSPATH . 'wp-admin/includes/file.php' );
 
@@ -91,6 +98,7 @@ function auto_updater_core() {
 
 	wp_version_check();
 }
+add_action( 'auto_updater_core_event', 'auto_updater_core' );
 
 function auto_updater_plugins() {
 	global $auto_updater_running;
@@ -98,6 +106,7 @@ function auto_updater_plugins() {
 		return;
 
 	include_once( ABSPATH . 'wp-admin/includes/update.php' );
+	include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 	include_once( ABSPATH . 'wp-admin/includes/file.php' );
 
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
@@ -122,6 +131,7 @@ function auto_updater_plugins() {
 
 	wp_update_plugins();
 }
+add_action( 'auto_updater_plugins_event', 'auto_updater_plugins' );
 
 function auto_updater_themes() {
 	global $auto_updater_running;
@@ -153,4 +163,5 @@ function auto_updater_themes() {
 
 	wp_update_themes();
 }
+add_action( 'auto_updater_themes_event', 'auto_updater_themes' );
 
