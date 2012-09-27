@@ -34,8 +34,17 @@ class Auto_Updater_Skin extends WP_Upgrader_Skin {
 		$this->messages[] = $string;
 	}
 
-	function header() {}
-	function footer() {}
+	function header() {
+		ob_start();	
+	}
+
+	function footer() {
+		$output = ob_get_contents();
+		if ( ! empty( $output ) )
+			$this->feedback( $output );
+		ob_end_clean();
+	}
+
 	function bulk_header() {}
 	function bulk_footer() {}
 	function before() {}

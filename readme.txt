@@ -40,6 +40,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.3 =
+* FIXED: Use ouput buffering to ensure nothing is printed during upgrades
+
 = 0.2 =
 * ADDED: Some useful filters and actions. See the [Documentation](http://pento.net/projects/automatic-updater-for-wordpress/) for details
 * FIXED: s/automattic/automatic/g
