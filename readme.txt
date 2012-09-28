@@ -1,7 +1,7 @@
 === Automatic Updater ===
 Contributors: pento
 Donate link: http://pento.net/donate/
-Tags: updates, core, plugins, themes
+Tags: updates, core, plugins, themes, wordpress automatic upgrader
 Requires at least: 3.3
 Tested up to: 3.5
 Stable tag: 0.3
