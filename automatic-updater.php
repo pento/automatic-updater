@@ -38,7 +38,6 @@ function auto_updater_init() {
 
 	$types = array( 'wordpress' => 'core', 'plugins' => 'plugins', 'themes' => 'themes' );
 	if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
-
 		// We're in a cron, do updates now
 		foreach ( $types as $type ) {
 			if ( ! empty( $options['update'][$type] ) ) {
@@ -52,9 +51,6 @@ function auto_updater_init() {
 		$update_data = wp_get_update_data();
 		// Not in a cron, schedule updates to happen in the next cron run
 		foreach ( $types as $internal => $type ) {
-		echo "\n:{$options['update'][$type]}:{$update_data['counts'][$internal]}:$type:$internal\n";
-		var_dump( $update_data );
-		var_dump( $options );
 			if ( ! empty( $options['update'][$type] ) && $update_data['counts'][$internal] > 0 ) {
 				wp_schedule_single_event( time(), "auto_updater_{$type}_event" );
 			}
@@ -82,19 +78,29 @@ function auto_updater_core() {
 	if ( empty( $update ) )
 		return;
 
+	$old_version = get_bloginfo( 'version' );
+
 	$auto_updater_running = true;
 
 	do_action( 'auto_updater_before_update', 'core' );
 
 	$skin = new Auto_Updater_Skin();
 	$upgrader = new Core_Upgrader( $skin );
-	$upgrader->upgrade( $update );
+	$result = $upgrader->upgrade( $update );
 
 	do_action( 'auto_updater_after_update', 'core' );
 
-	$message = join( "\r\n", $skin->messages );
+	if ( is_wp_error( $result ) ) {
+		$message = __( "While trying to upgrade WordPress, we ran into the following error:", 'automatic-updater' );
+		$message .= "\r\n\r\n" . $result->get_error_message() . "\r\n\r\n";
+		$message .= __( "We're sorry it didn't work out. Please try upgrading manually, instead.", 'automatic-updater' );
+	}
+	else {
+		$message = sprintf( __( "We've successfully upgraded WordPress from version %1s to version %2s!", 'automatic-updater' ), $old_version, $update->current );
+		$message .= "\r\n\r\n" . __( 'Have fun!', 'automatic-updater' );
+	}
 
-	wp_mail( get_option( 'admin_email' ), __( 'Core Update', 'automatic-updater' ), $message );
+	auto_updater_notification( $message );
 
 	wp_version_check();
 }
@@ -111,7 +117,7 @@ function auto_updater_plugins() {
 
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
-	$plugins = apply_filters( 'auto_updater_plugin_updates', array_keys( get_plugin_updates() ) );
+	$plugins = apply_filters( 'auto_updater_plugin_updates', get_plugin_updates() );
 	if ( empty( $plugins ) )
 		return;
 
@@ -121,13 +127,32 @@ function auto_updater_plugins() {
 
 	$skin = new Auto_Updater_Skin();
 	$upgrader = new Plugin_Upgrader( $skin );
-	$upgrader->bulk_upgrade( $plugins );
+	$result = $upgrader->bulk_upgrade( array_keys( $plugins ) );
 
 	do_action( 'auto_updater_after_update', 'plugins' );
 
-	$message = join( "\r\n", $skin->messages );
+	$message = _n( 'We found a plugin upgrade!', 'We found upgrades for some plugins!', count( $plugins ), 'automatic-updater' );
+	$message .= "\r\n\r\n";
 
-	wp_mail( get_option( 'admin_email' ), __( 'Plugin Update', 'automatic-updater' ), $message );
+	foreach ( $plugins as $id => $plugin ) {
+		if ( is_wp_error( $result[$id] ) ) {
+			/* translators: First argument is the Plugin name, second argument is the error encountered while upgrading */
+			$message .= sprintf( __( "%1s: We encounted an error upgrading this plugin: %2s", 'automatic-updater' ), 
+										$plugin->Name, 
+										$result[$id]->get_error_message() );
+		}
+		else {
+			/* tranlators: First argument is the Plugin name, second argument is the old version number, third argument is the new version number */
+			$message .= sprintf( __( "%1s: Successfully upgraded from version %2s to %3s!", 'automatic-updater' ), 
+										$plugin->Name, 
+										$plugin->Version, 
+										$plugin->update->new_version );
+		}
+
+		$message .= "\r\n";
+	}
+
+	auto_updater_notification( $message );
 
 	wp_update_plugins();
 }
@@ -143,7 +168,7 @@ function auto_updater_themes() {
 
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
-	$themes = apply_filters( 'auto_updater_theme_updates', array_keys( get_theme_updates() ) );
+	$themes = apply_filters( 'auto_updater_theme_updates', get_theme_updates() );
 	if ( empty( $themes ) )
 		return;
 
@@ -153,15 +178,51 @@ function auto_updater_themes() {
 
 	$skin = new Auto_Updater_Skin();
 	$upgrader = new Theme_Upgrader( $skin );
-	$upgrader->bulk_upgrade( $themes );
+	$result = $upgrader->bulk_upgrade( array_keys( $themes ) );
 
 	do_action( 'auto_updater_after_update', 'themes' );
 
-	$message = join( "\r\n", $skin->messages );
+	$message = _n( 'We found a theme upgrade!', 'We found upgrades for some themes!', count( $themes ), 'automatic-updater' );
+	$message .= "\r\n\r\n";
 
-	wp_mail( get_option( 'admin_email' ), __( 'Theme Update', 'automatic-updater' ), $message );
+	foreach ( $themes as $id => $theme ) {
+		if ( is_wp_error( $result[$id] ) ) {
+			/* translators: First argument is the Theme name, second argument is the error encountered while upgrading */
+			$message .= sprintf( __( "%1s: We encounted an error upgrading this theme: %2s", 'automatic-updater' ), 
+										$theme->name, 
+										$result[$id]->get_error_message() );
+		}
+		else {
+			/* tranlators: First argument is the Theme name, second argument is the old version number, third argument is the new version number */
+			$message .= sprintf( __( "%1s: Successfully upgraded from version %2s to %3s!", 'automatic-updater' ), 
+										$theme->name, 
+										$theme->version, 
+										$theme->update['new_version'] );
+		}
+
+		$message .= "\r\n";
+	}
+
+	auto_updater_notification( $message );
 
 	wp_update_themes();
 }
 add_action( 'auto_updater_themes_event', 'auto_updater_themes' );
+
+function auto_updater_notification( $info = '' ) {
+	$site = get_home_url();
+	$subject = sprintf( __( 'WordPress Update: %1s', 'automatic-updater' ), $site );
+
+	$message = __( 'Howdy!', 'automatic-updater' );
+	$message .= "\r\n\r\n";
+	$message .= sprintf( __( 'Automatic Updater just ran on your site, %1s, with the following result:', 'automatic-updater' ), $site );
+	$message .= "\r\n\r\n";
+
+	$message .= $info;
+
+	$message .= "\r\n";
+	$message .= __( 'Thanks for using the Automatic Updater plugin!', 'automatic-updater' );
+echo $message;
+	wp_mail( get_option( 'admin_email' ), $subject, $message );
+}
 
