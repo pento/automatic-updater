@@ -1,11 +1,11 @@
 <?php
 /*
  * Plugin Name: Automatic Updater
- * Plugin URI: http://pento.net/
+ * Plugin URI: http://pento.net/projects/automatic-updater-for-wordpress/
  * Description: Automatically update your WordPress site, as soon as updates are released! Never worry about falling behing on updating again!
  * Author: pento
  * Version: 0.3
- * Author URI: http://pento.net
+ * Author URI: http://pento.net/
  * License: GPL2+
  * Text Domain: automatic-updater
  * Domain Path: /languages/
