@@ -63,7 +63,13 @@ function auto_updater_settings() {
 
 		echo "<p><input type='checkbox' id='$type' name='$type' value='1'$checked> <label for='$type'>{$messages[$type]}</label></p>";
 	}
+
+	$checked = '';
+	if ( $option['debug'] )
+		$checked = ' checked="checked"';
 ?>
+		<br/><br/>
+		<p input type="checkbox" id="debug" name="debug" value="1"<?php echo $checked; ?>> <label for="debug"><?php _e( 'Show debug inforamtion in the notification email.', 'automatic-updater' ); ?></label></p>
 		<p><input class="button button-primary" type="submit" name="submit" id="submit" value="<?php esc_attr_e( 'Save Changes', 'automatic-updater' ); ?>" /></p>
 		</form>
 	</div>
@@ -80,6 +86,11 @@ function auto_updater_save_settings() {
 		else
 			$options['update'][$type] = false;
 	}
+
+	if ( ! empty( $_REQUEST['debug'] ) )
+		$options['debug'] = true;
+	else
+		$options['debug'] = false;
 
 	update_option( 'automatic-updater', $options );
 }

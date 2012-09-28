@@ -27,7 +27,14 @@ function auto_updater_init() {
 								'plugins' => false,
 								'themes' => false,
 							),
+					'debug' => false,
 				);
+		update_option( 'automatic-updater', $options );
+	}
+
+	// 'debug' option added in version 0.3
+	if ( ! array_key_exists( 'debug', $options ) ) {
+		$options['debug'] = false;
 		update_option( 'automatic-updater', $options );
 	}
 
@@ -100,7 +107,9 @@ function auto_updater_core() {
 		$message .= "\r\n\r\n" . __( 'Have fun!', 'automatic-updater' );
 	}
 
-	auto_updater_notification( $message );
+	$debug = join( "\r\n", $skin->messages );
+
+	auto_updater_notification( $message, $debug );
 
 	wp_version_check();
 }
@@ -152,7 +161,9 @@ function auto_updater_plugins() {
 		$message .= "\r\n";
 	}
 
-	auto_updater_notification( $message );
+	$debug = join( "\r\n", $skin->messages );
+
+	auto_updater_notification( $message, $debug );
 
 	wp_update_plugins();
 }
@@ -203,13 +214,16 @@ function auto_updater_themes() {
 		$message .= "\r\n";
 	}
 
-	auto_updater_notification( $message );
+	$debug = join( "\r\n", $skin->messages );
+
+	auto_updater_notification( $message, $debug );
 
 	wp_update_themes();
 }
 add_action( 'auto_updater_themes_event', 'auto_updater_themes' );
 
-function auto_updater_notification( $info = '' ) {
+function auto_updater_notification( $info = '', $debug = '' ) {
+	$options = get_option( 'automatic-updater', array() );
 	$site = get_home_url();
 	$subject = sprintf( __( 'WordPress Update: %1s', 'automatic-updater' ), $site );
 
@@ -222,7 +236,13 @@ function auto_updater_notification( $info = '' ) {
 
 	$message .= "\r\n";
 	$message .= __( 'Thanks for using the Automatic Updater plugin!', 'automatic-updater' );
-echo $message;
+
+	if ( ! empty( $options['debug'] ) ) {
+		$message .= "\r\n\r\n\r\n\r\n";
+		$message .= __( 'Debug Information:', 'automatic-updater' );
+		$message .= "\r\n\r\n$debug";
+	}
+
 	wp_mail( get_option( 'admin_email' ), $subject, $message );
 }
 

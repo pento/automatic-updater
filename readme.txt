@@ -41,8 +41,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 == Changelog ==
 
 = 0.3 =
-* ADDED: Extra update checks, updates will now occur as soon as is humanly possible.
-* ADDED: Much nicer notification emails when upgrades occur.
+* ADDED: Extra update checks, updates will now occur as soon as is humanly possible
+* ADDED: Much nicer notification emails when upgrades occur
+* ADDED: Option to display debug inforamtion in the notification email
 * FIXED: Use ouput buffering to ensure nothing is printed during upgrades
 
 = 0.2 =
