@@ -137,15 +137,15 @@ function auto_updater_plugins() {
 	foreach ( $plugins as $id => $plugin ) {
 		if ( is_wp_error( $result[$id] ) ) {
 			/* translators: First argument is the Plugin name, second argument is the error encountered while upgrading */
-			$message .= sprintf( __( "%1s: We encounted an error upgrading this plugin: %2s", 'automatic-updater' ), 
-										$plugin->Name, 
+			$message .= sprintf( __( "%1s: We encounted an error upgrading this plugin: %2s", 'automatic-updater' ),
+										$plugin->Name,
 										$result[$id]->get_error_message() );
 		}
 		else {
 			/* tranlators: First argument is the Plugin name, second argument is the old version number, third argument is the new version number */
-			$message .= sprintf( __( "%1s: Successfully upgraded from version %2s to %3s!", 'automatic-updater' ), 
-										$plugin->Name, 
-										$plugin->Version, 
+			$message .= sprintf( __( "%1s: Successfully upgraded from version %2s to %3s!", 'automatic-updater' ),
+										$plugin->Name,
+										$plugin->Version,
 										$plugin->update->new_version );
 		}
 
@@ -188,15 +188,15 @@ function auto_updater_themes() {
 	foreach ( $themes as $id => $theme ) {
 		if ( is_wp_error( $result[$id] ) ) {
 			/* translators: First argument is the Theme name, second argument is the error encountered while upgrading */
-			$message .= sprintf( __( "%1s: We encounted an error upgrading this theme: %2s", 'automatic-updater' ), 
-										$theme->name, 
+			$message .= sprintf( __( "%1s: We encounted an error upgrading this theme: %2s", 'automatic-updater' ),
+										$theme->name,
 										$result[$id]->get_error_message() );
 		}
 		else {
 			/* tranlators: First argument is the Theme name, second argument is the old version number, third argument is the new version number */
-			$message .= sprintf( __( "%1s: Successfully upgraded from version %2s to %3s!", 'automatic-updater' ), 
-										$theme->name, 
-										$theme->version, 
+			$message .= sprintf( __( "%1s: Successfully upgraded from version %2s to %3s!", 'automatic-updater' ),
+										$theme->name,
+										$theme->version,
 										$theme->update['new_version'] );
 		}
 
