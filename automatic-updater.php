@@ -38,8 +38,11 @@ function auto_updater_init() {
 		update_option( 'automatic-updater', $options );
 	}
 
+	// Load the translations
+	load_plugin_textdomain( 'automatic-updater', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+
 	global $auto_updater_running;
-	// If the update check was one we called manually, don't get into a crazy recusive loop.
+	// If the update check was one we called manually, don't get into a crazy recursive loop.
 	if ( $auto_updater_running )
 		return;
 
