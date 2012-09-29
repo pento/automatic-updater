@@ -61,3 +61,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.1 =
 * Initial release
+
+== Screenshots ==
+
+1. Notification emails are sent as soon as an update is complete, confirming if the update was successful or not.
