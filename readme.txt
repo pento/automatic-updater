@@ -40,6 +40,11 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.3.1 =
+* FIXED: Don't try to update WordPress to the same version (harmless, but unnecessary)
+* FIXED: A PHP warning in the Settings page
+* FIXED: A couple of typos
+
 = 0.3 =
 * ADDED: Extra update checks, updates will now occur as soon as is humanly possible
 * ADDED: Much nicer notification emails when upgrades occur
