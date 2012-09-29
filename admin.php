@@ -65,11 +65,11 @@ function auto_updater_settings() {
 	}
 
 	$checked = '';
-	if ( $option['debug'] )
+	if ( $options['debug'] )
 		$checked = ' checked="checked"';
 ?>
 		<br/><br/>
-		<p input type="checkbox" id="debug" name="debug" value="1"<?php echo $checked; ?>> <label for="debug"><?php _e( 'Show debug inforamtion in the notification email.', 'automatic-updater' ); ?></label></p>
+		<p><input type="checkbox" id="debug" name="debug" value="1"<?php echo $checked; ?>> <label for="debug"><?php _e( 'Show debug information in the notification email.', 'automatic-updater' ); ?></label></p>
 		<p><input class="button button-primary" type="submit" name="submit" id="submit" value="<?php esc_attr_e( 'Save Changes', 'automatic-updater' ); ?>" /></p>
 		</form>
 	</div>
