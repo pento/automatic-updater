@@ -85,6 +85,10 @@ function auto_updater_core() {
 	if ( empty( $update ) )
 		return;
 
+	// Don't try to update if we somehow got the same or older version
+	if ( version_compare( $old_version, $update->current, '>=' ) )
+		return;
+
 	$old_version = get_bloginfo( 'version' );
 
 	$auto_updater_running = true;
