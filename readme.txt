@@ -41,6 +41,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 == Changelog ==
 
 = 0.3.2 =
+* ADDED: Language file for translators
 * FIXED: Minor formatting change to the notification emails.
 
 = 0.3.1 =
