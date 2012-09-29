@@ -42,6 +42,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.3.2 =
 * ADDED: Language file for translators
+* FIXED: Don't try to update WordPress to the same version (I'm mostly certain it's actually fixed this time)
 * FIXED: Minor formatting change to the notification emails.
 
 = 0.3.1 =

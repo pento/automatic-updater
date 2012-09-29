@@ -77,16 +77,17 @@ function auto_updater_core() {
 
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
+	// If WordPress doesn't think there are updates available, no point in trying to update.
+	$update_data = wp_get_update_data();
+	if ( empty( $update_data['counts']['wordpress'] ) )
+		return;
+
 	$updates = get_core_updates();
 	if ( empty( $updates ) )
 		return;
 
 	$update = apply_filters( 'auto_updater_core_updates', find_core_update( $updates[0]->current, $updates[0]->locale ) );
 	if ( empty( $update ) )
-		return;
-
-	// Don't try to update if we somehow got the same or older version
-	if ( version_compare( $old_version, $update->current, '>=' ) )
 		return;
 
 	$old_version = get_bloginfo( 'version' );
