@@ -68,4 +68,4 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Screenshots ==
 
-1. Notification emails are sent as soon as an update is complete, confirming if the update was successful or not.
+1. Notification emails are sent to the site admin as soon as an update is complete, confirming if the update was successful or not.
