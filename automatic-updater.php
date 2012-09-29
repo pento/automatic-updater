@@ -111,6 +111,8 @@ function auto_updater_core() {
 		$message .= "\r\n\r\n" . __( 'Have fun!', 'automatic-updater' );
 	}
 
+	$message .= "\r\n";
+
 	$debug = join( "\r\n", $skin->messages );
 
 	auto_updater_notification( $message, $debug );
