@@ -43,6 +43,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.3.3 =
 * FIXED: Typo in the Settings page
+* FIXED: Debug information in the notification email now has HTML tags stripped out
 
 = 0.3.2 =
 * ADDED: Language file for translators

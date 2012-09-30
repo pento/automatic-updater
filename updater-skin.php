@@ -28,6 +28,13 @@ class Auto_Updater_Skin extends WP_Upgrader_Skin {
 				$string = vsprintf( $string, $args );
 		}
 
+		// Strip out HTML tags, and decode entities
+		$string = strip_tags( $string );
+		$string = html_entity_decode( $string );
+		$string = str_replace( '&#8230;', '...', $string );
+
+		$string = trim( $string );
+
 		if ( empty( $string ) )
 			return;
 
@@ -35,7 +42,7 @@ class Auto_Updater_Skin extends WP_Upgrader_Skin {
 	}
 
 	function header() {
-		ob_start();	
+		ob_start();
 	}
 
 	function footer() {
