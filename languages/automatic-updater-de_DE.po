@@ -1,0 +1,233 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Automatic Updater v0.3.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2012-09-30 21:55+1000\n"
+"Last-Translator: Gary Pendergast <gary@pento.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"Language: de_DE\n"
+"X-Generator: Poedit 1.5.3\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ automatic-updater
+#. translators: plugin header field 'Name'
+#: admin.php:6 admin.php:46 automatic-updater.php:0
+msgid "Automatic Updater"
+msgstr ""
+
+# @ automatic-updater
+#: admin.php:13
+msgid "Overview"
+msgstr "Übersicht"
+
+# @ automatic-updater
+#: admin.php:15
+msgid ""
+"This settings page allows you to select whether you would like WordPress "
+"Core, your plugins, and your themes to be automatically updated."
+msgstr ""
+"Auf dieser Einstellungsseite können Sie wählen, ob WordPress, die Plugins "
+"und Ihre Themes automatisch aktualisiert werden sollen."
+
+# @ automatic-updater
+#: admin.php:16
+msgid ""
+"It is very important to keep your WordPress installation up to date for "
+"security reasons, so unless you have a specific reason not to, we recommend "
+"allowing everything to automatically update."
+msgstr ""
+"Es ist aus Sicherheitsgründen sehr wichtig Ihre WordPress-Installation "
+"aktuell zu halten. Sofern Sie keinen  bestimmten Grund haben, nicht zu "
+"aktualisieren, empfehlen wir daher alles automatisch zu aktualisieren."
+
+# @ automatic-updater
+#: admin.php:20
+#, php-format
+msgid "A Plugin By <a href=\"%s\" target=\"_blank\">Gary</a>"
+msgstr "Ein Plugin von <a href=\"%s\" target=\"_blank\">Gary</a>"
+
+# @ automatic-updater
+#: admin.php:21
+msgid "Donations"
+msgstr "Spenden"
+
+# @ automatic-updater
+#: admin.php:22
+msgid "Support Forums"
+msgstr "Hilfe-Forum"
+
+# @ automatic-updater
+#: admin.php:28
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+"Sie verfügen nicht über ausreichende Berechtigungen, um diese Seite zu sehen."
+
+# @ automatic-updater
+#: admin.php:35
+msgid "Settings updated"
+msgstr "Einstellungen aktualisiert"
+
+# @ automatic-updater
+#: admin.php:39
+msgid ""
+"Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>"
+msgstr ""
+"WordPress automatisch aktualisieren? <strong>(dringend empfohlen)</strong>"
+
+# @ automatic-updater
+#: admin.php:40
+msgid "Update your plugins automatically?"
+msgstr "Plugins automatisch aktualisieren?"
+
+# @ automatic-updater
+#: admin.php:41
+msgid "Update your themes automatically?"
+msgstr "Themes automatisch aktualisieren?"
+
+# @ automatic-updater
+#: admin.php:72
+msgid "Show debug information in the notification email."
+msgstr ""
+"Informationen für die Fehlerbehebung in der Benachrichtigungs-E-Mail "
+"anzeigen."
+
+# @ automatic-updater
+#: admin.php:73
+msgid "Save Changes"
+msgstr "Änderungen übernehmen"
+
+# @ automatic-updater
+#. translators: plugin header field 'PluginURI'
+#: automatic-updater.php:0
+msgid "http://pento.net/projects/automatic-updater-for-wordpress/"
+msgstr ""
+
+# @ automatic-updater
+#. translators: plugin header field 'Description'
+#: automatic-updater.php:0
+msgid ""
+"Automatically update your WordPress site, as soon as updates are released! "
+"Never worry about falling behing on updating again!"
+msgstr ""
+"Automatische Aktualisierung Ihrer WordPress-Website, sobald Aktualisierungen "
+"zur Verfügung stehen! Nie wieder Sorgen machen, bei Aktualisierungen ins "
+"Hintertreffen zu geraten!"
+
+# @ automatic-updater
+#. translators: plugin header field 'Author'
+#: automatic-updater.php:0
+msgid "pento"
+msgstr ""
+
+# @ automatic-updater
+#. translators: plugin header field 'AuthorURI'
+#: automatic-updater.php:0
+msgid "http://pento.net/"
+msgstr ""
+
+# @ automatic-updater
+#. translators: plugin header field 'Version'
+#: automatic-updater.php:0
+msgid "0.3.2"
+msgstr ""
+
+# @ automatic-updater
+#: automatic-updater.php:109
+msgid "While trying to upgrade WordPress, we ran into the following error:"
+msgstr ""
+"Beim Versuch WordPress zu aktualisieren, wurde die folgende Fehlermeldung "
+"ausgegeben:"
+
+# @ automatic-updater
+#: automatic-updater.php:111
+msgid "We're sorry it didn't work out. Please try upgrading manually, instead."
+msgstr ""
+"Leider hat etwas nicht funktioniert. Bitte führen Sie die Aktualisierung "
+"stattdessen manuell durch."
+
+# @ automatic-updater
+#: automatic-updater.php:114
+#, php-format
+msgid "We've successfully upgraded WordPress from version %1s to version %2s!"
+msgstr ""
+"Wir haben WordPress erfolgreich von Version% 1s auf Version% 2s aktualisiert!"
+
+# @ automatic-updater
+#: automatic-updater.php:115
+msgid "Have fun!"
+msgstr "Viel Spaß!"
+
+# @ automatic-updater
+#: automatic-updater.php:153
+msgid "We found a plugin upgrade!"
+msgid_plural "We found upgrades for some plugins!"
+msgstr[0] "Wir haben eine Aktualisierung für ein Plugin gefunden!"
+msgstr[1] "Wir haben Aktualisierungen für einige Plugins gefunden!"
+
+# @ automatic-updater
+#. translators: First argument is the Plugin name, second argument is the error encountered while upgrading
+#: automatic-updater.php:159
+#, php-format
+msgid "%1s: We encounted an error upgrading this plugin: %2s"
+msgstr "%1s: Ein Fehler ist beim Aktualisieren dieses Plugins aufgetreten: %2s"
+
+# @ automatic-updater
+#: automatic-updater.php:165 automatic-updater.php:218
+#, php-format
+msgid "%1s: Successfully upgraded from version %2s to %3s!"
+msgstr "%1s: Erfolgreich von Version %2s auf %3s aktualisiert!"
+
+# @ automatic-updater
+#: automatic-updater.php:206
+msgid "We found a theme upgrade!"
+msgid_plural "We found upgrades for some themes!"
+msgstr[0] "Wir haben eine Aktualisierung für ein Theme gefunden!"
+msgstr[1] "Wir haben Aktualisierungen für einige Themes gefunden!"
+
+# @ automatic-updater
+#. translators: First argument is the Theme name, second argument is the error encountered while upgrading
+#: automatic-updater.php:212
+#, php-format
+msgid "%1s: We encounted an error upgrading this theme: %2s"
+msgstr ""
+"%1s: Beim Aktualisieren ist bei diesem Theme ein Fehler aufgetreten: %2s"
+
+# @ automatic-updater
+#: automatic-updater.php:238
+#, php-format
+msgid "WordPress Update: %1s"
+msgstr "WordPress-Aktualisierung: %1s"
+
+# @ automatic-updater
+#: automatic-updater.php:240
+msgid "Howdy!"
+msgstr "Tach!"
+
+# @ automatic-updater
+#: automatic-updater.php:242
+#, php-format
+msgid ""
+"Automatic Updater just ran on your site, %1s, with the following result:"
+msgstr ""
+"Der Automatic Updater hat soeben Ihre Website, %1s, geprüft mit folgendem "
+"Ergebnis:"
+
+# @ automatic-updater
+#: automatic-updater.php:248
+msgid "Thanks for using the Automatic Updater plugin!"
+msgstr "Vielen Dank für den Einsatz des Automatic Updater Plugins!"
+
+# @ automatic-updater
+#: automatic-updater.php:252
+msgid "Debug Information:"
+msgstr "Informationen für die Fehlersuche:"
