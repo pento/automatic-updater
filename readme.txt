@@ -41,6 +41,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.3.3 =
+* FIXED: Typo in the Settings page
+
 = 0.3.2 =
 * ADDED: Language file for translators
 * FIXED: Translations should load properly now

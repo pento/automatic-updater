@@ -38,7 +38,7 @@ function auto_updater_settings() {
 	$messages = array(
 					'core' => __( 'Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>', 'automatic-updater' ),
 					'plugins' => __( 'Update your plugins automatically?', 'automatic-updater' ),
-					'themes' => __( 'Updater your themes automatically?', 'automatic-updater' )
+					'themes' => __( 'Update your themes automatically?', 'automatic-updater' )
 				);
 ?>
 	<div class="wrap">
