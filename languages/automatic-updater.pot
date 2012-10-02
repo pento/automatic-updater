@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the Automatic Updater package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Automatic Updater 0.3.3\n"
+"Project-Id-Version: Automatic Updater 0.3.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/automatic-updater\n"
-"POT-Creation-Date: 2012-09-30 02:52:00+00:00\n"
+"POT-Creation-Date: 2012-10-02 10:49:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,87 +12,93 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#. #-#-#-#-#  plugin.pot (Automatic Updater 0.3.1)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Automatic Updater 0.3.2)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: admin.php:6 admin.php:46
+#: admin.php:4 admin.php:45
 msgid "Automatic Updater"
 msgstr ""
 
-#: admin.php:13
+#: admin.php:12
 msgid "Overview"
 msgstr ""
 
-#: admin.php:15
+#: admin.php:14
 msgid ""
 "This settings page allows you to select whether you would like WordPress "
 "Core, your plugins, and your themes to be automatically updated."
 msgstr ""
 
-#: admin.php:16
+#: admin.php:15
 msgid ""
 "It is very important to keep your WordPress installation up to date for "
 "security reasons, so unless you have a specific reason not to, we recommend "
 "allowing everything to automatically update."
 msgstr ""
 
-#: admin.php:20
+#: admin.php:19
 msgid "A Plugin By <a href=\"%s\" target=\"_blank\">Gary</a>"
 msgstr ""
 
-#: admin.php:21
+#: admin.php:20
 msgid "Donations"
 msgstr ""
 
-#: admin.php:22
+#: admin.php:21
 msgid "Support Forums"
 msgstr ""
 
-#: admin.php:28
+#: admin.php:27
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: admin.php:35
+#: admin.php:34
 msgid "Settings updated"
 msgstr ""
 
-#: admin.php:39
+#: admin.php:38
 msgid ""
 "Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>"
 msgstr ""
 
-#: admin.php:40
+#: admin.php:39
 msgid "Update your plugins automatically?"
 msgstr ""
 
-#: admin.php:41
+#: admin.php:40
 msgid "Update your themes automatically?"
 msgstr ""
 
-#: admin.php:72
+#: admin.php:71
 msgid "Show debug information in the notification email."
 msgstr ""
 
-#: admin.php:73
+#: admin.php:72
 msgid "Save Changes"
 msgstr ""
 
-#: automatic-updater.php:105
+#: automatic-updater.php:32
+msgid ""
+"Automatic Updater requires WordPress 3.4 or higher! Please upgrade WordPress "
+"manually, then reactivate Automatic Updater."
+msgstr ""
+
+#: automatic-updater.php:126
 msgid "While trying to upgrade WordPress, we ran into the following error:"
 msgstr ""
 
-#: automatic-updater.php:107
+#: automatic-updater.php:128
 msgid "We're sorry it didn't work out. Please try upgrading manually, instead."
 msgstr ""
 
-#: automatic-updater.php:110
+#: automatic-updater.php:131
 msgid "We've successfully upgraded WordPress from version %1s to version %2s!"
 msgstr ""
 
-#: automatic-updater.php:111
+#: automatic-updater.php:132
 msgid "Have fun!"
 msgstr ""
 
-#: automatic-updater.php:149
+#: automatic-updater.php:170
 msgid "We found a plugin upgrade!"
 msgid_plural "We found upgrades for some plugins!"
 msgstr[0] ""
@@ -100,15 +106,15 @@ msgstr[1] ""
 
 #. translators: First argument is the Plugin name, second argument is the error
 #. encountered while upgrading
-#: automatic-updater.php:155
+#: automatic-updater.php:176
 msgid "%1s: We encounted an error upgrading this plugin: %2s"
 msgstr ""
 
-#: automatic-updater.php:161 automatic-updater.php:214
+#: automatic-updater.php:182 automatic-updater.php:235
 msgid "%1s: Successfully upgraded from version %2s to %3s!"
 msgstr ""
 
-#: automatic-updater.php:202
+#: automatic-updater.php:223
 msgid "We found a theme upgrade!"
 msgid_plural "We found upgrades for some themes!"
 msgstr[0] ""
@@ -116,28 +122,28 @@ msgstr[1] ""
 
 #. translators: First argument is the Theme name, second argument is the error
 #. encountered while upgrading
-#: automatic-updater.php:208
+#: automatic-updater.php:229
 msgid "%1s: We encounted an error upgrading this theme: %2s"
 msgstr ""
 
-#: automatic-updater.php:234
+#: automatic-updater.php:255
 msgid "WordPress Update: %1s"
 msgstr ""
 
-#: automatic-updater.php:236
+#: automatic-updater.php:257
 msgid "Howdy!"
 msgstr ""
 
-#: automatic-updater.php:238
+#: automatic-updater.php:259
 msgid ""
 "Automatic Updater just ran on your site, %1s, with the following result:"
 msgstr ""
 
-#: automatic-updater.php:244
+#: automatic-updater.php:265
 msgid "Thanks for using the Automatic Updater plugin!"
 msgstr ""
 
-#: automatic-updater.php:248
+#: automatic-updater.php:269
 msgid "Debug Information:"
 msgstr ""
 
