@@ -4,7 +4,7 @@
  * Plugin URI: http://pento.net/projects/automatic-updater-for-wordpress/
  * Description: Automatically update your WordPress site, as soon as updates are released! Never worry about falling behing on updating again!
  * Author: pento
- * Version: 0.3.2
+ * Version: 0.4
  * Author URI: http://pento.net/
  * License: GPL2+
  * Text Domain: automatic-updater
@@ -76,7 +76,7 @@ function auto_updater_init() {
 	}
 	else {
 		include_once( ABSPATH . 'wp-admin/includes/update.php' );
-		$update_data = wp_get_update_data();
+		$update_data = auto_updater_get_update_data();
 		// Not in a cron, schedule updates to happen in the next cron run
 		foreach ( $types as $internal => $type ) {
 			if ( ! empty( $options['update'][$type] ) && $update_data['counts'][$internal] > 0 ) {
@@ -273,3 +273,24 @@ function auto_updater_notification( $info = '', $debug = '' ) {
 	wp_mail( get_option( 'admin_email' ), $subject, $message );
 }
 
+function auto_updater_get_update_data() {
+	$counts = array( 'plugins' => 0, 'themes' => 0, 'wordpress' => 0 );
+
+	$update_plugins = get_site_transient( 'update_plugins' );
+	if ( ! empty( $update_plugins->response ) )
+		$counts['plugins'] = count( $update_plugins->response );
+
+	$update_themes = get_site_transient( 'update_themes' );
+	if ( ! empty( $update_themes->response ) )
+		$counts['themes'] = count( $update_themes->response );
+
+	if ( function_exists( 'get_core_updates' ) ) {
+		$update_wordpress = get_core_updates( array('dismissed' => false) );
+		if ( ! empty( $update_wordpress ) && ! in_array( $update_wordpress[0]->response, array('development', 'latest') ) )
+			$counts['wordpress'] = 1;
+	}
+
+	$counts['total'] = $counts['plugins'] + $counts['themes'] + $counts['wordpress'];
+
+	return apply_filters( 'auto_update_get_update_data', array( 'counts' => $counts ) );
+}
