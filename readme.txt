@@ -43,8 +43,10 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.3.3 =
 * ADDED: German translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
+* ADDED: Version check on activation, for compatibility.
 * FIXED: Typo in the Settings page
 * FIXED: Debug information in the notification email now has HTML tags stripped out
+* FIXED: Core version check was a little too strong, and could cause updates to be missed. Relaxed a little.
 
 = 0.3.2 =
 * ADDED: Language file for translators
