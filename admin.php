@@ -1,11 +1,10 @@
 <?php
 
-add_action( 'admin_menu', 'auto_updater_plugin_menu' );
-
 function auto_updater_plugin_menu() {
 	$hook = add_options_page( __( 'Automatic Updater', 'automatic-updater' ), __( 'Automatic Updater', 'automatic-updater' ), 'update_core', 'automatic-updater', 'auto_updater_settings' );
 	add_action( "load-$hook", 'auto_updater_settings_loader' );
 }
+add_action( 'admin_menu', 'auto_updater_plugin_menu' );
 
 function auto_updater_settings_loader() {
 	get_current_screen()->add_help_tab( array(

@@ -14,6 +14,24 @@
 global $auto_updater_running;
 $auto_updater_running = false;
 
+define( 'AUTOMATIC_UPDATER_BASENAME', plugin_basename( __FILE__ ) );
+
+function auto_updater_requires_wordpress_version() {
+	if ( version_compare( $GLOBALS['wp_version'], '3.4', '<' ) ) {
+		if ( is_plugin_active( AUTOMATIC_UPDATER_BASENAME ) ) {
+			deactivate_plugins( AUTOMATIC_UPDATER_BASENAME );
+			add_action( 'admin_notices', 'auto_updater_disabled_notice' );
+			if ( isset( $_GET['activate'] ) )
+				unset( $_GET['activate'] );
+		}
+	}
+}
+add_action( 'admin_init', 'auto_updater_requires_wordpress_version' );
+
+function auto_updater_disabled_notice() {
+	echo '<div class="updated"><p><strong>' . __( 'Automatic Updater requires WordPress 3.4 or higher! Please upgrade WordPress manually, then reactivate Automatic Updater.', 'automatic-updater' ) . '</strong></p></div>';
+}
+
 function auto_updater_init() {
 	if ( is_admin() )
 		include_once( dirname( __FILE__ ) . '/admin.php' );
@@ -39,7 +57,7 @@ function auto_updater_init() {
 	}
 
 	// Load the translations
-	load_plugin_textdomain( 'automatic-updater', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'automatic-updater', false, dirname( AUTOMATIC_UPDATER_BASENAME ) . '/languages/' );
 
 	global $auto_updater_running;
 	// If the update check was one we called manually, don't get into a crazy recursive loop.
@@ -80,11 +98,6 @@ function auto_updater_core() {
 
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
-	// If WordPress doesn't think there are updates available, no point in trying to update.
-	$update_data = wp_get_update_data();
-	if ( empty( $update_data['counts']['wordpress'] ) )
-		return;
-
 	$updates = get_core_updates();
 	if ( empty( $updates ) )
 		return;
@@ -93,7 +106,11 @@ function auto_updater_core() {
 	if ( empty( $update ) )
 		return;
 
-	$old_version = get_bloginfo( 'version' );
+	$old_version = $GLOBALS['wp_version'];
+
+	// Sanity check that the new upgrade is actually an upgrade
+	if ( version_compare( $old_version, $update->current, '>=' ) )
+		return;
 
 	$auto_updater_running = true;
 
