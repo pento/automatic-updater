@@ -4,7 +4,7 @@ Donate link: http://pento.net/donate/
 Tags: updates, core, plugins, themes, wordpress automatic upgrader
 Requires at least: 3.4
 Tested up to: 3.5
-Stable tag: 0.3.2
+Stable tag: 0.4
 License: GPL2+
 
 Automatically update WordPress, your themes and plugins! Never have to click the update button again!
