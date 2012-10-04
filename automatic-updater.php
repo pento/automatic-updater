@@ -154,6 +154,13 @@ function auto_updater_plugins() {
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
 	$plugins = apply_filters( 'auto_updater_plugin_updates', get_plugin_updates() );
+
+	// Remove any plugins from the list that may've already been updated
+	foreach ( $plugins as $id => $plugin ) {
+		if ( version_compare( $plugin->Version, $plugin->update->new_version, '>=' ) )
+			unset( $plugins[$id] );
+	}
+
 	if ( empty( $plugins ) )
 		return;
 
@@ -207,6 +214,13 @@ function auto_updater_themes() {
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
 	$themes = apply_filters( 'auto_updater_theme_updates', get_theme_updates() );
+
+	// Remove any themes from the list that may've already been updated
+	foreach ( $themes as $id => $theme ) {
+		if ( version_compare( $theme->Version, $theme->update['new_version'], '>=' ) )
+			unset( $themes[$id] );
+	}
+
 	if ( empty( $themes ) )
 		return;
 
