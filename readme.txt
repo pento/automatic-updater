@@ -41,11 +41,14 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.4.2 =
+* ADDED: Norwegian Bokmål (nb_NO) transation. Props [Bjørn Johansen](https://twitter.com/bjornjohansen)
+
 = 0.4.1 =
 * FIXED: Stop trying to update plugins and themes that are already updated
 
 = 0.4 =
-* ADDED: German translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
+* ADDED: German (de_DE) translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
 * ADDED: Version check on activation, for compatibility
 * UPDATED: Language POT file
 * FIXED: Typo in the Settings page

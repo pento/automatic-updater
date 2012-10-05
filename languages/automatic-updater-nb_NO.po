@@ -1,0 +1,216 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Automatic Updater v0.4.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/automatic-updater\n"
+"POT-Creation-Date: 2012-10-02 10:49:57+00:00\n"
+"PO-Revision-Date: 2012-10-05 16:14+1000\n"
+"Last-Translator: Gary Pendergast <gary@pento.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ../\n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: Poedit 1.5.3\n"
+"X-Poedit-SearchPath-0: .\n"
+
+# @ automatic-updater
+#. #-#-#-#-#  plugin.pot (Automatic Updater 0.3.2)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: admin.php:4 admin.php:45
+msgid "Automatic Updater"
+msgstr ""
+
+# @ automatic-updater
+#: admin.php:12
+msgid "Overview"
+msgstr "Oversikt"
+
+# @ automatic-updater
+#: admin.php:14
+msgid ""
+"This settings page allows you to select whether you would like WordPress "
+"Core, your plugins, and your themes to be automatically updated."
+msgstr ""
+"Denne innstillingssiden lar deg velge om du automatisk skal oppdatere "
+"WordPress-kjernen, dine innstikk og dine temaer."
+
+# @ automatic-updater
+#: admin.php:15
+msgid ""
+"It is very important to keep your WordPress installation up to date for "
+"security reasons, so unless you have a specific reason not to, we recommend "
+"allowing everything to automatically update."
+msgstr ""
+"På grunn av sikkerhet, er det veldig viktig å holde din WordPress-"
+"installasjon oppdatert. Hvis du ikke har en spesifikk grunn til å ikke gjøre "
+"det, anbefaler vi at du lar alt oppdateres automatisk."
+
+# @ automatic-updater
+#: admin.php:19
+msgid "A Plugin By <a href=\"%s\" target=\"_blank\">Gary</a>"
+msgstr "Et innstikk av <a href=\"%s\" target=\"_blank\">Gary</a>"
+
+# @ automatic-updater
+#: admin.php:20
+msgid "Donations"
+msgstr "Donasjoner"
+
+# @ automatic-updater
+#: admin.php:21
+msgid "Support Forums"
+msgstr "Støttefora"
+
+# @ automatic-updater
+#: admin.php:27
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Du har ikke tilstrekkelige tillatelser til å vise denne siden."
+
+# @ automatic-updater
+#: admin.php:34
+msgid "Settings updated"
+msgstr "Innstillinger er oppdatert"
+
+# @ automatic-updater
+#: admin.php:38
+msgid ""
+"Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>"
+msgstr ""
+"Automatisk oppdatering av WordPress-kjernen? <strong>(Anbefales sterkt)</"
+"strong>"
+
+# @ automatic-updater
+#: admin.php:39
+msgid "Update your plugins automatically?"
+msgstr "Automatisk oppdatering av dine innstikk?"
+
+# @ automatic-updater
+#: admin.php:40
+msgid "Update your themes automatically?"
+msgstr "Automatisk oppdatering av dine temaer?"
+
+# @ automatic-updater
+#: admin.php:71
+msgid "Show debug information in the notification email."
+msgstr "Vis debugging-informasjon i e-postvarslingen."
+
+#: admin.php:72
+msgid "Save Changes"
+msgstr "Lagre endringer"
+
+# @ automatic-updater
+#: automatic-updater.php:32
+msgid ""
+"Automatic Updater requires WordPress 3.4 or higher! Please upgrade WordPress "
+"manually, then reactivate Automatic Updater."
+msgstr ""
+"Automatiske oppdateringer krever WordPress 3.4 eller nyere! Vennligst "
+"oppgrader WordPress manuelt, og reaktiver innstikket."
+
+# @ automatic-updater
+#: automatic-updater.php:126
+msgid "While trying to upgrade WordPress, we ran into the following error:"
+msgstr "Når vi forsøkte å oppdatere WordPress, møtte vi på følgende feil:"
+
+# @ automatic-updater
+#: automatic-updater.php:128
+msgid "We're sorry it didn't work out. Please try upgrading manually, instead."
+msgstr ""
+"Beklager at det ikke fungerte. Vennglist forsøk å oppgradere manuelt i "
+"stedet."
+
+# @ automatic-updater
+#: automatic-updater.php:131
+msgid "We've successfully upgraded WordPress from version %1s to version %2s!"
+msgstr ""
+"Vi har suksessfullt oppgradert WordPress fra versjon %1s til versjon %2s!"
+
+# @ automatic-updater
+#: automatic-updater.php:132
+msgid "Have fun!"
+msgstr "Ha det moro!"
+
+# @ automatic-updater
+#: automatic-updater.php:170
+msgid "We found a plugin upgrade!"
+msgid_plural "We found upgrades for some plugins!"
+msgstr[0] "Vi har funnet en innstikkoppgradering!"
+msgstr[1] "Vi har funnet oppgraderinger for noen innstikk!"
+
+# @ automatic-updater
+#. translators: First argument is the Plugin name, second argument is the error
+#. encountered while upgrading
+#: automatic-updater.php:176
+msgid "%1s: We encounted an error upgrading this plugin: %2s"
+msgstr "%1s: Vi møtte på en feil under oppgradering av dette innstikket: %2s"
+
+# @ automatic-updater
+#: automatic-updater.php:182 automatic-updater.php:235
+msgid "%1s: Successfully upgraded from version %2s to %3s!"
+msgstr "%1s: Suksessfullt oppgadert fra versjon %2s til %3s!"
+
+# @ automatic-updater
+#: automatic-updater.php:223
+msgid "We found a theme upgrade!"
+msgid_plural "We found upgrades for some themes!"
+msgstr[0] "Vi har funnet en temaoppgradering!"
+msgstr[1] "Vi har funnet oppgraderinger for noen temaer!"
+
+# @ automatic-updater
+#. translators: First argument is the Theme name, second argument is the error
+#. encountered while upgrading
+#: automatic-updater.php:229
+msgid "%1s: We encounted an error upgrading this theme: %2s"
+msgstr "%1s: Vi møtte på en feil under oppgradering av dette temaet: %2s"
+
+# @ automatic-updater
+#: automatic-updater.php:255
+msgid "WordPress Update: %1s"
+msgstr "WordPress-oppdatering: %1s"
+
+# @ automatic-updater
+#: automatic-updater.php:257
+msgid "Howdy!"
+msgstr "Heisann!"
+
+# @ automatic-updater
+#: automatic-updater.php:259
+msgid ""
+"Automatic Updater just ran on your site, %1s, with the following result:"
+msgstr ""
+"Automatiske oppdateringer har kjørt på ditt nettsted, %1s, med følgende "
+"resultat:"
+
+# @ automatic-updater
+#: automatic-updater.php:265
+msgid "Thanks for using the Automatic Updater plugin!"
+msgstr "Takk for at du benytter deg av innstikket Automatiske oppdateringer!"
+
+# @ automatic-updater
+#: automatic-updater.php:269
+msgid "Debug Information:"
+msgstr "Debugging-informasjon:"
+
+#. Plugin URI of the plugin/theme
+msgid "http://pento.net/projects/automatic-updater-for-wordpress/"
+msgstr "http://pento.net/projects/automatic-updater-for-wordpress/"
+
+#. Description of the plugin/theme
+msgid ""
+"Automatically update your WordPress site, as soon as updates are released! "
+"Never worry about falling behing on updating again!"
+msgstr ""
+"Automatisk oppdater ditt WordPress-nettsted så snart oppdageringer blir gitt "
+"ut! Aldri bekymre deg for å falle bakpå med oppdateringer igjen!"
+
+#. Author of the plugin/theme
+msgid "pento"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://pento.net/"
+msgstr ""
