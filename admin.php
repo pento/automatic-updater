@@ -2,6 +2,7 @@
 
 function auto_updater_plugin_menu() {
 	$hook = add_options_page( __( 'Automatic Updater', 'automatic-updater' ), __( 'Automatic Updater', 'automatic-updater' ), 'update_core', 'automatic-updater', 'auto_updater_settings' );
+
 	add_action( "load-$hook", 'auto_updater_settings_loader' );
 }
 add_action( 'admin_menu', 'auto_updater_plugin_menu' );
@@ -20,6 +21,8 @@ function auto_updater_settings_loader() {
 		'<p><a href="http://pento.net/donate/">' . __( 'Donations', 'automatic-updater' ) . '</a></p>' .
 		'<p><a href="http://wordpress.org/support/plugin/automatic-updater">' . __( 'Support Forums', 'automatic-updater' ) . '</a></p>'
 	);
+
+	wp_enqueue_style( 'automatic-updater-admin', plugins_url( 'css/admin.css', __FILE__ ) );
 }
 
 function auto_updater_settings() {
@@ -63,11 +66,34 @@ function auto_updater_settings() {
 		echo "<p><input type='checkbox' id='$type' name='$type' value='1'$checked> <label for='$type'>{$messages[$type]}</label></p>";
 	}
 
+	if ( is_dir( ABSPATH . '/.svn' ) ) {
+		$checked = '';
+		if ( $options['svn'] )
+			$checked = ' checked="checked"';
+?>
+	<br><br>
+	<h3><?php _e( 'SVN Support', 'automatic-updater' ); ?></h3>
+	<p><?php _e( "It looks like you're running an SVN version of WordPress, that's cool! Automatic Updater can run <tt>svn up</tt> once an hour, to keep you up-to-date. For safety, enabling this option will disable the normal WordPress core updates.", 'automatic-updater' ) ?></p>
+<?php
+	if ( !is_writable( ABSPATH . '/.svn' ) ) {
+		$uid = posix_getuid();
+		$user = posix_getpwuid( $uid );
+		echo '<div class="automatic-updater-notice"><p>' . sprintf( __( "The .svn directory isn't writable, so <tt>svn up</tt> will probably fail when the web server runs it. You need to give the user <tt>%1s</tt> write permissions to your entire WordPress install, including .svn directories.", 'automatic-updater' ), $user['name'] ) . '</p></div>';
+	}
+?>
+	<p><input type="checkbox" id="svn" name="svn" value="1"<?php echo $checked; ?>> <label for="svn"><?php _e( 'Run <tt>svn up</tt> hourly?', 'automatic-updater' ); ?></label></p>
+<?php
+	}
+	else {
+		echo '<input type="hidden" name="svn" value="0">';
+	}
+
 	$checked = '';
 	if ( $options['debug'] )
 		$checked = ' checked="checked"';
 ?>
 		<br/><br/>
+		<h3><?php _e( 'Debug Information', 'automatic-updater' ); ?></h3>
 		<p><input type="checkbox" id="debug" name="debug" value="1"<?php echo $checked; ?>> <label for="debug"><?php _e( 'Show debug information in the notification email.', 'automatic-updater' ); ?></label></p>
 		<p><input class="button button-primary" type="submit" name="submit" id="submit" value="<?php esc_attr_e( 'Save Changes', 'automatic-updater' ); ?>" /></p>
 		</form>
@@ -76,9 +102,9 @@ function auto_updater_settings() {
 }
 
 function auto_updater_save_settings() {
-	$types = array( 'core', 'plugins', 'themes' );
 	$options = get_option( 'automatic-updater' );
 
+	$types = array( 'core', 'plugins', 'themes' );
 	foreach ( $types as $type ) {
 		if ( ! empty( $_REQUEST[$type] ) )
 			$options['update'][$type] = true;
@@ -86,10 +112,13 @@ function auto_updater_save_settings() {
 			$options['update'][$type] = false;
 	}
 
-	if ( ! empty( $_REQUEST['debug'] ) )
-		$options['debug'] = true;
-	else
-		$options['debug'] = false;
+	$top_options = array( 'debug', 'svn' );
+	foreach ( $top_options as $option ) {
+		if ( ! empty( $_REQUEST[$option] ) )
+			$options[$option] = true;
+		else
+			$options[$option] = false;
+	}
 
 	update_option( 'automatic-updater', $options );
 }

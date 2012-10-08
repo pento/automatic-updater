@@ -45,6 +45,7 @@ function auto_updater_init() {
 								'plugins' => false,
 								'themes' => false,
 							),
+					'svn' => false,
 					'debug' => false,
 				);
 		update_option( 'automatic-updater', $options );
@@ -54,6 +55,22 @@ function auto_updater_init() {
 	if ( ! array_key_exists( 'debug', $options ) ) {
 		$options['debug'] = false;
 		update_option( 'automatic-updater', $options );
+	}
+
+	// SVN updates added in version 0.5
+	if ( ! array_key_exists( 'svn', $options ) ) {
+		$options['svn'] = false;
+		update_option( 'automatic-updater', $options );
+	}
+
+	// Configure SVN updates cron, if it's enabled
+	if ( $options['svn'] ) {
+		if ( ! wp_next_scheduled( 'auto_updater_svn_event' ) )
+			wp_schedule_event( time(), 'hourly', 'auto_updater_svn_event' );
+	}
+	else {
+		if ( $timestamp = wp_next_scheduled( 'auto_updater_svn_event' ) )
+			wp_unschedule_event( $timestamp, 'auto_updater_svn_event' );
 	}
 
 	// Load the translations
@@ -90,6 +107,10 @@ add_action( 'init', 'auto_updater_init' );
 function auto_updater_core() {
 	global $auto_updater_running;
 	if ( $auto_updater_running )
+		return;
+
+	$options = get_option( 'automatic-updater', array() );
+	if ( $options['svn'] )
 		return;
 
 	// Forgive me father, for I have sinned. I have included wp-admin files in a plugin.
@@ -262,6 +283,35 @@ function auto_updater_themes() {
 	wp_update_themes();
 }
 add_action( 'auto_updater_themes_event', 'auto_updater_themes' );
+
+function auto_updater_svn() {
+	$output = array();
+	$return = NULL;
+
+	exec( 'svn up ' . ABSPATH, $output, $return );
+
+	if ( 0 === $return ) {
+		$update = end( $output );
+		// No need to email if there was no update.
+		if ( 0 === strstr( $update, "At revision" ) )
+			return;
+
+		$message = __( 'We successfully upgraded from SVN!', 'automatic-updater' );
+		$message .= "\r\n\r\n$update";
+	}
+	else {
+		$message = __( 'While upgrading from SVN, we ran into the following error:', 'automatic-updater' );
+		$message .= "\r\n\r\n" . end( $output ) . "\r\n\r\n";
+		$message .= __( "We're sorry it didn't work out. Please try upgrading manually, instead.", 'automatic-updater' );
+	}
+
+	$message .= "\r\n";
+
+	$debug = join( "\r\n", $output );
+
+	auto_updater_notification( $message, $debug );
+}
+add_action( 'auto_updater_svn_event', 'auto_updater_svn' );
 
 function auto_updater_notification( $info = '', $debug = '' ) {
 	$options = get_option( 'automatic-updater', array() );

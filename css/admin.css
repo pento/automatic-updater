@@ -1,0 +1,15 @@
+div.automatic-updater-notice {
+	background-color: lightYellow;
+	border-color: #E6DB55;
+	padding: 0 .6em;
+	margin: 5px 0 15px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	border-width: 1px;
+	border-style: solid;
+}
+
+div.automatic-updater-notice p {
+	margin: .5em 0;
+	padding: 2px;
+}

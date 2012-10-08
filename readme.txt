@@ -41,7 +41,8 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
-= 0.4.2 =
+= 0.5 =
+* ADDED: SVN support for core - if you're running WordPress from SVN, you now have the option to keep it up-to-date!
 * ADDED: Norwegian Bokmål (nb_NO) transation. Props [Bjørn Johansen](https://twitter.com/bjornjohansen)
 
 = 0.4.1 =
