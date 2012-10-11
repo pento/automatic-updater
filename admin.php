@@ -122,3 +122,12 @@ function auto_updater_save_settings() {
 
 	update_option( 'automatic-updater', $options );
 }
+
+function auto_updater_plugin_row_meta( $links, $file ) {
+	if( AUTOMATIC_UPDATER_BASENAME == $file ) {
+		$links[] = '<a href="options-general.php?page=automatic-updater">' . __( 'Settings', 'automatic-updater' ) . '</a>';
+	}
+
+	return $links;
+}
+add_filter( 'plugin_row_meta', 'auto_updater_plugin_row_meta', 10, 2 );
