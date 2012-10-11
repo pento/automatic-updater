@@ -45,6 +45,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 * ADDED: SVN support for core - if you're running WordPress from SVN, you now have the option to keep it up-to-date!
 * ADDED: Norwegian Bokmål (nb_NO) transation. Props [Bjørn Johansen](https://twitter.com/bjornjohansen)
 * ADDED: Link to the Settings page from the Plugin list
+* UPDATED: Language POT file
 
 = 0.4.1 =
 * FIXED: Stop trying to update plugins and themes that are already updated
