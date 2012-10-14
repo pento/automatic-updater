@@ -349,8 +349,8 @@ function auto_updater_get_update_data() {
 		$counts['themes'] = count( $update_themes->response );
 
 	if ( function_exists( 'get_core_updates' ) ) {
-		$update_wordpress = get_core_updates( array('dismissed' => false) );
-		if ( ! empty( $update_wordpress ) && ! in_array( $update_wordpress[0]->response, array('development', 'latest') ) )
+		$update_wordpress = get_core_updates( array( 'dismissed' => false ) );
+		if ( ! empty( $update_wordpress ) && ! in_array( $update_wordpress[0]->response, array( 'development', 'latest' ) ) )
 			$counts['wordpress'] = 1;
 	}
 
