@@ -41,9 +41,12 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.5.1 =
+* ADDED: Dutch (nl_NL) translation. Props Trifon Rijksen.
+
 = 0.5 =
 * ADDED: SVN support for core - if you're running WordPress from SVN, you now have the option to keep it up-to-date!
-* ADDED: Norwegian Bokmål (nb_NO) transation. Props [Bjørn Johansen](https://twitter.com/bjornjohansen)
+* ADDED: Norwegian Bokmål (nb_NO) translation. Props [Bjørn Johansen](https://twitter.com/bjornjohansen)
 * ADDED: Link to the Settings page from the Plugin list
 * UPDATED: Language POT file
 
