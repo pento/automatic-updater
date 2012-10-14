@@ -1,7 +1,7 @@
 === Automatic Updater ===
 Contributors: pento
 Donate link: http://pento.net/donate/
-Tags: updates, core, plugins, themes, wordpress automatic upgrader
+Tags: updates, core, plugins, themes, stable, nightly, svn, wordpress automatic upgrader
 Requires at least: 3.4
 Tested up to: 3.5
 Stable tag: 0.5
@@ -11,7 +11,7 @@ Automatically update WordPress, your themes and plugins! Never have to click the
 
 == Description ==
 
-Automatic Updater keeps your WordPress install up to date with the latest releases automatically, as soon as the update is available.
+Automatic Updater keeps your WordPress install up to date with the latest releases automatically, as soon as the update is available. It supports updating stable releases, nightly releases, or even regular SVN checkouts!
 
 While this will be useful for the vast majority of sites, please exercise caution, particularly if you have any custom themes or plugins running on your site.
 
