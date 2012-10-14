@@ -47,6 +47,7 @@ function auto_updater_init() {
 							),
 					'svn' => false,
 					'debug' => false,
+					'next-development-update' => time(),
 				);
 		update_option( 'automatic-updater', $options );
 	}
@@ -60,6 +61,12 @@ function auto_updater_init() {
 	// SVN updates added in version 0.5
 	if ( ! array_key_exists( 'svn', $options ) ) {
 		$options['svn'] = false;
+		update_option( 'automatic-updater', $options );
+	}
+
+	// Development version updates added in version 0.6
+	if ( ! array_key_exists( 'next-development-update', $options ) ) {
+		$options['next-development-update'] = time();
 		update_option( 'automatic-updater', $options );
 	}
 
@@ -123,15 +130,29 @@ function auto_updater_core() {
 	if ( empty( $updates ) )
 		return;
 
-	$update = apply_filters( 'auto_updater_core_updates', find_core_update( $updates[0]->current, $updates[0]->locale ) );
+	if ( 'development' == $updates[0]->response )
+		$update = $updates[0];
+	else
+		$update = find_core_update( $updates[0]->current, $updates[0]->locale );
+
+	$update = apply_filters( 'auto_updater_core_updates', $update );
 	if ( empty( $update ) )
 		return;
 
 	$old_version = $GLOBALS['wp_version'];
 
 	// Sanity check that the new upgrade is actually an upgrade
-	if ( version_compare( $old_version, $update->current, '>=' ) )
+	if ( 'development' != $update->response && version_compare( $old_version, $update->current, '>=' ) )
 		return;
+
+	// Only do development version updates once every 24 hours
+	if ( 'development' == $update->response ) {
+		if ( time() < $options['next-development-update'] )
+			return;
+
+		$options['next-development-update'] = strtotime( '+24 hours' );
+		update_option( 'automatic-updater', $options );
+	}
 
 	$auto_updater_running = true;
 
@@ -147,6 +168,10 @@ function auto_updater_core() {
 		$message = __( "While trying to upgrade WordPress, we ran into the following error:", 'automatic-updater' );
 		$message .= "\r\n\r\n" . $result->get_error_message() . "\r\n\r\n";
 		$message .= __( "We're sorry it didn't work out. Please try upgrading manually, instead.", 'automatic-updater' );
+	}
+	else if( 'development' == $update->response ) {
+		$message = __( "We've successfully upgraded WordPress to the latest nightly build!", 'automatic-updater' );
+		$message .= "\r\n\r\n" . __( 'Have fun!', 'automatic-updater' );
 	}
 	else {
 		$message = sprintf( __( "We've successfully upgraded WordPress from version %1s to version %2s!", 'automatic-updater' ), $old_version, $update->current );
@@ -350,7 +375,7 @@ function auto_updater_get_update_data() {
 
 	if ( function_exists( 'get_core_updates' ) ) {
 		$update_wordpress = get_core_updates( array( 'dismissed' => false ) );
-		if ( ! empty( $update_wordpress ) && ! in_array( $update_wordpress[0]->response, array( 'development', 'latest' ) ) )
+		if ( ! empty( $update_wordpress ) && 'latest' != $update_wordpress[0]->response )
 			$counts['wordpress'] = 1;
 	}
 

@@ -41,8 +41,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
-= 0.5.1 =
-* ADDED: Dutch (nl_NL) translation. Props Trifon Rijksen.
+= 0.6 =
+* ADDED: Support for nightly builds
+* ADDED: Dutch (nl_NL) translation. Props Trifon Rijksen
 
 = 0.5 =
 * ADDED: SVN support for core - if you're running WordPress from SVN, you now have the option to keep it up-to-date!
