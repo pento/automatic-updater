@@ -41,6 +41,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.6.1 =
+* UPDATED: German (de_DE) translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
+
 = 0.6 =
 * ADDED: Support for nightly builds
 * ADDED: Dutch (nl_NL) translation. Props Trifon Rijksen
