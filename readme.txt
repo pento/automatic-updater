@@ -41,6 +41,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.6.3 =
+* ADDED: Taiwan Traditional Chinese (Taiwan 正體中文) (zh_TW) translation. Props [Pseric](http://www.freegroup.org/)
+
 = 0.6.2 =
 * UPDATED: Norwegian Bokmål (nb_NO) translation. Props [Bjørn Johansen](https://twitter.com/bjornjohansen)
 

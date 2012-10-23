@@ -1,0 +1,224 @@
+# Copyright (C) 2012 Automatic Updater
+# This file is distributed under the same license as the Automatic Updater package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Automatic Updater 0.6 (Traditional Chinese)\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/automatic-updater\n"
+"POT-Creation-Date: 2012-10-14 11:18:57+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-10-23 12:56+1000\n"
+"Last-Translator: Gary Pendergast <gary@pento.net>\n"
+"Language-Team: Pseric <pserics@gmail.com>\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. #-#-#-#-#  plugin.pot (Automatic Updater 0.6)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: admin.php:4 admin.php:48
+msgid "Automatic Updater"
+msgstr ""
+
+#: admin.php:13
+msgid "Overview"
+msgstr "總覽"
+
+#: admin.php:15
+msgid ""
+"This settings page allows you to select whether you would like WordPress "
+"Core, your plugins, and your themes to be automatically updated."
+msgstr ""
+"這個設定頁面能讓你選擇哪些項目要自動更新，像是 WordPress 核心檔案、你的外掛和"
+"你的佈景主題。"
+
+#: admin.php:16
+msgid ""
+"It is very important to keep your WordPress installation up to date for "
+"security reasons, so unless you have a specific reason not to, we recommend "
+"allowing everything to automatically update."
+msgstr ""
+"基於安全性原因，讓你的 WordPress 保持在最新狀態是相當重要的，除非你有特定的理"
+"由不這麼做，我們建議自動更新所有項目。"
+
+#: admin.php:20
+msgid "A Plugin By <a href=\"%s\" target=\"_blank\">Gary</a>"
+msgstr "外掛開發者：<a href=\"%s\" target=\"_blank\">Gary</a>"
+
+#: admin.php:21
+msgid "Donations"
+msgstr "捐款"
+
+#: admin.php:22
+msgid "Support Forums"
+msgstr "支援論壇"
+
+#: admin.php:30
+msgid "You do not have sufficient permissions to access this page."
+msgstr "你沒有足夠的權限訪問此頁面。"
+
+#: admin.php:37
+msgid "Settings updated"
+msgstr "設定已更新"
+
+#: admin.php:41
+msgid ""
+"Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>"
+msgstr "自動更新 WordPress 核心檔案？<strong>（強烈建議）</strong>"
+
+#: admin.php:42
+msgid "Update your plugins automatically?"
+msgstr "自動更新你的外掛？"
+
+#: admin.php:43
+msgid "Update your themes automatically?"
+msgstr "自動更新你的佈景主題？"
+
+#: admin.php:75
+msgid "SVN Support"
+msgstr "SVN 支援"
+
+#: admin.php:76
+msgid ""
+"It looks like you're running an SVN version of WordPress, that's cool! "
+"Automatic Updater can run <tt>svn up</tt> once an hour, to keep you up-to-"
+"date. For safety, enabling this option will disable the normal WordPress "
+"core updates."
+msgstr ""
+"看起來你使用的是 WordPress SVN 版本，真酷！Automatic Updater 可以每隔一小時執"
+"行 <tt>svn up</tt> ，讓你保持在最新狀態。基於安全因素，勾選此項目能夠關閉一般"
+"的 WordPress 核心檔案更新。"
+
+#: admin.php:81
+msgid ""
+"The .svn directory isn't writable, so <tt>svn up</tt> will probably fail "
+"when the web server runs it. You need to give the user <tt>%1s</tt> write "
+"permissions to your entire WordPress install, including .svn directories."
+msgstr ""
+".svn 目錄無法寫入，所以當伺服器執行 <tt>svn up</tt> 時可能產生錯誤。你需要給"
+"予使用者 <tt>%1s</tt> 寫入 WordPress 檔案的權限，包括 .svn 目錄。"
+
+#: admin.php:84
+msgid "Run <tt>svn up</tt> hourly?"
+msgstr "每小時執行 <tt>svn up</tt>？"
+
+#: admin.php:96
+msgid "Debug Information"
+msgstr "除錯資訊"
+
+#: admin.php:97
+msgid "Show debug information in the notification email."
+msgstr "在通知郵件裡顯示除錯資訊。"
+
+#: admin.php:98
+msgid "Save Changes"
+msgstr "儲存變更"
+
+#: admin.php:128
+msgid "Settings"
+msgstr "設定"
+
+#: automatic-updater.php:32
+msgid ""
+"Automatic Updater requires WordPress 3.4 or higher! Please upgrade WordPress "
+"manually, then reactivate Automatic Updater."
+msgstr ""
+"Automatic Updater 需要 WordPress 3.4 以上版本才能執行！請手動升級 WordPress，"
+"然後重新啟用 Automatic Updater 。"
+
+#: automatic-updater.php:168
+msgid "While trying to upgrade WordPress, we ran into the following error:"
+msgstr "在嘗試升級 WordPress 時，我們遭遇以下錯誤："
+
+#: automatic-updater.php:170 automatic-updater.php:330
+msgid "We're sorry it didn't work out. Please try upgrading manually, instead."
+msgstr "很抱歉無法正常運作。請嘗試以手動升級來取代。"
+
+#: automatic-updater.php:173
+msgid "We've successfully upgraded WordPress to the latest nightly build!"
+msgstr "我們已經成功將 WordPress 升級至最新的 nightly build！"
+
+#: automatic-updater.php:174 automatic-updater.php:178
+msgid "Have fun!"
+msgstr "盡情享受！"
+
+#: automatic-updater.php:177
+msgid "We've successfully upgraded WordPress from version %1s to version %2s!"
+msgstr "我們已經成功將 WordPress 從版本 %1s 升級至版本 %2s ！"
+
+#: automatic-updater.php:223
+msgid "We found a plugin upgrade!"
+msgid_plural "We found upgrades for some plugins!"
+msgstr[0] "我們發現一個外掛有新的更新！"
+msgstr[1] "我們發現一個外掛有新的更新！"
+
+#. translators: First argument is the Plugin name, second argument is the error
+#. encountered while upgrading
+#: automatic-updater.php:229
+msgid "%1s: We encounted an error upgrading this plugin: %2s"
+msgstr "%1s: 我們遭遇一個錯誤，在升級此外掛時： %2s"
+
+#: automatic-updater.php:235 automatic-updater.php:295
+msgid "%1s: Successfully upgraded from version %2s to %3s!"
+msgstr "%1s: 已成功從版本 %2s 升級至版本 %3s ！"
+
+#: automatic-updater.php:283
+msgid "We found a theme upgrade!"
+msgid_plural "We found upgrades for some themes!"
+msgstr[0] "我們發現一個佈景主題有新的更新！"
+msgstr[1] "我們發現一個佈景主題有新的更新！"
+
+#. translators: First argument is the Theme name, second argument is the error
+#. encountered while upgrading
+#: automatic-updater.php:289
+msgid "%1s: We encounted an error upgrading this theme: %2s"
+msgstr "%1s: 我們遭遇一個錯誤，在升級此佈景主題時： %2s"
+
+#: automatic-updater.php:324
+msgid "We successfully upgraded from SVN!"
+msgstr "我們已經成功從 SVN 更新！"
+
+#: automatic-updater.php:328
+msgid "While upgrading from SVN, we ran into the following error:"
+msgstr "在從 SVN 升級時，我們遭遇以下錯誤："
+
+#: automatic-updater.php:344
+msgid "WordPress Update: %1s"
+msgstr "WordPress 更新：%1s"
+
+#: automatic-updater.php:346
+msgid "Howdy!"
+msgstr "你好！"
+
+#: automatic-updater.php:348
+msgid ""
+"Automatic Updater just ran on your site, %1s, with the following result:"
+msgstr "Automatic Updater 在你的網站上執行，%1s ，結果如下："
+
+#: automatic-updater.php:354
+msgid "Thanks for using the Automatic Updater plugin!"
+msgstr "感謝使用 Automatic Updater 外掛！"
+
+#: automatic-updater.php:358
+msgid "Debug Information:"
+msgstr "除錯資訊："
+
+#. Plugin URI of the plugin/theme
+msgid "http://pento.net/projects/automatic-updater-for-wordpress/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Automatically update your WordPress site, as soon as updates are released! "
+"Never worry about falling behing on updating again!"
+msgstr ""
+"當 WordPress 釋出更新時自動升級你的 WordPress 網站！再也不用擔心忘記更新！"
+
+#. Author of the plugin/theme
+msgid "pento"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://pento.net/"
+msgstr ""
