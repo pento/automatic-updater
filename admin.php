@@ -65,13 +65,18 @@ function auto_updater_settings() {
 
 		echo "<p><input type='checkbox' id='$type' name='$type' value='1'$checked> <label for='$type'>{$messages[$type]}</label></p>";
 	}
-
+?>
+	<br>
+	<h3><?php _e( 'Contact', 'automatic-updater' ); ?></h3>
+	<p><?php _e( 'By default, Automatic Updater will send an email to the Site Admin when an update is performed. If you would like to send that email to a different address, you can set it here.', 'automatic-updater' ); ?></p>
+	<p><label for="override-email"><?php _e( 'Override Email Address', 'automatic-updater' ); ?></label> <input type="text" name="override-email" id="override-email" value="<?php echo esc_attr( $options['override-email'] ); ?>"></p>
+<?php
 	if ( is_dir( ABSPATH . '/.svn' ) ) {
 		$checked = '';
 		if ( $options['svn'] )
 			$checked = ' checked="checked"';
 ?>
-	<br><br>
+	<br>
 	<h3><?php _e( 'SVN Support', 'automatic-updater' ); ?></h3>
 	<p><?php _e( "It looks like you're running an SVN version of WordPress, that's cool! Automatic Updater can run <tt>svn up</tt> once an hour, to keep you up-to-date. For safety, enabling this option will disable the normal WordPress core updates.", 'automatic-updater' ) ?></p>
 <?php
@@ -92,7 +97,7 @@ function auto_updater_settings() {
 	if ( $options['debug'] )
 		$checked = ' checked="checked"';
 ?>
-		<br/><br/>
+		<br>
 		<h3><?php _e( 'Debug Information', 'automatic-updater' ); ?></h3>
 		<p><input type="checkbox" id="debug" name="debug" value="1"<?php echo $checked; ?>> <label for="debug"><?php _e( 'Show debug information in the notification email.', 'automatic-updater' ); ?></label></p>
 		<p><input class="button button-primary" type="submit" name="submit" id="submit" value="<?php esc_attr_e( 'Save Changes', 'automatic-updater' ); ?>" /></p>
@@ -112,7 +117,7 @@ function auto_updater_save_settings() {
 			$options['update'][$type] = false;
 	}
 
-	$top_options = array( 'debug', 'svn' );
+	$top_options = array( 'debug', 'svn', 'override-email' );
 	foreach ( $top_options as $option ) {
 		if ( ! empty( $_REQUEST[$option] ) )
 			$options[$option] = true;

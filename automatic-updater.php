@@ -70,6 +70,12 @@ function auto_updater_init() {
 		update_option( 'automatic-updater', $options );
 	}
 
+	// Override contact email added in version 0.7
+	if ( ! array_key_exists( 'override-email', $options ) ) {
+		$options['override-email'] = '';
+		update_option( 'automatic-updater', $options );
+	}
+
 	// Configure SVN updates cron, if it's enabled
 	if ( $options['svn'] ) {
 		if ( ! wp_next_scheduled( 'auto_updater_svn_event' ) )
@@ -359,7 +365,11 @@ function auto_updater_notification( $info = '', $debug = '' ) {
 		$message .= "\r\n\r\n$debug";
 	}
 
-	wp_mail( get_option( 'admin_email' ), $subject, $message );
+	$email = get_option( 'admin_email' );
+	if ( ! empty( $options['override-email'] ) )
+		$email = $options['override-email'];
+
+	wp_mail( $email, $subject, $message );
 }
 
 function auto_updater_get_update_data() {
