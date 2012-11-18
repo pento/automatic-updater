@@ -44,9 +44,10 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 = 0.7 =
 * ADDED: Option to override where the update email is sent
 * ADDED: 'auto_updater_notification_email_address' filter, for the update notification email address
-* CHANGED: Notification emails now send as HTML emails (for greater flexibility of what to include)
+* CHANGED: Notification emails now send as HTML emails (for greater flexibility of information to include)
 * FIXED: Some strings were formatted incorrectly for translation
 * FIXED: Escape all strings appropriately before displaying
+* FIXED: SVN updates would cause hourly emails, regardless of an update occurring or not
 
 = 0.6.3 =
 * ADDED: Taiwan Traditional Chinese (Taiwan 正體中文) (zh_TW) translation. Props [Pseric](http://www.freegroup.org/)

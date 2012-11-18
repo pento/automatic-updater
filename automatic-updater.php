@@ -324,7 +324,7 @@ function auto_updater_svn() {
 	if ( 0 === $return ) {
 		$update = end( $output );
 		// No need to email if there was no update.
-		if ( 0 === strstr( $update, "At revision" ) )
+		if ( 0 === strpos( $update, "At revision" ) )
 			return;
 
 		$message = esc_html__( 'We successfully upgraded from SVN!', 'automatic-updater' );
