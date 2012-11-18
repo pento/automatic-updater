@@ -328,7 +328,7 @@ function auto_updater_svn() {
 			return;
 
 		$message = __( 'We successfully upgraded from SVN!', 'automatic-updater' );
-		$message .= "\r\n\r\n$update";
+		$message .= "<br><br>$update";
 	}
 	else {
 		$message = __( 'While upgrading from SVN, we ran into the following error:', 'automatic-updater' );
