@@ -47,6 +47,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 * ADDED: Reminder in the notification email for users to mark the plugins/themes compatible
 * ADDED: Option to disable notification emails
 * CHANGED: Notification emails now send as HTML emails (for greater flexibility of information to include)
+* UPDATED: Language POT file
 * FIXED: Some strings were formatted incorrectly for translation
 * FIXED: Escape all strings appropriately before displaying
 * FIXED: SVN updates would cause hourly emails, regardless of an update occurring or not
