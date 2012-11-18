@@ -29,7 +29,7 @@ function auto_updater_requires_wordpress_version() {
 add_action( 'admin_init', 'auto_updater_requires_wordpress_version' );
 
 function auto_updater_disabled_notice() {
-	echo '<div class="updated"><p><strong>' . __( 'Automatic Updater requires WordPress 3.4 or higher! Please upgrade WordPress manually, then reactivate Automatic Updater.', 'automatic-updater' ) . '</strong></p></div>';
+	echo '<div class="updated"><p><strong>' . esc_html__( 'Automatic Updater requires WordPress 3.4 or higher! Please upgrade WordPress manually, then reactivate Automatic Updater.', 'automatic-updater' ) . '</strong></p></div>';
 }
 
 function auto_updater_init() {
@@ -171,17 +171,17 @@ function auto_updater_core() {
 	do_action( 'auto_updater_after_update', 'core' );
 
 	if ( is_wp_error( $result ) ) {
-		$message = __( "While trying to upgrade WordPress, we ran into the following error:", 'automatic-updater' );
+		$message = esc_html__( "While trying to upgrade WordPress, we ran into the following error:", 'automatic-updater' );
 		$message .= '<br><br>' . $result->get_error_message() . '<br><br>';
-		$message .= __( "We're sorry it didn't work out. Please try upgrading manually, instead.", 'automatic-updater' );
+		$message .= esc_html__( "We're sorry it didn't work out. Please try upgrading manually, instead.", 'automatic-updater' );
 	}
 	else if( 'development' == $update->response ) {
-		$message = __( "We've successfully upgraded WordPress to the latest nightly build!", 'automatic-updater' );
-		$message .= '<br><br>' . __( 'Have fun!', 'automatic-updater' );
+		$message = esc_html__( "We've successfully upgraded WordPress to the latest nightly build!", 'automatic-updater' );
+		$message .= '<br><br>' . esc_html__( 'Have fun!', 'automatic-updater' );
 	}
 	else {
-		$message = sprintf( __( 'We\'ve successfully upgraded WordPress from version %1$s to version %2$s!', 'automatic-updater' ), $old_version, $update->current );
-		$message .= '<br><br>' . __( 'Have fun!', 'automatic-updater' );
+		$message = sprintf( esc_html__( 'We\'ve successfully upgraded WordPress from version %1$s to version %2$s!', 'automatic-updater' ), $old_version, $update->current );
+		$message .= '<br><br>' . esc_html__( 'Have fun!', 'automatic-updater' );
 	}
 
 	$message .= '<br>';
@@ -226,19 +226,19 @@ function auto_updater_plugins() {
 
 	do_action( 'auto_updater_after_update', 'plugins' );
 
-	$message = _n( 'We found a plugin upgrade!', 'We found upgrades for some plugins!', count( $plugins ), 'automatic-updater' );
+	$message = esc_html( _n( 'We found a plugin upgrade!', 'We found upgrades for some plugins!', count( $plugins ), 'automatic-updater' ) );
 	$message .= '<br><br>';
 
 	foreach ( $plugins as $id => $plugin ) {
 		if ( is_wp_error( $result[$id] ) ) {
 			/* translators: First argument is the Plugin name, second argument is the error encountered while upgrading */
-			$message .= sprintf( __( '%1$s: We encounted an error upgrading this plugin: %2$s', 'automatic-updater' ),
+			$message .= sprintf( esc_html__( '%1$s: We encounted an error upgrading this plugin: %2$s', 'automatic-updater' ),
 										$plugin->Name,
 										$result[$id]->get_error_message() );
 		}
 		else {
 			/* tranlators: First argument is the Plugin name, second argument is the old version number, third argument is the new version number */
-			$message .= sprintf( __( '%1$s: Successfully upgraded from version %2$s to %3$s!', 'automatic-updater' ),
+			$message .= sprintf( esc_html__( '%1$s: Successfully upgraded from version %2$s to %3$s!', 'automatic-updater' ),
 										$plugin->Name,
 										$plugin->Version,
 										$plugin->update->new_version );
@@ -286,19 +286,19 @@ function auto_updater_themes() {
 
 	do_action( 'auto_updater_after_update', 'themes' );
 
-	$message = _n( 'We found a theme upgrade!', 'We found upgrades for some themes!', count( $themes ), 'automatic-updater' );
+	$message = esc_html( _n( 'We found a theme upgrade!', 'We found upgrades for some themes!', count( $themes ), 'automatic-updater' ) );
 	$message .= '<br><br>';
 
 	foreach ( $themes as $id => $theme ) {
 		if ( is_wp_error( $result[$id] ) ) {
 			/* translators: First argument is the Theme name, second argument is the error encountered while upgrading */
-			$message .= sprintf( __( '%1$s: We encounted an error upgrading this theme: %2$s', 'automatic-updater' ),
+			$message .= sprintf( esc_html__( '%1$s: We encounted an error upgrading this theme: %2$s', 'automatic-updater' ),
 										$theme->name,
 										$result[$id]->get_error_message() );
 		}
 		else {
 			/* tranlators: First argument is the Theme name, second argument is the old version number, third argument is the new version number */
-			$message .= sprintf( __( '%1$s: Successfully upgraded from version %2$s to %3$s!', 'automatic-updater' ),
+			$message .= sprintf( esc_html__( '%1$s: Successfully upgraded from version %2$s to %3$s!', 'automatic-updater' ),
 										$theme->name,
 										$theme->version,
 										$theme->update['new_version'] );
@@ -327,13 +327,13 @@ function auto_updater_svn() {
 		if ( 0 === strstr( $update, "At revision" ) )
 			return;
 
-		$message = __( 'We successfully upgraded from SVN!', 'automatic-updater' );
+		$message = esc_html__( 'We successfully upgraded from SVN!', 'automatic-updater' );
 		$message .= "<br><br>$update";
 	}
 	else {
-		$message = __( 'While upgrading from SVN, we ran into the following error:', 'automatic-updater' );
+		$message = esc_html__( 'While upgrading from SVN, we ran into the following error:', 'automatic-updater' );
 		$message .= '<br><br>' . end( $output ) . '<br><br>';
-		$message .= __( "We're sorry it didn't work out. Please try upgrading manually, instead.", 'automatic-updater' );
+		$message .= esc_html__( "We're sorry it didn't work out. Please try upgrading manually, instead.", 'automatic-updater' );
 	}
 
 	$message .= '<br>';
@@ -347,25 +347,25 @@ add_action( 'auto_updater_svn_event', 'auto_updater_svn' );
 function auto_updater_notification( $info = '', $debug = '' ) {
 	$options = get_option( 'automatic-updater', array() );
 	$site = get_home_url();
-	$subject = sprintf( __( 'WordPress Update: %s', 'automatic-updater' ), $site );
+	$subject = sprintf( esc_html__( 'WordPress Update: %s', 'automatic-updater' ), $site );
 
 	$message = '<html>';
 	$message .= '<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>';
 	$message .= '<body>';
 
-	$message .= __( 'Howdy!', 'automatic-updater' );
+	$message .= esc_html__( 'Howdy!', 'automatic-updater' );
 	$message .= '<br><br>';
-	$message .= sprintf( __( 'Automatic Updater just ran on your site, <a href="%1$s">%1$s</a>, with the following result:', 'automatic-updater' ), $site );
+	$message .= wp_kses( sprintf( __( 'Automatic Updater just ran on your site, <a href="%1$s">%1$s</a>, with the following result:', 'automatic-updater' ), $site ), array( 'a' => array( 'href' ) ) );
 	$message .= '<br><br>';
 
 	$message .= $info;
 
 	$message .= '<br>';
-	$message .= __( 'Thanks for using the Automatic Updater plugin!', 'automatic-updater' );
+	$message .= esc_html__( 'Thanks for using the Automatic Updater plugin!', 'automatic-updater' );
 
 	if ( ! empty( $options['debug'] ) ) {
 		$message .= "<br><br><br>";
-		$message .= __( 'Debug Information:', 'automatic-updater' );
+		$message .= esc_html__( 'Debug Information:', 'automatic-updater' );
 		$message .= "<br><br>$debug";
 	}
 
