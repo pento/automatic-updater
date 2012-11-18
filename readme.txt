@@ -44,6 +44,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 = 0.7 =
 * ADDED: Option to override where the update email is sent
 * ADDED: 'auto_updater_notification_email_address' filter, for the update notification email address
+* ADDED: Reminder in the notification email for users to mark the plugins/themes compatible
 * CHANGED: Notification emails now send as HTML emails (for greater flexibility of information to include)
 * FIXED: Some strings were formatted incorrectly for translation
 * FIXED: Escape all strings appropriately before displaying

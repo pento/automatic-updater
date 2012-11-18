@@ -231,21 +231,25 @@ function auto_updater_plugins() {
 
 	foreach ( $plugins as $id => $plugin ) {
 		if ( is_wp_error( $result[$id] ) ) {
-			/* translators: First argument is the Plugin name, second argument is the error encountered while upgrading */
-			$message .= sprintf( esc_html__( '%1$s: We encounted an error upgrading this plugin: %2$s', 'automatic-updater' ),
+			/* translators: First argument is the plugin url, second argument is the Plugin name, third argument is the error encountered while upgrading */
+			$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: We encounted an error upgrading this plugin: %3$s', 'automatic-updater' ),
+										$plugin->update->url,
 										$plugin->Name,
-										$result[$id]->get_error_message() );
+										$result[$id]->get_error_message() ), array( 'a' => array( 'href' => array() ) ) );
 		}
 		else {
-			/* tranlators: First argument is the Plugin name, second argument is the old version number, third argument is the new version number */
-			$message .= sprintf( esc_html__( '%1$s: Successfully upgraded from version %2$s to %3$s!', 'automatic-updater' ),
+			/* translators: First argument is the plugin url, second argument is the Plugin name, third argument is the old version number, fourth argument is the new version number */
+			$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: Successfully upgraded from version %3$s to %4$s!', 'automatic-updater' ),
+										$plugin->update->url,
 										$plugin->Name,
 										$plugin->Version,
-										$plugin->update->new_version );
+										$plugin->update->new_version ), array( 'a' => array( 'href' => array() ) ) );
 		}
 
 		$message .= '<br>';
 	}
+
+	$message .= '<br>' . esc_html__( 'Plugin authors depend on your feedback to make their plugins better, and the WordPress community depends on plugin ratings for checking the quality of a plugin. If you have a couple of minutes, click on the plugin names above, and leave a Compatibility Vote or a Rating!', 'automatic-updater' ) . '<br>';
 
 	$debug = join( '<br>', $skin->messages );
 
@@ -291,21 +295,25 @@ function auto_updater_themes() {
 
 	foreach ( $themes as $id => $theme ) {
 		if ( is_wp_error( $result[$id] ) ) {
-			/* translators: First argument is the Theme name, second argument is the error encountered while upgrading */
-			$message .= sprintf( esc_html__( '%1$s: We encounted an error upgrading this theme: %2$s', 'automatic-updater' ),
+			/* translators: First argument is the theme URL, second argument is the Theme name, third argument is the error encountered while upgrading */
+			$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: We encounted an error upgrading this theme: %3$s', 'automatic-updater' ),
+										$theme->update['url'],
 										$theme->name,
-										$result[$id]->get_error_message() );
+										$result[$id]->get_error_message() ), array( 'a' => array( 'href' => array() ) ) );
 		}
 		else {
-			/* tranlators: First argument is the Theme name, second argument is the old version number, third argument is the new version number */
-			$message .= sprintf( esc_html__( '%1$s: Successfully upgraded from version %2$s to %3$s!', 'automatic-updater' ),
+			/* translators: First argument is the theme URL, second argument is the Theme name, third argument is the old version number, fourth argument is the new version number */
+			$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: Successfully upgraded from version %3$s to %4$s!', 'automatic-updater' ),
+										$theme->update['url'],
 										$theme->name,
 										$theme->version,
-										$theme->update['new_version'] );
+										$theme->update['new_version'] ), array( 'a' => array( 'href' => array() ) ) );
 		}
 
 		$message .= '<br>';
 	}
+
+	$message .= '<br>' . esc_html__( 'Theme authors depend on your feedback to make their plugins better, and the WordPress community depends on theme ratings for checking the quality of a theme. If you have a couple of minutes, click on the theme names above, and leave a Compatibility Vote or a Rating!', 'automatic-updater' ) . '<br>';
 
 	$debug = join( '<br>', $skin->messages );
 
@@ -355,7 +363,7 @@ function auto_updater_notification( $info = '', $debug = '' ) {
 
 	$message .= esc_html__( 'Howdy!', 'automatic-updater' );
 	$message .= '<br><br>';
-	$message .= wp_kses( sprintf( __( 'Automatic Updater just ran on your site, <a href="%1$s">%1$s</a>, with the following result:', 'automatic-updater' ), $site ), array( 'a' => array( 'href' ) ) );
+	$message .= wp_kses( sprintf( __( 'Automatic Updater just ran on your site, <a href="%1$s">%1$s</a>, with the following result:', 'automatic-updater' ), $site ), array( 'a' => array( 'href' => array() ) ) );
 	$message .= '<br><br>';
 
 	$message .= $info;

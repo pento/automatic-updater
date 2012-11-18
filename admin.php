@@ -17,7 +17,7 @@ function auto_updater_settings_loader() {
 	) );
 
 	get_current_screen()->set_help_sidebar(
-		'<p><strong>' . wp_kses( sprintf( __( 'A Plugin By <a href="%s" target="_blank">Gary</a>', 'automatic-updater' ), 'http://pento.net/' ), array( 'a' => array( 'href', 'target' ) ) ) . '</strong></p>' .
+		'<p><strong>' . wp_kses( sprintf( __( 'A Plugin By <a href="%s" target="_blank">Gary</a>', 'automatic-updater' ), 'http://pento.net/' ), array( 'a' => array( 'href' => array(), 'target' => array() ) ) ) . '</strong></p>' .
 		'<p><a href="http://pento.net/donate/">' . esc_html__( 'Donations', 'automatic-updater' ) . '</a></p>' .
 		'<p><a href="http://wordpress.org/support/plugin/automatic-updater">' . esc_html__( 'Support Forums', 'automatic-updater' ) . '</a></p>'
 	);
