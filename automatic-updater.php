@@ -48,6 +48,8 @@ function auto_updater_init() {
 					'svn' => false,
 					'debug' => false,
 					'next-development-update' => time(),
+					'override-email' => '',
+					'disable-email' => false,
 				);
 		update_option( 'automatic-updater', $options );
 	}
