@@ -67,9 +67,16 @@ function auto_updater_settings() {
 	}
 ?>
 	<br>
-	<h3><?php esc_html_e( 'Contact', 'automatic-updater' ); ?></h3>
+	<h3><?php esc_html_e( 'Notification Email', 'automatic-updater' ); ?></h3>
 	<p><?php esc_html_e( 'By default, Automatic Updater will send an email to the Site Admin when an update is performed. If you would like to send that email to a different address, you can set it here.', 'automatic-updater' ); ?></p>
-	<p><label for="override-email"><?php esc_html_e( 'Override Email Address', 'automatic-updater' ); ?></label> <input type="text" name="override-email" id="override-email" value="<?php echo esc_attr( $options['override-email'] ); ?>"></p>
+	<p><label for="override-email"><?php esc_html_e( 'Override Email Address', 'automatic-updater' ); ?>:</label> <input type="text" name="override-email" id="override-email" value="<?php echo esc_attr( $options['override-email'] ); ?>"></p>
+<?php
+	$checked = '';
+	if ( $options['disable-email'] )
+		$checked = ' checked="checked"';
+?>
+	<p><?php esc_html_e( "If you don't want to receive an email when updates are installed, you can disable them completely.", 'automatic-updater' ); ?></p>
+	<p><input type="checkbox" name="disable-email" id="disable-email" value="1"> <label for="disable-email"><?php esc_html_e( 'Disable email notifications.', 'automatic-updater' ); ?></label></p>
 <?php
 	if ( is_dir( ABSPATH . '/.svn' ) ) {
 		$checked = '';
@@ -117,13 +124,17 @@ function auto_updater_save_settings() {
 			$options['update'][$type] = false;
 	}
 
-	$top_options = array( 'debug', 'svn', 'override-email' );
-	foreach ( $top_options as $option ) {
+	$top_bool_options = array( 'debug', 'svn', 'disable-email' );
+	foreach ( $top_bool_options as $option ) {
 		if ( ! empty( $_REQUEST[$option] ) )
 			$options[$option] = true;
 		else
 			$options[$option] = false;
 	}
+
+	$top_options = array( 'override-email' );
+	foreach ( $top_option as $option )
+		$options[$option] = $_REQUEST[$option];
 
 	update_option( 'automatic-updater', $options );
 }

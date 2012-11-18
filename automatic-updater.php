@@ -76,6 +76,12 @@ function auto_updater_init() {
 		update_option( 'automatic-updater', $options );
 	}
 
+	// Ability to disable email added in version 0.7
+	if ( ! array_key_exists( 'disable-email', $options ) ) {
+		$options['disable-email'] = false;
+		update_option( 'automatic-updater', $options );
+	}
+
 	// Configure SVN updates cron, if it's enabled
 	if ( $options['svn'] ) {
 		if ( ! wp_next_scheduled( 'auto_updater_svn_event' ) )
@@ -354,6 +360,10 @@ add_action( 'auto_updater_svn_event', 'auto_updater_svn' );
 
 function auto_updater_notification( $info = '', $debug = '' ) {
 	$options = get_option( 'automatic-updater', array() );
+
+	if ( $options['disable-email'] )
+		return;
+
 	$site = get_home_url();
 	$subject = sprintf( esc_html__( 'WordPress Update: %s', 'automatic-updater' ), $site );
 
