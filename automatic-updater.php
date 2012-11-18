@@ -375,6 +375,8 @@ function auto_updater_notification( $info = '', $debug = '' ) {
 	if ( ! empty( $options['override-email'] ) )
 		$email = $options['override-email'];
 
+	$email = apply_filters( 'auto_updater_notification_email_address', $email );
+
 	$headers = array( 
 					'MIME-Version: 1.0',
 					'Content-Type: text/html; charset=UTF-8'
