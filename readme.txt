@@ -43,6 +43,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.7 =
 * ADDED: Option to override where the update email is sent
+* CHANGED: Notification emails now send as HTML emails (for greater flexibility of what to include)
 
 = 0.6.3 =
 * ADDED: Taiwan Traditional Chinese (Taiwan 正體中文) (zh_TW) translation. Props [Pseric](http://www.freegroup.org/)
