@@ -45,6 +45,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 * ADDED: Option to override where the update email is sent
 * ADDED: 'auto_updater_notification_email_address' filter, for the update notification email address
 * CHANGED: Notification emails now send as HTML emails (for greater flexibility of what to include)
+* FIXED: Some strings were formatted incorrectly for translation
 
 = 0.6.3 =
 * ADDED: Taiwan Traditional Chinese (Taiwan 正體中文) (zh_TW) translation. Props [Pseric](http://www.freegroup.org/)

@@ -347,7 +347,7 @@ add_action( 'auto_updater_svn_event', 'auto_updater_svn' );
 function auto_updater_notification( $info = '', $debug = '' ) {
 	$options = get_option( 'automatic-updater', array() );
 	$site = get_home_url();
-	$subject = sprintf( __( 'WordPress Update: %1s', 'automatic-updater' ), $site );
+	$subject = sprintf( __( 'WordPress Update: %s', 'automatic-updater' ), $site );
 
 	$message = '<html>';
 	$message .= '<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>';

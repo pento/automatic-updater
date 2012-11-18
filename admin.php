@@ -83,7 +83,7 @@ function auto_updater_settings() {
 	if ( !is_writable( ABSPATH . '/.svn' ) ) {
 		$uid = posix_getuid();
 		$user = posix_getpwuid( $uid );
-		echo '<div class="automatic-updater-notice"><p>' . sprintf( __( "The .svn directory isn't writable, so <tt>svn up</tt> will probably fail when the web server runs it. You need to give the user <tt>%1s</tt> write permissions to your entire WordPress install, including .svn directories.", 'automatic-updater' ), $user['name'] ) . '</p></div>';
+		echo '<div class="automatic-updater-notice"><p>' . sprintf( __( "The .svn directory isn't writable, so <tt>svn up</tt> will probably fail when the web server runs it. You need to give the user <tt>%s</tt> write permissions to your entire WordPress install, including .svn directories.", 'automatic-updater' ), $user['name'] ) . '</p></div>';
 	}
 ?>
 	<p><input type="checkbox" id="svn" name="svn" value="1"<?php echo $checked; ?>> <label for="svn"><?php _e( 'Run <tt>svn up</tt> hourly?', 'automatic-updater' ); ?></label></p>
