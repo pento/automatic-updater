@@ -133,7 +133,7 @@ function auto_updater_save_settings() {
 	}
 
 	$top_options = array( 'override-email' );
-	foreach ( $top_option as $option )
+	foreach ( $top_options as $option )
 		$options[$option] = $_REQUEST[$option];
 
 	update_option( 'automatic-updater', $options );

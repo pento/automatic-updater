@@ -41,6 +41,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.7.1 =
+* FIXED: Override email setting wasn't saving correctly
+
 = 0.7 =
 * ADDED: Option to override where the update email is sent
 * ADDED: 'auto_updater_notification_email_address' filter, for the update notification email address
