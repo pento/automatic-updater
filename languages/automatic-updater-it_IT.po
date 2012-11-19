@@ -1,35 +1,30 @@
+# Copyright (C) 2012 Automatic Updater
+# This file is distributed under the same license as the Automatic Updater package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Automatic Updater v0.6\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2012-10-23 13:13+1000\n"
-"Last-Translator: Gary Pendergast <gary@pento.net>\n"
-"Language-Team: \n"
+"Project-Id-Version: Automatic Updater 0.7\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/automatic-updater\n"
+"POT-Creation-Date: 2012-11-18 21:43:46+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
-"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
-"X-Poedit-Basepath: ../\n"
-"X-Textdomain-Support: yes\n"
+"PO-Revision-Date: 2012-11-20 08:49+1000\n"
+"Last-Translator: Gary Pendergast <gary@pento.net>\n"
+"Language-Team: \n"
 "X-Generator: Poedit 1.5.4\n"
-"X-Poedit-SearchPath-0: .\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
-# @ automatic-updater
-#. translators: plugin header field 'Name'
-#: admin.php:4 admin.php:48 automatic-updater.php:0
+#. #-#-#-#-#  plugin.pot (Automatic Updater 0.7)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: admin.php:4 admin.php:48
 msgid "Automatic Updater"
-msgstr ""
+msgstr "Automatic Updater"
 
-# @ automatic-updater
 #: admin.php:13
 msgid "Overview"
 msgstr "Panoramica"
 
-# @ automatic-updater
 #: admin.php:15
 msgid ""
 "This settings page allows you to select whether you would like WordPress "
@@ -38,256 +33,280 @@ msgstr ""
 "Questa pagina delle impostazioni consente di selezionare se si desidera "
 "aggiornare automaticamente il core di WordPress, i plugin, e i temi."
 
-# @ automatic-updater
 #: admin.php:16
 msgid ""
 "It is very important to keep your WordPress installation up to date for "
 "security reasons, so unless you have a specific reason not to, we recommend "
 "allowing everything to automatically update."
 msgstr ""
-"&Egrave molto importante mantenere la vostra installazione di WordPress "
-"aggiornata per motivi di sicurezza quindi, a meno che abbiate una ragione "
-"specifica non farlo, si consiglia di fare sempre l'aggiornamento automatico."
+"Per motivi di sicurezza &egrave; molto importante mantenere la vostra "
+"versione di WordPress aggiornata, quindi a meno che non abbiate una ragione "
+"specifica per non farlo, si consiglia di permettere tutti gli aggiornamenti "
+"in automatico."
 
-# @ automatic-updater
 #: admin.php:20
-#, php-format
 msgid "A Plugin By <a href=\"%s\" target=\"_blank\">Gary</a>"
-msgstr "Un plugin di <a href=\"%s\" target=\"_blank\">Gary</a>"
+msgstr "Un Plugin di <a href=\"%s\" target=\"_blank\">Gary</a>"
 
-# @ automatic-updater
 #: admin.php:21
 msgid "Donations"
-msgstr "Donazione"
+msgstr "Donazioni"
 
-# @ automatic-updater
 #: admin.php:22
 msgid "Support Forums"
 msgstr "Forum di Supporto"
 
-# @ automatic-updater
 #: admin.php:30
 msgid "You do not have sufficient permissions to access this page."
-msgstr "Non hai provilegi sufficienti per accedere a questa pagina."
+msgstr "Non hai privilegi a sufficienza per accedere a questa pagina."
 
-# @ automatic-updater
 #: admin.php:37
 msgid "Settings updated"
-msgstr "Impostazioni salvate"
+msgstr "Impostazioni aggiornate"
 
-# @ automatic-updater
 #: admin.php:41
 msgid ""
 "Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>"
 msgstr ""
-"Aggiornare il core di Wordpress automaticamente? <strong>(Raccomandato)</"
-"strong>"
+"Vuoi aggiornare automaticamente il core di WordPress? <strong>(Raccomandato)"
+"</strong> "
 
-# @ automatic-updater
 #: admin.php:42
 msgid "Update your plugins automatically?"
-msgstr "Aggiornare automaticamente i plugins?"
+msgstr "Vuoi aggiornare automaticamente i plugins?"
 
-# @ automatic-updater
 #: admin.php:43
 msgid "Update your themes automatically?"
-msgstr "Aggiornare automaticamente i temi?"
+msgstr "Vuoi aggiornare automaticamente i temi?"
 
-# @ automatic-updater
-#: admin.php:97
-msgid "Show debug information in the notification email."
-msgstr "Vedi informazioni di debug nelle mail di notifica."
+#: admin.php:70
+msgid "Notification Email"
+msgstr "E-mail di notifica"
 
-# @ automatic-updater
-#: admin.php:98
-msgid "Save Changes"
-msgstr "Cambiamenti salvati"
-
-# @ automatic-updater
-#. translators: plugin header field 'PluginURI'
-#: automatic-updater.php:0
-msgid "http://pento.net/projects/automatic-updater-for-wordpress/"
-msgstr ""
-
-# @ automatic-updater
-#. translators: plugin header field 'Description'
-#: automatic-updater.php:0
+#: admin.php:71
 msgid ""
-"Automatically update your WordPress site, as soon as updates are released! "
-"Never worry about falling behing on updating again!"
+"By default, Automatic Updater will send an email to the Site Admin when an "
+"update is performed. If you would like to send that email to a different "
+"address, you can set it here."
 msgstr ""
-"Aggiorna automaticamente WordPress non appena vengono rilasciati gli "
-"aggiornamenti! Non preoccuparti più di ritardi sui nuovi aggiornamenti!"
+"Di default, Automatic Updater invia una e-mail all'indirizzo "
+"dell'amministratore quando un aggiornamento viene effettuato. Se preferisci "
+"mandare la e-mail ad un indirizzo diverso puoi impostarlo qui."
 
-# @ automatic-updater
-#. translators: plugin header field 'Author'
-#: automatic-updater.php:0
-msgid "pento"
-msgstr ""
+#: admin.php:72
+msgid "Override Email Address"
+msgstr "Sovrascrivere l'indirizzo E-mail"
 
-# @ automatic-updater
-#. translators: plugin header field 'AuthorURI'
-#: automatic-updater.php:0
-msgid "http://pento.net/"
-msgstr ""
-
-# @ automatic-updater
-#: automatic-updater.php:168
-msgid "While trying to upgrade WordPress, we ran into the following error:"
-msgstr "Provando ad aggiornare Wordpress è stato rilevato il seguente errore:"
-
-# @ automatic-updater
-#: automatic-updater.php:170 automatic-updater.php:330
-msgid "We're sorry it didn't work out. Please try upgrading manually, instead."
-msgstr ""
-"Siamo spiacenti, non ha funzionato. Si prega di provare ad aggiornare "
-"manualmente."
-
-# @ automatic-updater
-#: automatic-updater.php:177
-#, php-format
-msgid "We've successfully upgraded WordPress from version %1s to version %2s!"
-msgstr "Aggiornamento riuscito di dalla versione %1s alla versione %2s!"
-
-# @ automatic-updater
-#: automatic-updater.php:174 automatic-updater.php:178
-msgid "Have fun!"
-msgstr "Divertiti!"
-
-# @ automatic-updater
-#: automatic-updater.php:223
-msgid "We found a plugin upgrade!"
-msgid_plural "We found upgrades for some plugins!"
-msgstr[0] "Trovata una nuova versione di un plugin!"
-msgstr[1] "Trovate la nuova versione di alcuni plugin!"
-
-# @ automatic-updater
-#. translators: First argument is the Plugin name, second argument is the error encountered while upgrading
-#: automatic-updater.php:229
-#, php-format
-msgid "%1s: We encounted an error upgrading this plugin: %2s"
-msgstr "%1s: c'è stato un problema nell'aggiornamento del seguente plugin: %2s"
-
-# @ automatic-updater
-#: automatic-updater.php:235 automatic-updater.php:295
-#, php-format
-msgid "%1s: Successfully upgraded from version %2s to %3s!"
-msgstr "%1s: Aggouornamento riuscito dalla versione %2s alla versione %3s !"
-
-# @ automatic-updater
-#: automatic-updater.php:283
-msgid "We found a theme upgrade!"
-msgid_plural "We found upgrades for some themes!"
-msgstr[0] "Trovato un aggiornamento per un tema!"
-msgstr[1] "Trovato un aggiornamento per alcuni temi!"
-
-# @ automatic-updater
-#. translators: First argument is the Theme name, second argument is the error encountered while upgrading
-#: automatic-updater.php:289
-#, php-format
-msgid "%1s: We encounted an error upgrading this theme: %2s"
-msgstr "%1s: C'è stato un errore nell'aggiornamento del tema: %2s"
-
-# @ automatic-updater
-#: automatic-updater.php:344
-#, php-format
-msgid "WordPress Update: %1s"
-msgstr "Aggiornamento di Wordpress: %1s"
-
-# @ automatic-updater
-#: automatic-updater.php:346
-msgid "Howdy!"
-msgstr "Buongiorno!"
-
-# @ automatic-updater
-#: automatic-updater.php:348
-#, php-format
+#: admin.php:78
 msgid ""
-"Automatic Updater just ran on your site, %1s, with the following result:"
-msgstr "Aggornamento automatico effettuato sul tuo sito %1s ecco i risultati:"
+"If you don't want to receive an email when updates are installed, you can "
+"disable them completely."
+msgstr ""
+"Se non vuoi ricervere alcuna e-mail quando un aggiornamento viene "
+"effettuato, puoi disabilitare la funzione completamente."
 
-# @ automatic-updater
-#: automatic-updater.php:354
-msgid "Thanks for using the Automatic Updater plugin!"
-msgstr "Grazie per usare il plugin Automatic Updater!"
+#: admin.php:79
+msgid "Disable email notifications."
+msgstr "Disattiva le notifiche via e-mail."
 
-# @ automatic-updater
-#: automatic-updater.php:358
-msgid "Debug Information:"
-msgstr "Informazioni di debug:"
-
-# @ automatic-updater
-#: admin.php:75
+#: admin.php:87
 msgid "SVN Support"
 msgstr "Supporto SVN"
 
-# @ automatic-updater
-#: admin.php:76
+#: admin.php:88
 msgid ""
 "It looks like you're running an SVN version of WordPress, that's cool! "
 "Automatic Updater can run <tt>svn up</tt> once an hour, to keep you up-to-"
 "date. For safety, enabling this option will disable the normal WordPress "
 "core updates."
 msgstr ""
-"Sembra che si sta eseguendo una versione SVN di WordPress, che figata! con "
-"Automatic Updater è possibile eseguire <tt>svn up</tt> una volta ogni ora, "
-"per tenervi al corrente. Per motivi di sicurezza, l'attivazione di questa "
-"opzione consente di disattivare i normali aggiornamenti di base WordPress."
+"Sembra che tu stia eseguendo una versione SVN di WordPress, che figata! "
+"Automatic Updater è in grado di eseguire <tt>svn up</tt> una volta ogni ora "
+"per tenerlo aggiornato. Per motivi di sicurezza, l'attivazione di questa "
+"opzione si disattiveranno i normali aggiornamenti di base WordPress"
 
-# @ automatic-updater
-#: admin.php:81
-#, php-format
+#: admin.php:93
 msgid ""
 "The .svn directory isn't writable, so <tt>svn up</tt> will probably fail "
-"when the web server runs it. You need to give the user <tt>%1s</tt> write "
+"when the web server runs it. You need to give the user <tt>%s</tt> write "
 "permissions to your entire WordPress install, including .svn directories."
 msgstr ""
 "La directory .svn non è scrivibile, quindi <tt>svn up</tt> probabilmente "
-"fallirà quando il server Web è in esecuzione. È necessario dare all'utente "
-"<tt>%1s</tt> autorizzazioni di scrittura per l'intera installazione di "
-"WordPress, tra cui. Svn."
+"fallir&agrave; in esecuzione. Dovresti dare all'utente <tt>%s</tt> i "
+"permessi di scrittura a tutte le directory dell'installazione di WordPress, "
+"inclusa la cartella .svn."
 
-# @ automatic-updater
-#: admin.php:84
-msgid "Run <tt>svn up</tt> hourly?"
-msgstr "Lanciare <tt>svn up</tt> ogni ora?"
-
-# @ automatic-updater
 #: admin.php:96
+msgid "Run <tt>svn up</tt> hourly?"
+msgstr "Esegui <tt>svn up</tt> ogni ora?"
+
+#: admin.php:108
 msgid "Debug Information"
 msgstr "Informazioni di debug"
 
-# @ automatic-updater
-#: admin.php:128
+#: admin.php:109
+msgid "Show debug information in the notification email."
+msgstr "Mostra le informazioni di debug nella e-mail di notifica."
+
+#: admin.php:110
+msgid "Save Changes"
+msgstr "Salva le modifiche"
+
+#: admin.php:144
 msgid "Settings"
-msgstr "Impostazini"
+msgstr "Impostazioni"
 
-# @ automatic-updater
-#. translators: plugin header field 'Version'
-#: automatic-updater.php:0
-msgid "0.6"
-msgstr ""
-
-# @ automatic-updater
 #: automatic-updater.php:32
 msgid ""
 "Automatic Updater requires WordPress 3.4 or higher! Please upgrade WordPress "
 "manually, then reactivate Automatic Updater."
 msgstr ""
-"Automatic Updater richiede WordPress 3.4 o superiore! Aggiornare WordPress "
-"manualmente, quindi riattivare Automatic Updater."
+"Automatic Updater richiede Wordpress 2.4 o superiore! Per favore aggiorna "
+"WordPress manualmente, poi riattiva Automatic Updater."
 
-# @ automatic-updater
-#: automatic-updater.php:173
+#: automatic-updater.php:182
+msgid "While trying to upgrade WordPress, we ran into the following error:"
+msgstr ""
+"Durante il tentativo di aggiornamento di WordPress sono stati rilevati i "
+"seguenti errori:"
+
+#: automatic-updater.php:184 automatic-updater.php:352
+msgid "We're sorry it didn't work out. Please try upgrading manually, instead."
+msgstr ""
+"Mi spiace, non ha funzionato. Si prega di provare ad aggiornare manualmente."
+
+#: automatic-updater.php:187
 msgid "We've successfully upgraded WordPress to the latest nightly build!"
-msgstr "Wordpress aggiornato con successo all'ultima versione!"
+msgstr ""
+"L'aggiornamento all'ultima nightly build di Wordpress &egrave; stato eseguito"
 
-# @ automatic-updater
+#: automatic-updater.php:188 automatic-updater.php:192
+msgid "Have fun!"
+msgstr "Divertiti!"
+
+#: automatic-updater.php:191
+msgid ""
+"We've successfully upgraded WordPress from version %1$s to version %2$s!"
+msgstr ""
+"L'aggiornamento dalla versione %1$s alla versione %2$s di WordPress &egrabe; "
+"stato eseguito!"
+
+#: automatic-updater.php:237
+msgid "We found a plugin upgrade!"
+msgid_plural "We found upgrades for some plugins!"
+msgstr[0] "&Egrave; stato trovato un aggiornamento per un plugin!"
+msgstr[1] "Sono stati trovati degli aggiornamenti per alcuni plugin!"
+
+#. translators: First argument is the plugin url, second argument is the Plugin
+#. name, third argument is the error encountered while upgrading
+#: automatic-updater.php:243
+msgid ""
+"<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this plugin: %3$s"
+msgstr ""
+"<a href=\"%1$s\">%2$s</a>: &egrave; stato rilevato un errore "
+"nell'aggiornamento del plugin: %3$s"
+
+#. translators: First argument is the plugin url, second argument is the Plugin
+#. name, third argument is the old version number, fourth argument is the new
+#. version number
+#. translators: First argument is the theme URL, second argument is the Theme
+#. name, third argument is the old version number, fourth argument is the new
+#. version number
+#: automatic-updater.php:250 automatic-updater.php:314
+msgid ""
+"<a href=\"%1$s\">%2$s</a>: Successfully upgraded from version %3$s to %4$s!"
+msgstr ""
+"<a href=\"%1$s\">%2$s</a>: Correttamente aggiornato dalla versione %3$s alla "
+"versione %4$s!"
+
+#: automatic-updater.php:260
+msgid ""
+"Plugin authors depend on your feedback to make their plugins better, and the "
+"WordPress community depends on plugin ratings for checking the quality of a "
+"plugin. If you have a couple of minutes, click on the plugin names above, "
+"and leave a Compatibility Vote or a Rating!"
+msgstr ""
+"Gli autori dei plugin si basano sui tuoi feedback per migliorare la qualità "
+"dei propri prodotti, e la comunità di Wordpress fa riferimento ai voti dati "
+"ai plugins per valutarne l'utilizzo. Se hai un paio di minuti, clicca sul "
+"nome del plugin e lascia un voto o un commento!"
+
+#: automatic-updater.php:301
+msgid "We found a theme upgrade!"
+msgid_plural "We found upgrades for some themes!"
+msgstr[0] "&Egrave; stato trovato l'aggiornamento per un tema!"
+msgstr[1] "Sono stati trovati degli aggiornamenti per alcuni temi!"
+
+#. translators: First argument is the theme URL, second argument is the Theme
+#. name, third argument is the error encountered while upgrading
+#: automatic-updater.php:307
+msgid ""
+"<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this theme: %3$s"
+msgstr ""
+"<a href=\"%1$s\">%2$s</a>: &egrave; stato rilavato un problema "
+"nell'aggiornamento di questo tema: %3$s"
+
 #: automatic-updater.php:324
-msgid "We successfully upgraded from SVN!"
-msgstr "Aggiornamento via SVN avvenuto correttamente!"
+msgid ""
+"Theme authors depend on your feedback to make their plugins better, and the "
+"WordPress community depends on theme ratings for checking the quality of a "
+"theme. If you have a couple of minutes, click on the theme names above, and "
+"leave a Compatibility Vote or a Rating!"
+msgstr ""
+"Gli autori dei temi si basano sui tuoi feedback per migliorare la qualità "
+"dei propri prodotti, e la comunità di Wordpress fa riferimento ai voti dati "
+"ai temi per valutarne l'utilizzo. Se hai un paio di minuti, clicca sul nome "
+"del tema e lascia un voto o un commento!"
 
-# @ automatic-updater
-#: automatic-updater.php:328
+#: automatic-updater.php:346
+msgid "We successfully upgraded from SVN!"
+msgstr "L'aggiornamento &egrave; stato eseguito correttamente da SVN!"
+
+#: automatic-updater.php:350
 msgid "While upgrading from SVN, we ran into the following error:"
-msgstr "Aggiornando via SVN è stato rilevato il seguente errore"
+msgstr ""
+"Durante l'aggiornamento via SVN, è stato incontrato il seguente errore:"
+
+#: automatic-updater.php:370
+msgid "WordPress Update: %s"
+msgstr "Aggiornamento di Wordpress: %s"
+
+#: automatic-updater.php:376
+msgid "Howdy!"
+msgstr "Salve!"
+
+#: automatic-updater.php:378
+msgid ""
+"Automatic Updater just ran on your site, <a href=\"%1$s\">%1$s</a>, with the "
+"following result:"
+msgstr ""
+"Automatic Updater è stato appena eseguito sul tuo sito, <a href=\"%1$s\">"
+"%1$s</a>, con il seguente risultato:"
+
+#: automatic-updater.php:384
+msgid "Thanks for using the Automatic Updater plugin!"
+msgstr "Grazie di aver scelto il plugin Automatic Updater!"
+
+#: automatic-updater.php:388
+msgid "Debug Information:"
+msgstr "Informazioni di debug:"
+
+#. Plugin URI of the plugin/theme
+msgid "http://pento.net/projects/automatic-updater-for-wordpress/"
+msgstr "http://pento.net/projects/automatic-updater-for-wordpress/"
+
+#. Description of the plugin/theme
+msgid ""
+"Automatically update your WordPress site, as soon as updates are released! "
+"Never worry about falling behing on updating again!"
+msgstr ""
+"Aggiorna automaticamente il tuo sito WordPress appena vengono rilasciati "
+"aggiornamenti! Non preoccuparti più di ritardare!"
+
+#. Author of the plugin/theme
+msgid "pento"
+msgstr "pento"
+
+#. Author URI of the plugin/theme
+msgid "http://pento.net/"
+msgstr "http://pento.net/"
