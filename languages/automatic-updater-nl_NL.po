@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Automatic Updater 0.7\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/automatic-updater\n"
 "POT-Creation-Date: 2012-11-18 21:43:46+00:00\n"
-"PO-Revision-Date: 2012-11-20 08:53+1000\n"
+"PO-Revision-Date: 2012-11-20 14:09-0800\n"
 "Last-Translator: Gary Pendergast <gary@pento.net>\n"
 "Language-Team: Trifon Rijksen <trifon@tieptoep.nl>\n"
 "Language: Dutch nl_NL\n"
@@ -175,7 +175,7 @@ msgstr ""
 #: automatic-updater.php:187
 msgid "We've successfully upgraded WordPress to the latest nightly build!"
 msgstr ""
-"We hebben WordPress succesvol bijgewerkt van versie %1$s naar versie %2$s!"
+"We hebben WordPress succesvol bijgewerkt naar de nieuwste nightly build!"
 
 #: automatic-updater.php:188 automatic-updater.php:192
 msgid "Have fun!"
