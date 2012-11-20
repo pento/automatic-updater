@@ -4,7 +4,7 @@
  * Plugin URI: http://pento.net/projects/automatic-updater-for-wordpress/
  * Description: Automatically update your WordPress site, as soon as updates are released! Never worry about falling behing on updating again!
  * Author: pento
- * Version: 0.7
+ * Version: 0.7.1
  * Author URI: http://pento.net/
  * License: GPL2+
  * Text Domain: automatic-updater
