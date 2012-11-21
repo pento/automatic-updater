@@ -33,6 +33,9 @@ function auto_updater_disabled_notice() {
 }
 
 function auto_updater_init() {
+	if ( is_multisite() && ! is_main_site() )
+		return;
+
 	if ( is_admin() )
 		include_once( dirname( __FILE__ ) . '/admin.php' );
 

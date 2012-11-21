@@ -1,11 +1,18 @@
 <?php
 
 function auto_updater_plugin_menu() {
-	$hook = add_options_page( esc_html__( 'Automatic Updater', 'automatic-updater' ), esc_html__( 'Automatic Updater', 'automatic-updater' ), 'update_core', 'automatic-updater', 'auto_updater_settings' );
+	$slug = 'options-general.php';
+	if ( is_multisite() )
+		$slug = 'settings.php';
+
+	$hook = add_submenu_page( $slug, esc_html__( 'Automatic Updater', 'automatic-updater' ), esc_html__( 'Automatic Updater', 'automatic-updater' ), 'update_core', 'automatic-updater', 'auto_updater_settings' );
 
 	add_action( "load-$hook", 'auto_updater_settings_loader' );
 }
-add_action( 'admin_menu', 'auto_updater_plugin_menu' );
+if ( is_multisite() )
+	add_action( 'network_admin_menu', 'auto_updater_plugin_menu' );
+else
+	add_action( 'admin_menu', 'auto_updater_plugin_menu' );
 
 function auto_updater_settings_loader() {
 	get_current_screen()->add_help_tab( array(

@@ -41,6 +41,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.7.2 =
+* ADDED: WordPress MultiSite support
+
 = 0.7.1 =
 * UPDATED: Italian (it_IT) translation. Props Stefano Giolo
 * UPDATED: Dutch (nl_NL) translation. Props Trifon Rijksen
