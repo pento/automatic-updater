@@ -13,6 +13,8 @@ Automatically update WordPress, your themes and plugins! Never have to click the
 
 Automatic Updater keeps your WordPress install up to date with the latest releases automatically, as soon as the update is available. It supports updating stable releases, nightly releases, or even regular SVN checkouts!
 
+If you're working on a WordPress Multisite install, it will properly restrict the options page to your Network Admin.
+
 While this will be useful for the vast majority of sites, please exercise caution, particularly if you have any custom themes or plugins running on your site.
 
 You should also be aware that this will only work on WordPress installs that have the appropriate file permissions to update through the web interface - it will not work if you usually FTP updates to your server.
