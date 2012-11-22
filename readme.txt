@@ -43,6 +43,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.7.2 =
 * ADDED: WordPress MultiSite support
+* FIXED: Now works properly if installed in a symlink directory
 
 = 0.7.1 =
 * UPDATED: Italian (it_IT) translation. Props Stefano Giolo

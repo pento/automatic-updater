@@ -146,11 +146,14 @@ function auto_updater_save_settings() {
 	update_option( 'automatic-updater', $options );
 }
 
-function auto_updater_plugin_row_meta( $links, $file ) {
-	if( AUTOMATIC_UPDATER_BASENAME == $file ) {
-		$links[] = '<a href="options-general.php?page=automatic-updater">' . esc_html__( 'Settings', 'automatic-updater' ) . '</a>';
-	}
+function auto_updater_plugin_row_links( $links ) {
+	$url = admin_url( 'options-general.php?page=automatic-updater' );
+	if ( is_multisite() )
+		$url = admin_url( 'network/settings.php?page=automatic-updater' );
+
+	array_unshift( $links, "<a href='$url'>" . esc_html__( 'Settings', 'automatic-updater' ) . '</a>' );
 
 	return $links;
 }
-add_filter( 'plugin_row_meta', 'auto_updater_plugin_row_meta', 10, 2 );
+add_filter( 'plugin_action_links_' . AUTOMATIC_UPDATER_BASENAME, 'auto_updater_plugin_row_links' );
+add_filter( 'network_admin_plugin_action_links_' . AUTOMATIC_UPDATER_BASENAME, 'auto_updater_plugin_row_links' );

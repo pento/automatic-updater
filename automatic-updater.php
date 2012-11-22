@@ -14,7 +14,16 @@
 global $auto_updater_running;
 $auto_updater_running = false;
 
-define( 'AUTOMATIC_UPDATER_BASENAME', plugin_basename( __FILE__ ) );
+$my_plugin_file = __FILE__;
+
+if ( isset( $plugin ) )
+	$my_plugin_file = $plugin;
+else if ( isset( $mu_plugin ) )
+	$my_plugin_file = $mu_plugin;
+else if ( isset( $network_plugin ) )
+	$my_plugin_file = $network_plugin;
+
+define( 'AUTOMATIC_UPDATER_BASENAME', plugin_basename( $my_plugin_file ) );
 
 function auto_updater_requires_wordpress_version() {
 	if ( version_compare( $GLOBALS['wp_version'], '3.4', '<' ) ) {
