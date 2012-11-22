@@ -149,7 +149,7 @@ function auto_updater_save_settings() {
 function auto_updater_plugin_row_links( $links ) {
 	$url = admin_url( 'options-general.php?page=automatic-updater' );
 	if ( is_multisite() )
-		$url = admin_url( 'network/settings.php?page=automatic-updater' );
+		$url = network_admin_url( 'settings.php?page=automatic-updater' );
 
 	array_unshift( $links, "<a href='$url'>" . esc_html__( 'Settings', 'automatic-updater' ) . '</a>' );
 
