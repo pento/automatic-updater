@@ -326,7 +326,7 @@ function auto_updater_plugins() {
 										$plugin->Name,
 										$result[$id]->get_error_message(),
 										$options['retries']['plugins'][$id]['tries'],
-										$options['retries-limit'] ), 
+										$options['retries-limit'] ),
 								array( 'a' => array( 'href' => array() ) ) );
 		}
 		else {
@@ -347,7 +347,7 @@ function auto_updater_plugins() {
 	$message .= '<br>' . esc_html__( 'Plugin authors depend on your feedback to make their plugins better, and the WordPress community depends on plugin ratings for checking the quality of a plugin. If you have a couple of minutes, click on the plugin names above, and leave a Compatibility Vote or a Rating!', 'automatic-updater' ) . '<br>';
 
 	$debug = join( '<br>', $skin->messages );
-	
+
 	update_option( 'automatic-updater', $options );
 
 	auto_updater_notification( $message, $debug, $upgrade_failed );
@@ -524,7 +524,7 @@ function auto_updater_notification( $info = '', $debug = '', $upgrade_failed = f
 
 	$email = apply_filters( 'auto_updater_notification_email_address', $email );
 
-	$headers = array( 
+	$headers = array(
 					'MIME-Version: 1.0',
 					'Content-Type: text/html; charset=UTF-8'
 				);
