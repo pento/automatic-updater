@@ -43,6 +43,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.8 =
+* ADDED: Retry limits, so broken updates won't keep trying to install
+
 = 0.7.2 =
 * ADDED: WordPress MultiSite support
 * UPDATED: German (de_DE) translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)

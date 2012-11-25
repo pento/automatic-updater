@@ -91,6 +91,11 @@ function auto_updater_settings() {
 			$checked = ' checked="checked"';
 ?>
 	<br>
+	<h3><?php esc_html_e( 'Retries', 'automatic-updater' ); ?></h3>
+	<p><?php esc_html_e( 'To avoid updating when something is broken, Automatic Updater can limit the number of times it will attempt to update WordPress Core, a plugin or a theme. If, for example, a plugin update reaches this limit, Automatic Updater will stop trying to update it until you manually install the update, or a new version is released.', 'automatic-updater' ); ?></p>
+	<p><label for="retries-limit"><?php esc_html_e( 'Retries Limit', 'automatic-updater' ); ?>:</label> <input type="number" step="1" name="retries-limit" id="retries-limit" class="small-text" value="<?php echo esc_attr( $options['retries-limit'] ); ?>"></p>
+
+	<br>
 	<h3><?php esc_html_e( 'SVN Support', 'automatic-updater' ); ?></h3>
 	<p><?php echo wp_kses( __( "It looks like you're running an SVN version of WordPress, that's cool! Automatic Updater can run <tt>svn up</tt> once an hour, to keep you up-to-date. For safety, enabling this option will disable the normal WordPress core updates.", 'automatic-updater' ), array( 'tt' => array() ) ); ?></p>
 <?php
@@ -139,7 +144,7 @@ function auto_updater_save_settings() {
 			$options[$option] = false;
 	}
 
-	$top_options = array( 'override-email' );
+	$top_options = array( 'override-email', 'retries-limit' );
 	foreach ( $top_options as $option )
 		$options[$option] = $_REQUEST[$option];
 

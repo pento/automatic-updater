@@ -57,6 +57,15 @@ function auto_updater_init() {
 								'plugins' => false,
 								'themes' => false,
 							),
+					'retries-limit' => 3,
+					'tries' => array(
+								'core' => array(
+											'version' => 0,
+											'tries' => 0,
+								),
+								'plugins' => array(),
+								'themes' => array(),
+							),
 					'svn' => false,
 					'debug' => false,
 					'next-development-update' => time(),
@@ -93,6 +102,20 @@ function auto_updater_init() {
 	// Ability to disable email added in version 0.7
 	if ( ! array_key_exists( 'disable-email', $options ) ) {
 		$options['disable-email'] = false;
+		update_option( 'automatic-updater', $options );
+	}
+
+	// Ability to limit retries added in version 0.8
+	if ( ! array_key_exists( 'retries-limit', $options ) ) {
+		$options['retries-limit'] = 3;
+		$option['tries'] = array(
+								'core' => array(
+											'version' => 0,
+											'tries' => 0,
+								),
+								'plugins' => array(),
+								'themes' => array(),
+							);
 		update_option( 'automatic-updater', $options );
 	}
 
@@ -142,7 +165,7 @@ function auto_updater_core() {
 	if ( $auto_updater_running )
 		return;
 
-	$options = get_option( 'automatic-updater', array() );
+	$options = get_option( 'automatic-updater' );
 	if ( $options['svn'] )
 		return;
 
@@ -165,6 +188,10 @@ function auto_updater_core() {
 	if ( empty( $update ) )
 		return;
 
+	// Check that we haven't failed to upgrade to the updated version in the past
+	if ( version_compare( $update->current, $options['retries']['core']['version'], '>=' ) && $options['retries']['core']['tries'] >= $option['retries-limit'] )
+		return;
+
 	$old_version = $GLOBALS['wp_version'];
 
 	// Sanity check that the new upgrade is actually an upgrade
@@ -177,12 +204,13 @@ function auto_updater_core() {
 			return;
 
 		$options['next-development-update'] = strtotime( '+24 hours' );
-		update_option( 'automatic-updater', $options );
 	}
 
 	$auto_updater_running = true;
 
 	do_action( 'auto_updater_before_update', 'core' );
+
+	$upgrade_failed = false;
 
 	$skin = new Auto_Updater_Skin();
 	$upgrader = new Core_Upgrader( $skin );
@@ -191,24 +219,41 @@ function auto_updater_core() {
 	do_action( 'auto_updater_after_update', 'core' );
 
 	if ( is_wp_error( $result ) ) {
+		if ( $options['tries']['core']['version'] != $update->current )
+			$options['tries']['core']['version'] = $update->current;
+
+		$options['tries']['core']['tries']++;
+
+		$upgrade_failed = true;
+
 		$message = esc_html__( "While trying to upgrade WordPress, we ran into the following error:", 'automatic-updater' );
 		$message .= '<br><br>' . $result->get_error_message() . '<br><br>';
-		$message .= esc_html__( "We're sorry it didn't work out. Please try upgrading manually, instead.", 'automatic-updater' );
+		$message .= sprintf( esc_html__( 'We\'re sorry it didn\'t work out. Please try upgrading manually, instead. This is attempt %1$d of %2$d.', 'automatic-updater' ),
+						$options['tries']['core']['tries'],
+						$option['retries-limit'] );
 	}
 	else if( 'development' == $update->response ) {
 		$message = esc_html__( "We've successfully upgraded WordPress to the latest nightly build!", 'automatic-updater' );
 		$message .= '<br><br>' . esc_html__( 'Have fun!', 'automatic-updater' );
+
+		$options['tries']['core']['version'] = 0;
+		$options['tries']['core']['tries'] = 0;
 	}
 	else {
 		$message = sprintf( esc_html__( 'We\'ve successfully upgraded WordPress from version %1$s to version %2$s!', 'automatic-updater' ), $old_version, $update->current );
 		$message .= '<br><br>' . esc_html__( 'Have fun!', 'automatic-updater' );
+
+		$options['tries']['core']['version'] = 0;
+		$options['tries']['core']['tries'] = 0;
 	}
 
 	$message .= '<br>';
 
 	$debug = join( '<br>', $skin->messages );
 
-	auto_updater_notification( $message, $debug );
+	update_option( 'automatic-updater', $options );
+
+	auto_updater_notification( $message, $debug, $upgrade_failed );
 
 	wp_version_check();
 }
@@ -225,12 +270,24 @@ function auto_updater_plugins() {
 
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
+	$options = get_option( 'automatic-updater' );
+
 	$plugins = apply_filters( 'auto_updater_plugin_updates', get_plugin_updates() );
 
-	// Remove any plugins from the list that may've already been updated
 	foreach ( $plugins as $id => $plugin ) {
+		// Remove any plugins from the list that may've already been updated
 		if ( version_compare( $plugin->Version, $plugin->update->new_version, '>=' ) )
 			unset( $plugins[$id] );
+
+		// Remove any plugins that have failed to upgrade
+		if ( ! empty( $options['retries']['plugins'][$id] ) ) {
+			// If there's a new version of a failed plugin, we should give it another go.
+			if ( $options['retries']['plugins'][$id]['version'] != $plugin->update->new_version )
+				unset( $options['retries']['plugins'][$id] );
+			// If the plugin has already had it's chance, move on.
+			else if ($options['retries']['plugins'][$id]['tries'] > $options['retries-limit'] )
+				unset( $plugins[$id] );
+		}
 	}
 
 	if ( empty( $plugins ) )
@@ -249,13 +306,28 @@ function auto_updater_plugins() {
 	$message = esc_html( _n( 'We found a plugin upgrade!', 'We found upgrades for some plugins!', count( $plugins ), 'automatic-updater' ) );
 	$message .= '<br><br>';
 
+	$upgrade_failed = false;
+
 	foreach ( $plugins as $id => $plugin ) {
 		if ( is_wp_error( $result[$id] ) ) {
-			/* translators: First argument is the plugin url, second argument is the Plugin name, third argument is the error encountered while upgrading */
-			$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: We encounted an error upgrading this plugin: %3$s', 'automatic-updater' ),
+			if ( empty( $options['retries']['plugins'][$id] ) )
+				$options['retries']['plugins'][$id] = array(
+														'tries' => 1,
+														'version' => $plugin->update->new_version,
+													);
+			else
+				$options['retries']['plugins'][$id]['tries']++;
+
+			$upgrade_failed = true;
+
+			/* translators: First argument is the plugin url, second argument is the Plugin name, third argument is the error encountered while upgrading. The fourth and fifth arguments refer to how many retries we've had at installing this plugin. */
+			$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: We encounted an error upgrading this plugin: %3$s (Attempt %4$d of %5$d)', 'automatic-updater' ),
 										$plugin->update->url,
 										$plugin->Name,
-										$result[$id]->get_error_message() ), array( 'a' => array( 'href' => array() ) ) );
+										$result[$id]->get_error_message(),
+										$options['retries']['plugins'][$id]['tries'],
+										$options['retries-limit'] ), 
+								array( 'a' => array( 'href' => array() ) ) );
 		}
 		else {
 			/* translators: First argument is the plugin url, second argument is the Plugin name, third argument is the old version number, fourth argument is the new version number */
@@ -264,6 +336,9 @@ function auto_updater_plugins() {
 										$plugin->Name,
 										$plugin->Version,
 										$plugin->update->new_version ), array( 'a' => array( 'href' => array() ) ) );
+
+			if ( ! empty( $options['retries']['plugins'][$id] ) )
+				unset( $options['retries']['plugins'][$id] );
 		}
 
 		$message .= '<br>';
@@ -272,8 +347,10 @@ function auto_updater_plugins() {
 	$message .= '<br>' . esc_html__( 'Plugin authors depend on your feedback to make their plugins better, and the WordPress community depends on plugin ratings for checking the quality of a plugin. If you have a couple of minutes, click on the plugin names above, and leave a Compatibility Vote or a Rating!', 'automatic-updater' ) . '<br>';
 
 	$debug = join( '<br>', $skin->messages );
+	
+	update_option( 'automatic-updater', $options );
 
-	auto_updater_notification( $message, $debug );
+	auto_updater_notification( $message, $debug, $upgrade_failed );
 
 	wp_update_plugins();
 }
@@ -289,12 +366,24 @@ function auto_updater_themes() {
 
 	include_once( dirname( __FILE__ ) . '/updater-skin.php' );
 
+	$options = get_option( 'automatic-updater' );
+
 	$themes = apply_filters( 'auto_updater_theme_updates', get_theme_updates() );
 
-	// Remove any themes from the list that may've already been updated
 	foreach ( $themes as $id => $theme ) {
+		// Remove any themes from the list that may've already been updated
 		if ( version_compare( $theme->Version, $theme->update['new_version'], '>=' ) )
 			unset( $themes[$id] );
+
+		// Remove any themes that have failed to upgrade
+		if ( ! empty( $options['retries']['themes'][$id] ) ) {
+			// If there's a new version of a failed theme, we should give it another go.
+			if ( $options['retries']['themes'][$id]['version'] != $theme->update['new_version'] )
+				unset( $options['retries']['themes'][$id] );
+			// If the themes has already had it's chance, move on.
+			else if ($options['retries']['themes'][$id]['tries'] > $options['retries-limit'] )
+				unset( $themes[$id] );
+		}
 	}
 
 	if ( empty( $themes ) )
@@ -313,13 +402,28 @@ function auto_updater_themes() {
 	$message = esc_html( _n( 'We found a theme upgrade!', 'We found upgrades for some themes!', count( $themes ), 'automatic-updater' ) );
 	$message .= '<br><br>';
 
+	$upgrade_failed = false;
+
 	foreach ( $themes as $id => $theme ) {
 		if ( is_wp_error( $result[$id] ) ) {
-			/* translators: First argument is the theme URL, second argument is the Theme name, third argument is the error encountered while upgrading */
-			$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: We encounted an error upgrading this theme: %3$s', 'automatic-updater' ),
+			if ( empty( $options['retries']['themes'][$id] ) )
+				$options['retries']['themes'][$id] = array(
+														'tries' => 1,
+														'version' => $themes->update['new_version'],
+													);
+			else
+				$options['retries']['themes'][$id]['tries']++;
+
+			$upgrade_failed = true;
+
+			/* translators: First argument is the theme URL, second argument is the Theme name, third argument is the error encountered while upgrading. The fourth and fifth arguments refer to how many retries we've had at installing this theme. */
+			$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: We encounted an error upgrading this theme: %3$s (Attempt %4$d of %5$d)', 'automatic-updater' ),
 										$theme->update['url'],
 										$theme->name,
-										$result[$id]->get_error_message() ), array( 'a' => array( 'href' => array() ) ) );
+										$result[$id]->get_error_message(),
+										$options['retries']['plugins'][$id]['tries'],
+										$options['retries-limit'] ),
+								array( 'a' => array( 'href' => array() ) ) );
 		}
 		else {
 			/* translators: First argument is the theme URL, second argument is the Theme name, third argument is the old version number, fourth argument is the new version number */
@@ -328,6 +432,9 @@ function auto_updater_themes() {
 										$theme->name,
 										$theme->version,
 										$theme->update['new_version'] ), array( 'a' => array( 'href' => array() ) ) );
+
+			if ( ! empty( $options['retries']['themes'][$id] ) )
+				unset( $options['retries']['themes'][$id] );
 		}
 
 		$message .= '<br>';
@@ -337,7 +444,9 @@ function auto_updater_themes() {
 
 	$debug = join( '<br>', $skin->messages );
 
-	auto_updater_notification( $message, $debug );
+	update_option( 'automatic-updater', $options );
+
+	auto_updater_notification( $message, $debug, $upgrade_failed );
 
 	wp_update_themes();
 }
@@ -372,8 +481,8 @@ function auto_updater_svn() {
 }
 add_action( 'auto_updater_svn_event', 'auto_updater_svn' );
 
-function auto_updater_notification( $info = '', $debug = '' ) {
-	$options = get_option( 'automatic-updater', array() );
+function auto_updater_notification( $info = '', $debug = '', $upgrade_failed = false ) {
+	$options = get_option( 'automatic-updater' );
 
 	if ( $options['disable-email'] )
 		return;
@@ -393,6 +502,12 @@ function auto_updater_notification( $info = '', $debug = '' ) {
 	$message .= $info;
 
 	$message .= '<br>';
+
+	if ( $upgrade_failed ) {
+		$message .= esc_html__( 'It looks like something went wrong during the update. Note that, if Automatic Updater continues to encounter problems, it will stop trying to do this update, and will not try again until after you manually update.', 'automatic-updater' );
+		$message .= '<br><br>';
+	}
+
 	$message .= esc_html__( 'Thanks for using the Automatic Updater plugin!', 'automatic-updater' );
 
 	if ( ! empty( $options['debug'] ) ) {
