@@ -31,7 +31,7 @@ class Auto_Updater_Skin extends WP_Upgrader_Skin {
 		$string = trim( $string );
 
 		// Only allow basic HTML in the messages
-		$string = wp_kses( $string, array( 'a' => array( 'href' ), 'br', 'em', 'strong' ) );
+		$string = wp_kses( $string, array( 'a' => array( 'href' => array() ), 'br' => array(), 'em' => array(), 'strong' => array() ) );
 
 		if ( empty( $string ) )
 			return;
