@@ -24,7 +24,7 @@ Automatic_Updater::$basename = plugin_basename( $automatic_updater_file );
 
 class Automatic_Updater {
 	private $running = false;
-	private $options = NULL;
+	private $options = array();
 
 	public static $basename;
 
@@ -105,14 +105,14 @@ class Automatic_Updater {
 		if ( array_key_exists( $name, $this->options ) )
 			return $this->options[$name];
 
-		return NULL;
+		return null;
 	}
 
 	function update_option( $name, $value ) {
 		if ( array_key_exists( $name, $this->options ) )
 			return $this->options[$name] = $value;
 
-		return NULL;
+		return null;
 	}
 
 	function check_wordpress_version() {
@@ -462,7 +462,7 @@ class Automatic_Updater {
 
 	function update_svn() {
 		$output = array();
-		$return = NULL;
+		$return = null;
 
 		exec( 'svn up ' . ABSPATH, $output, $return );
 
