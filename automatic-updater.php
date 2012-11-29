@@ -488,10 +488,9 @@ class Automatic_Updater {
 	}
 
 	function notification( $info = '', $debug = '', $upgrade_failed = false ) {
-	echo 1;
 		if ( $this->options['disable-email'] )
 			return;
-echo 2;
+
 		$site = get_home_url();
 		$subject = sprintf( esc_html__( 'WordPress Update: %s', 'automatic-updater' ), $site );
 
@@ -533,7 +532,7 @@ echo 2;
 						'MIME-Version: 1.0',
 						'Content-Type: text/html; charset=UTF-8'
 					);
-echo $message;
+
 		add_filter( 'wp_mail_content_type', array( &$this, 'wp_mail_content_type' ) );
 		wp_mail( $email, $subject, $message, $headers );
 		remove_filter( 'wp_mail_content_type', array( &$this, 'wp_mail_content_type' ) );
