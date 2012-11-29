@@ -88,7 +88,7 @@ class Automatic_Updater_Admin {
 					$checked = '';
 					if ( $enabled )
 						$checked = ' checked="checked"';
-		
+
 					echo "<p><input type='checkbox' id='$type' name='$type' value='1'$checked> <label for='$type'>{$messages[$type]}</label></p>";
 				}
 				?>
@@ -180,9 +180,9 @@ class Automatic_Updater_Admin {
 		$url = admin_url( 'options-general.php?page=automatic-updater' );
 		if ( is_multisite() )
 			$url = network_admin_url( 'settings.php?page=automatic-updater' );
-	
+
 		array_unshift( $links, "<a href='$url'>" . esc_html__( 'Settings', 'automatic-updater' ) . '</a>' );
-	
+
 		return $links;
 	}
 }
