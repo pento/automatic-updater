@@ -153,6 +153,7 @@ class Automatic_Updater {
 									'themes' => array(),
 								),
 						'svn' => false,
+						'svn-success-email' => true,
 						'debug' => false,
 						'next-development-update' => time(),
 						'override-email' => '',
@@ -192,6 +193,10 @@ class Automatic_Updater {
 									'themes' => array(),
 								);
 		}
+
+		// Ability to only send SVN update emails on failure added in 0.8
+		if ( ! array_key_exists( 'svn-success-email', $this->options ) )
+			$this->options['svn-success-email'] = true;
 	}
 
 	function update_core() {
@@ -475,6 +480,10 @@ class Automatic_Updater {
 			$update = end( $output );
 			// No need to email if there was no update.
 			if ( 0 === strpos( $update, "At revision" ) )
+				return;
+
+			// If we're only sending emails on failure, no need to continue
+			if( ! $this->options['svn-success-email'] )
 				return;
 
 			$message = esc_html__( 'We successfully upgraded from SVN!', 'automatic-updater' );

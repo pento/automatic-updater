@@ -132,6 +132,7 @@ class Automatic_Updater_Admin {
 					?>
 
 					<p><input type="checkbox" id="svn" name="svn" value="1"<?php echo $checked; ?>> <label for="svn"><?php echo wp_kses( __( 'Run <tt>svn up</tt> hourly?', 'automatic-updater' ), array( 'tt' => array() ) ); ?></label></p>
+					<p><input type="checkbox" id="svn-success-email" name="svn-success-email" value="1"<?php echo $checked; ?>> <label for="svn-success-email"><?php echo wp_kses( __( 'Send email on <tt>svn up</tt> success? Disabling this will cause notification emails to only be sent if the <tt>svn up</tt> fails.', 'automatic-updater' ), array( 'tt' => array() ) ); ?></label></p>
 
 				<?php
 				} else {

@@ -45,6 +45,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.8 =
 * ADDED: Retry limits, so broken updates won't keep trying to install
+* ADDED: Option to only receive SVN update emails if something went wrong
 * FIXED: Some HTML tags in debug messages were being incorrectly stripped
 * FIXED: Don't automatically enable Core updates on installs that seem to be coming from a repo
 
