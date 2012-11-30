@@ -46,6 +46,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 = 0.8 =
 * ADDED: Retry limits, so broken updates won't keep trying to install
 * FIXED: Some HTML tags in debug messages were being incorrectly stripped
+* FIXED: Don't automatically enable Core updates on installs that seem to be coming from a repo
 
 = 0.7.2 =
 * ADDED: WordPress MultiSite support
