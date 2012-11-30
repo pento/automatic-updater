@@ -89,7 +89,7 @@ class Automatic_Updater_Admin {
 					if ( $enabled )
 						$checked = ' checked="checked"';
 
-					echo "<p><input type='checkbox' id='$type' name='$type' value='1'$checked> <label for='$type'>{$messages[$type]}</label></p>";
+					echo "<p><input type='checkbox' id='$type' name='$type' value='1'$checked> <label for='$type'>{$messages[ $type ]}</label></p>";
 				}
 				?>
 
@@ -157,16 +157,16 @@ class Automatic_Updater_Admin {
 		$types = array( 'core', 'plugins', 'themes' );
 		$update = array();
 		foreach ( $types as $type ) {
-			if ( ! empty( $_REQUEST[$type] ) )
-				$update[$type] = true;
+			if ( ! empty( $_REQUEST[ $type ] ) )
+				$update[ $type ] = true;
 			else
-				$update[$type] = false;
+				$update[ $type ] = false;
 		}
 		$this->automatic_updater->update_option( 'update', $update );
 
 		$top_bool_options = array( 'debug', 'svn', 'disable-email' );
 		foreach ( $top_bool_options as $option ) {
-			if ( ! empty( $_REQUEST[$option] ) )
+			if ( ! empty( $_REQUEST[ $option ] ) )
 				$this->automatic_updater->update_option( $option, true );
 			else
 				$this->automatic_updater->update_option( $option, false );
@@ -174,7 +174,7 @@ class Automatic_Updater_Admin {
 
 		$top_options = array( 'override-email', 'retries-limit' );
 		foreach ( $top_options as $option )
-			$this->automatic_updater->update_option( $option, $_REQUEST[$option] );
+			$this->automatic_updater->update_option( $option, $_REQUEST[ $option ] );
 	}
 
 	function plugin_row_links( $links ) {

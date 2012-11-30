@@ -18,8 +18,8 @@ class Auto_Updater_Skin extends WP_Upgrader_Skin {
 		else
 			$string = $data;
 
-		if ( ! empty( $this->upgrader->strings[$string] ) )
-			$string = $this->upgrader->strings[$string];
+		if ( ! empty( $this->upgrader->strings[ $string ] ) )
+			$string = $this->upgrader->strings[ $string ];
 
 		if ( strpos($string, '%') !== false ) {
 			$args = func_get_args();

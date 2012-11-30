@@ -84,7 +84,7 @@ class Automatic_Updater {
 		if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
 			// We're in a cron, do updates now
 			foreach ( $types as $type ) {
-				if ( ! empty( $this->options['update'][$type] ) ) {
+				if ( ! empty( $this->options['update'][ $type ] ) ) {
 					add_action( "set_site_transient_update_$type", array( &$this, "update_$type" ) );
 					add_action( "set_site_transient__site_transient_update_$type", array( &$this, "update_$type" ) );
 				}
@@ -94,7 +94,7 @@ class Automatic_Updater {
 			$update_data = $this->get_update_data();
 			// Not in a cron, schedule updates to happen in the next cron run
 			foreach ( $types as $internal => $type ) {
-				if ( ! empty( $this->options['update'][$type] ) && $update_data['counts'][$internal] > 0 ) {
+				if ( ! empty( $this->options['update'][ $type ] ) && $update_data['counts'][ $internal ] > 0 ) {
 					wp_schedule_single_event( time(), "auto_updater_{$type}_event" );
 				}
 			}
@@ -107,14 +107,14 @@ class Automatic_Updater {
 
 	function get_option( $name ) {
 		if ( array_key_exists( $name, $this->options ) )
-			return $this->options[$name];
+			return $this->options[ $name ];
 
 		return null;
 	}
 
 	function update_option( $name, $value ) {
 		if ( array_key_exists( $name, $this->options ) )
-			return $this->options[$name] = $value;
+			return $this->options[ $name ] = $value;
 
 		return null;
 	}
@@ -310,16 +310,16 @@ class Automatic_Updater {
 		foreach ( $plugins as $id => $plugin ) {
 			// Remove any plugins from the list that may've already been updated
 			if ( version_compare( $plugin->Version, $plugin->update->new_version, '>=' ) )
-				unset( $plugins[$id] );
+				unset( $plugins[ $id ] );
 
 			// Remove any plugins that have failed to upgrade
-			if ( ! empty( $this->options['retries']['plugins'][$id] ) ) {
+			if ( ! empty( $this->options['retries']['plugins'][ $id ] ) ) {
 				// If there's a new version of a failed plugin, we should give it another go.
-				if ( $this->options['retries']['plugins'][$id]['version'] != $plugin->update->new_version )
-					unset( $this->options['retries']['plugins'][$id] );
+				if ( $this->options['retries']['plugins'][ $id ]['version'] != $plugin->update->new_version )
+					unset( $this->options['retries']['plugins'][ $id ] );
 				// If the plugin has already had it's chance, move on.
-				else if ($this->options['retries']['plugins'][$id]['tries'] > $this->options['retries-limit'] )
-					unset( $plugins[$id] );
+				else if ($this->options['retries']['plugins'][ $id ]['tries'] > $this->options['retries-limit'] )
+					unset( $plugins[ $id ] );
 			}
 		}
 
@@ -342,14 +342,14 @@ class Automatic_Updater {
 		$upgrade_failed = false;
 
 		foreach ( $plugins as $id => $plugin ) {
-			if ( is_wp_error( $result[$id] ) ) {
-				if ( empty( $this->options['retries']['plugins'][$id] ) )
-					$this->options['retries']['plugins'][$id] = array(
+			if ( is_wp_error( $result[ $id ] ) ) {
+				if ( empty( $this->options['retries']['plugins'][ $id ] ) )
+					$this->options['retries']['plugins'][ $id ] = array(
 															'tries' => 1,
 															'version' => $plugin->update->new_version,
 														);
 				else
-					$this->options['retries']['plugins'][$id]['tries']++;
+					$this->options['retries']['plugins'][ $id ]['tries']++;
 
 				$upgrade_failed = true;
 
@@ -357,8 +357,8 @@ class Automatic_Updater {
 				$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: We encounted an error upgrading this plugin: %3$s (Attempt %4$d of %5$d)', 'automatic-updater' ),
 											$plugin->update->url,
 											$plugin->Name,
-											$result[$id]->get_error_message(),
-											$this->options['retries']['plugins'][$id]['tries'],
+											$result[ $id ]->get_error_message(),
+											$this->options['retries']['plugins'][ $id ]['tries'],
 											$this->options['retries-limit'] ),
 									array( 'a' => array( 'href' => array() ) ) );
 			} else {
@@ -369,8 +369,8 @@ class Automatic_Updater {
 											$plugin->Version,
 											$plugin->update->new_version ), array( 'a' => array( 'href' => array() ) ) );
 
-				if ( ! empty( $this->options['retries']['plugins'][$id] ) )
-					unset( $this->options['retries']['plugins'][$id] );
+				if ( ! empty( $this->options['retries']['plugins'][ $id ] ) )
+					unset( $this->options['retries']['plugins'][ $id ] );
 			}
 
 			$message .= '<br>';
@@ -399,16 +399,16 @@ class Automatic_Updater {
 		foreach ( $themes as $id => $theme ) {
 			// Remove any themes from the list that may've already been updated
 			if ( version_compare( $theme->Version, $theme->update['new_version'], '>=' ) )
-				unset( $themes[$id] );
+				unset( $themes[ $id ] );
 
 			// Remove any themes that have failed to upgrade
-			if ( ! empty( $this->options['retries']['themes'][$id] ) ) {
+			if ( ! empty( $this->options['retries']['themes'][ $id ] ) ) {
 				// If there's a new version of a failed theme, we should give it another go.
-				if ( $this->options['retries']['themes'][$id]['version'] != $theme->update['new_version'] )
-					unset( $this->options['retries']['themes'][$id] );
+				if ( $this->options['retries']['themes'][ $id ]['version'] != $theme->update['new_version'] )
+					unset( $this->options['retries']['themes'][ $id ] );
 				// If the themes has already had it's chance, move on.
-				else if ($this->options['retries']['themes'][$id]['tries'] > $this->options['retries-limit'] )
-					unset( $themes[$id] );
+				else if ($this->options['retries']['themes'][ $id ]['tries'] > $this->options['retries-limit'] )
+					unset( $themes[ $id ] );
 			}
 		}
 
@@ -431,14 +431,14 @@ class Automatic_Updater {
 		$upgrade_failed = false;
 
 		foreach ( $themes as $id => $theme ) {
-			if ( is_wp_error( $result[$id] ) ) {
-				if ( empty( $this->options['retries']['themes'][$id] ) )
-					$this->options['retries']['themes'][$id] = array(
+			if ( is_wp_error( $result[ $id ] ) ) {
+				if ( empty( $this->options['retries']['themes'][ $id ] ) )
+					$this->options['retries']['themes'][ $id ] = array(
 															'tries' => 1,
 															'version' => $themes->update['new_version'],
 														);
 				else
-					$this->options['retries']['themes'][$id]['tries']++;
+					$this->options['retries']['themes'][ $id ]['tries']++;
 
 				$upgrade_failed = true;
 
@@ -446,8 +446,8 @@ class Automatic_Updater {
 				$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: We encounted an error upgrading this theme: %3$s (Attempt %4$d of %5$d)', 'automatic-updater' ),
 											$theme->update['url'],
 											$theme->name,
-											$result[$id]->get_error_message(),
-											$this->options['retries']['plugins'][$id]['tries'],
+											$result[ $id ]->get_error_message(),
+											$this->options['retries']['plugins'][ $id ]['tries'],
 											$this->options['retries-limit'] ),
 									array( 'a' => array( 'href' => array() ) ) );
 			} else {
@@ -458,8 +458,8 @@ class Automatic_Updater {
 											$theme->version,
 											$theme->update['new_version'] ), array( 'a' => array( 'href' => array() ) ) );
 
-				if ( ! empty( $this->options['retries']['themes'][$id] ) )
-					unset( $this->options['retries']['themes'][$id] );
+				if ( ! empty( $this->options['retries']['themes'][ $id ] ) )
+					unset( $this->options['retries']['themes'][ $id ] );
 			}
 
 			$message .= '<br>';
