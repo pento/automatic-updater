@@ -76,7 +76,11 @@ class Automatic_Updater {
 		if ( $this->running )
 			return;
 
-		$types = array( 'wordpress' => 'core', 'plugins' => 'plugins', 'themes' => 'themes' );
+		$types = array(
+					'wordpress' => 'core',
+					'plugins'   => 'plugins',
+					'themes'    => 'themes'
+		);
 		if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
 			// We're in a cron, do updates now
 			foreach ( $types as $type ) {
@@ -138,26 +142,26 @@ class Automatic_Updater {
 				$core_updates_enabled = false;
 
 			$this->options = array(
-						'update' => array(
-									'core' => $core_updates_enabled,
-									'plugins' => false,
-									'themes' => false,
-								),
-						'retries-limit' => 3,
-						'tries' => array(
-									'core' => array(
-												'version' => 0,
-												'tries' => 0,
-									),
-									'plugins' => array(),
-									'themes' => array(),
-								),
-						'svn' => false,
-						'svn-success-email' => true,
-						'debug' => false,
+						'update'                  => array(
+									                  'core'    => $core_updates_enabled,
+									                  'plugins' => false,
+									                  'themes'  => false,
+						),
+						'retries-limit'           => 3,
+						'tries'                   => array(
+									                  'core' => array(
+												                 'version' => 0,
+												                 'tries'   => 0,
+									                   ),
+									                  'plugins' => array(),
+									                  'themes' => array(),
+						),
+						'svn'                     => false,
+						'svn-success-email'       => true,
+						'debug'                   => false,
 						'next-development-update' => time(),
-						'override-email' => '',
-						'disable-email' => false,
+						'override-email'          => '',
+						'disable-email'           => false,
 					);
 		}
 
@@ -185,12 +189,12 @@ class Automatic_Updater {
 		if ( ! array_key_exists( 'retries-limit', $this->options ) ) {
 			$this->options['retries-limit'] = 3;
 			$this->options['tries'] = array(
-									'core' => array(
-												'version' => 0,
-												'tries' => 0,
+									'core'    => array(
+												   'version' => 0,
+												   'tries'   => 0,
 									),
 									'plugins' => array(),
-									'themes' => array(),
+									'themes'  => array(),
 								);
 		}
 

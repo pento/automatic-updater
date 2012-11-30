@@ -124,7 +124,7 @@ class Automatic_Updater_Admin {
 					<p><?php echo wp_kses( __( "It looks like you're running an SVN version of WordPress, that's cool! Automatic Updater can run <tt>svn up</tt> once an hour, to keep you up-to-date. For safety, enabling this option will disable the normal WordPress core updates.", 'automatic-updater' ), array( 'tt' => array() ) ); ?></p>
 
 					<?php
-					if ( !is_writable( ABSPATH . '/.svn' ) ) {
+					if ( ! is_writable( ABSPATH . '/.svn' ) ) {
 						$uid = posix_getuid();
 						$user = posix_getpwuid( $uid );
 						echo '<div class="automatic-updater-notice"><p>' . wp_kses( sprintf( __( "The .svn directory isn't writable, so <tt>svn up</tt> will probably fail when the web server runs it. You need to give the user <tt>%s</tt> write permissions to your entire WordPress install, including .svn directories.", 'automatic-updater' ), $user['name'] ), array( 'tt' => array() ) ) . '</p></div>';
