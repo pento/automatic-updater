@@ -113,30 +113,83 @@ class Automatic_Updater_Admin {
 				<p><label for="retries-limit"><?php esc_html_e( 'Retries Limit', 'automatic-updater' ); ?>:</label> <input type="number" step="1" name="retries-limit" id="retries-limit" class="small-text" value="<?php echo esc_attr( $this->automatic_updater->get_option( 'retries-limit' ) ); ?>"></p>
 
 				<?php
-				if ( is_dir( ABSPATH . '/.svn' ) ) {
-					$checked = '';
-					if ( $this->automatic_updater->get_option( 'svn' ) )
-						$checked = ' checked="checked"';
+				$source_control = $this->automatic_updater->under_source_control();
+				if ( $source_control['core'] || ! empty( $source_control['plugins'] ) || ! empty( $source_control['themes'] ) ) {
+					$svn_options = $this->automatic_updater->get_option( 'svn' );
+					$writable_error = false;
 				?>
 
 					<br>
 					<h3><?php esc_html_e( 'SVN Support', 'automatic-updater' ); ?></h3>
-					<p><?php echo wp_kses( __( "It looks like you're running an SVN version of WordPress, that's cool! Automatic Updater can run <tt>svn up</tt> once an hour, to keep you up-to-date. For safety, enabling this option will disable the normal WordPress core updates.", 'automatic-updater' ), array( 'tt' => array() ) ); ?></p>
+					<?php
+					if ( $source_control['core'] ) {
+						$svn_core_checked = '';
+						if ( $svn_options['core'] )
+							$svn_core_checked = ' checked="checked"';
+
+						if ( ! is_writable( ABSPATH . '/.svn' ) )
+							$writable_error = true;
+					?>
+						<h4><?php esc_html_e( 'WordPress Core', 'automatic-updater' ); ?></h4>
+						<p><?php echo wp_kses( __( "It looks like you're running an SVN version of WordPress, that's cool! Automatic Updater can run <tt>svn up</tt> once an hour, to keep you up-to-date. For safety, enabling this option will disable the normal WordPress core updates.", 'automatic-updater' ), array( 'tt' => array() ) ); ?></p>
+					<p><input type="checkbox" id="svn-core" name="svn-core" value="1"<?php echo $svn_core_checked; ?>> <label for="svn-core"><?php esc_html_e( 'Update WordPress Core hourly?', 'automatic-updater' ); ?></label></p>
 
 					<?php
-					if ( ! is_writable( ABSPATH . '/.svn' ) ) {
+					}
+
+					if ( ! empty( $source_control['plugins'] ) ) {
+					?>
+						<h4><?php esc_html_e( 'Plugins', 'automatic-updater' ); ?></h4>
+						<p><?php esc_html_e( "Running plugins from SVN is great for helping plugin devs fine tune them before release, so on behalf of all of us, thanks! If you see Akismet here and don't have it coming from a custom repository, it will probably automatically update when the WordPress Core SVN update occurs.", 'automatic-updater' ); ?></p>
+					<?php
+						foreach ( $source_control['plugins'] as $id => $plugin ) {
+							if ( ! is_writable( WP_PLUGIN_DIR . '/' . plugin_dir_path( $id ) . '/.svn' ) )
+								$writable_error = true;
+
+							$checked = '';
+							if ( array_key_exists( $id, $svn_options['plugins'] ) )
+								$checked = ' checked="checked"';
+							echo "<input type='checkbox' name='svn-plugins[]' id='$id' value='$id'$checked /> <label for='$id'>{$plugin['plugin']['Name']} ($id)</label><br/>";
+						}
+					}
+
+					if ( ! empty( $source_control['themes'] ) ) {
+					?>
+						<h4><?php esc_html_e( 'Themes', 'automatic-updater' ); ?></h4>
+						<p><?php esc_html_e( "Running themes from SVN makes you an excellent person who makes the WordPress community better - thank you! If you see any of the default Twenty Ten, Eleven or Twelve themes, these will probably automatically update when the WordPress Core SVN update occurs.", 'automatic-updater' ); ?></p>
+					<?php
+						foreach ( $source_control['themes'] as $id => $theme ) {
+							if ( ! is_writable( $theme['theme']->get_stylesheet_directory() . '/.svn' ) )
+								$writable_error = true;
+
+							$checked = '';
+							if ( array_key_exists( $id, $svn_options['themes'] ) )
+								$checked = ' checked="checked"';
+							echo "<input type='checkbox' name='svn-themes[]' id='$id' value='$id'$checked /> <label for='$id'>{$theme['theme']->name} ($id)</label><br/>";
+						}
+					}
+
+					if ( $writable_error ) {
 						$uid = posix_getuid();
 						$user = posix_getpwuid( $uid );
-						echo '<div class="automatic-updater-notice"><p>' . wp_kses( sprintf( __( "The .svn directory isn't writable, so <tt>svn up</tt> will probably fail when the web server runs it. You need to give the user <tt>%s</tt> write permissions to your entire WordPress install, including .svn directories.", 'automatic-updater' ), $user['name'] ), array( 'tt' => array() ) ) . '</p></div>';
+						echo '<div class="automatic-updater-notice"><p>' . wp_kses( sprintf( __( "The items marked in red don't have their .svn directory writable, so <tt>svn up</tt> will probably fail when the web server runs it. You need to give the user <tt>%s</tt> write permissions to your entire WordPress install, including .svn directories.", 'automatic-updater' ), $user['name'] ), array( 'tt' => array() ) ) . '</p></div>';
 					}
-					?>
 
-					<p><input type="checkbox" id="svn" name="svn" value="1"<?php echo $checked; ?>> <label for="svn"><?php echo wp_kses( __( 'Run <tt>svn up</tt> hourly?', 'automatic-updater' ), array( 'tt' => array() ) ); ?></label></p>
-					<p><input type="checkbox" id="svn-success-email" name="svn-success-email" value="1"<?php echo $checked; ?>> <label for="svn-success-email"><?php echo wp_kses( __( 'Send email on <tt>svn up</tt> success? Disabling this will cause notification emails to only be sent if the <tt>svn up</tt> fails.', 'automatic-updater' ), array( 'tt' => array() ) ); ?></label></p>
+					$svn_success_email_checked = '';
+					if ( $this->automatic_updater->get_option( 'svn-success-email' ) )
+						$svn_success_email_checked = ' checked="checked"';
+					?>
+					<h4><?php esc_html_e( 'SVN Options', 'automatic-updater' ); ?></h4>
+					<p><input type="checkbox" id="svn-success-email" name="svn-success-email" value="1"<?php echo $svn_success_email_checked; ?>> <label for="svn-success-email"><?php echo wp_kses( __( 'Send email on <tt>svn up</tt> success? Disabling this will cause notification emails to only be sent if the <tt>svn up</tt> fails.', 'automatic-updater' ), array( 'tt' => array() ) ); ?></label></p>
 
 				<?php
 				} else {
-					echo '<input type="hidden" name="svn" value="0">';
+				?>
+					<input type="hidden" name="svn-core" value="0">;
+					<input type="hidden" name="svn-plugins" value="0">;
+					<input type="hidden" name="svn-themes" value="0">;
+					<input type="hidden" name="svn-success-email" value="0">;
+				<?php
 				}
 
 				$checked = '';
@@ -164,7 +217,7 @@ class Automatic_Updater_Admin {
 		}
 		$this->automatic_updater->update_option( 'update', $update );
 
-		$top_bool_options = array( 'debug', 'svn', 'disable-email' );
+		$top_bool_options = array( 'debug', 'disable-email' );
 		foreach ( $top_bool_options as $option ) {
 			if ( ! empty( $_REQUEST[ $option ] ) )
 				$this->automatic_updater->update_option( $option, true );
@@ -175,6 +228,33 @@ class Automatic_Updater_Admin {
 		$top_options = array( 'override-email', 'retries-limit' );
 		foreach ( $top_options as $option )
 			$this->automatic_updater->update_option( $option, $_REQUEST[ $option ] );
+
+		$svn_options = array(
+							'core'    => false,
+							'plugins' => array(),
+							'themes'  => array()
+		);
+
+		$source_control = $this->automatic_updater->under_source_control();
+
+		if ( $source_control['core'] && ! empty( $_REQUEST['svn-core'] ) )
+			$svn_options['core'] = true;
+
+		if ( ! empty( $source_control['plugins'] ) && ! empty( $_REQUEST['svn-plugins'] ) && is_array( $_REQUEST['svn-plugins'] ) ) {
+			foreach ( $_REQUEST['svn-plugins'] as $plugin ) {
+				if ( array_key_exists( $plugin, $source_control['plugins'] ) )
+					$svn_options['plugins'][ $plugin ] = $source_control['plugins'][ $plugin ]['type'];
+			}
+		}
+
+		if ( ! empty( $source_control['themes'] ) && ! empty( $_REQUEST['svn-themes'] ) && is_array( $_REQUEST['svn-themes'] ) ) {
+			foreach ( $_REQUEST['svn-themes'] as $theme ) {
+				if ( array_key_exists( $theme, $source_control['themes'] ) )
+					$svn_options['themes'][ $theme ] = $source_control['themes'][ $theme ]['type'];
+			}
+		}
+
+		$this->automatic_updater->update_option( 'svn', $svn_options );
 	}
 
 	function plugin_row_links( $links ) {

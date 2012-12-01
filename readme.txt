@@ -44,6 +44,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 == Changelog ==
 
 = 0.8 =
+* ADDED: SVN support for plugins and themes
 * ADDED: Retry limits, so broken updates won't keep trying to install
 * ADDED: Option to only receive SVN update emails if something went wrong
 * FIXED: Some HTML tags in debug messages were being incorrectly stripped

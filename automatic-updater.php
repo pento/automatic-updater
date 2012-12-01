@@ -64,7 +64,7 @@ class Automatic_Updater {
 		add_action( 'admin_init', array( &$this, 'check_wordpress_version' ) );
 
 		// Configure SVN updates cron, if it's enabled
-		if ( $this->options['svn'] ) {
+		if ( $this->options['svn']['core'] || ! empty( $this->options['svn']['plugins'] ) || ! empty( $this->options['svn']['themes'] ) ) {
 			if ( ! wp_next_scheduled( 'auto_updater_svn_event' ) )
 				wp_schedule_event( time(), 'hourly', 'auto_updater_svn_event' );
 		} else {
@@ -156,7 +156,11 @@ class Automatic_Updater {
 									                  'plugins' => array(),
 									                  'themes' => array(),
 						),
-						'svn'                     => false,
+						'svn'                     => array(
+														'core'    => false,
+														'plugins' => array(),
+														'themes'  => array(),
+						),
 						'svn-success-email'       => true,
 						'debug'                   => false,
 						'next-development-update' => time(),
@@ -201,6 +205,14 @@ class Automatic_Updater {
 		// Ability to only send SVN update emails on failure added in 0.8
 		if ( ! array_key_exists( 'svn-success-email', $this->options ) )
 			$this->options['svn-success-email'] = true;
+
+		// SVN support for themes and plugins added in 0.8
+		if ( ! is_array( $this->options['svn'] ) )
+			$this->options['svn'] =  array(
+										'core'    => $this->options['svn'],
+										'plugins' => array(),
+										'themes'  => array(),
+								);
 	}
 
 	function update_core() {
@@ -475,28 +487,114 @@ class Automatic_Updater {
 	}
 
 	function update_svn() {
-		$output = array();
-		$return = null;
+		$output       = array();
+		$return       = null;
 
-		exec( 'svn up ' . ABSPATH, $output, $return );
+		$message      = '';
 
-		if ( 0 === $return ) {
-			$update = end( $output );
-			// No need to email if there was no update.
-			if ( 0 === strpos( $update, "At revision" ) )
-				return;
+		$found_error  = false;
+		$found_update = false;
 
-			// If we're only sending emails on failure, no need to continue
-			if( ! $this->options['svn-success-email'] )
-				return;
+		$source_control = $this->under_source_control();
 
-			$message = esc_html__( 'We successfully upgraded from SVN!', 'automatic-updater' );
-			$message .= "<br><br>$update";
-		} else {
-			$message = esc_html__( 'While upgrading from SVN, we ran into the following error:', 'automatic-updater' );
-			$message .= '<br><br>' . end( $output ) . '<br><br>';
-			$message .= esc_html__( "We're sorry it didn't work out. Please try upgrading manually, instead.", 'automatic-updater' );
+		if ( $source_control['core'] && 'svn' === $this->options['svn']['core'] ) {
+			exec( 'svn up ' . ABSPATH, $output, $return );
+
+			if ( 0 !== strpos( $update, "At revision" ) ) {
+				$found_update = true;
+
+				$update = end( $output );
+
+				if ( 0 === $return ) {
+					$message .= esc_html__( 'We successfully upgraded WordPress Core from SVN!', 'automatic-updater' );
+					$message .= "<br><br>$update";
+				} else {
+					$found_error = true;
+
+					$message .= esc_html__( 'While upgrading WordPress Core from SVN, we ran into the following error:', 'automatic-updater' );
+					$message .= "<br><br>$update<br><br>";
+					$message .= esc_html__( "We're sorry it didn't work out. Please try upgrading manually, instead.", 'automatic-updater' );
+				}
+			}
 		}
+
+		if ( ! empty( $source_control['plugins'] ) && ! empty( $this->options['svn']['plugins'] ) ) {
+			$plugin_message = '';
+
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+			$plugin_upgrades = 0;
+			foreach ( $this->options['svn']['plugins'] as $id => $type ) {
+				// We only support SVN at the moment
+				if ( 'svn' !== $type )
+					continue;
+
+				// Check that this plugin is still under source control
+				if ( ! array_key_exists( $id, $source_control['plugins'] ) )
+					continue;
+
+				$plugin_upgrades++;
+
+				$plugin = get_plugin_data( $id );
+
+				exec( 'svn up ' . WP_PLUGIN_DIR . '/' . plugin_dir_path( $id ), $output, $return );
+
+				$update = end( $output );
+
+				if ( 0 !== $return )
+					$found_error = true;
+
+				$plugin_message .= "{$plugin['Name']}: $update<br>";
+			}
+
+			if ( ! empty( $plugin_message ) ) {
+				$message .= '<br><br>';
+				$message .= esc_html( _n( 'We upgraded the following plugin:', 'We upgraded the following plugins:', $plugin_upgrades, 'automatic-updater' ) );
+				$message .= "<br><br>$plugin_message";
+			}
+		}
+
+		if ( ! empty( $source_control['themes'] ) && ! empty( $this->options['svn']['themes'] ) ) {
+			$theme_message = '';
+
+			$theme_upgrades = 0;
+			foreach ( $this->options['svn']['themes'] as $id => $type ) {
+				// We only support SVN at the moment
+				if ( 'svn' !== $type )
+					continue;
+
+				// Check that this theme is still under source control
+				if ( ! array_key_exists( $id, $source_control['themes'] ) )
+					continue;
+
+				$theme_upgrades++;
+
+				$theme = wp_get_theme( $id );
+
+				exec( 'svn up ' . $theme->get_stylesheet_directory(), $output, $return );
+
+				$update = end( $output );
+
+				if ( 0 !== $return )
+					$found_error = true;
+
+				$theme_message .= "{$theme->name}: $update<br>";
+			}
+
+			if ( ! empty( $theme_message ) ) {
+				$message .= '<br><br>';
+				$message .= esc_html( _n( 'We upgraded the following theme:', 'We upgraded the following themes:', $theme_upgrades, 'automatic-updater' ) );
+				$message .= "<br><br>$theme_message";
+			}
+		}
+
+		// No need to email if there were no updates.
+		if ( ! $found_update )
+			return;
+
+		// If we're only sending emails on failure, check if any errors were found
+		if( ! $found_error && ! $this->options['svn-success-email'] )
+			return;
 
 		$message .= '<br>';
 
@@ -580,6 +678,48 @@ class Automatic_Updater {
 		$counts['total'] = $counts['plugins'] + $counts['themes'] + $counts['wordpress'];
 
 		return apply_filters( 'auto_update_get_update_data', array( 'counts' => $counts ) );
+	}
+
+	function under_source_control( $types = array( 'svn' ) ) {
+		$return = array(
+					'core'    => false,
+					'plugins' => array(),
+					'themes'  => array()
+		);
+
+		$supported_checks = array( 'svn', 'git' );
+		foreach ( $types as $id => $type )
+			if ( ! in_array( $type, $supported_checks ) )
+				unset( $types[ $id ] );
+
+		if ( empty( $types ) )
+			return $return;
+
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+		$plugins = get_plugins();
+		$themes  = wp_get_themes();
+
+		foreach ( $types as $type ) {
+			if ( is_dir( ABSPATH . "/.$type" ) )
+				$return['core'] = $type;
+
+			foreach ( $plugins as $id => $plugin )
+				if ( plugin_dir_path( $id ) != './' && is_dir( WP_PLUGIN_DIR . '/' . plugin_dir_path( $id ) . ".$type" ) )
+					$return['plugins'][ $id ] = array(
+													'type'   => $type,
+													'plugin' => $plugin
+					);
+
+			foreach ( $themes as $id => $theme )
+				if ( is_dir( $theme->get_stylesheet_directory() . "/.$type" ) )
+					$return['themes'][ $id ] = array(
+													'type'  => $type,
+													'theme' => $theme
+					);
+		}
+
+		return $return;
 	}
 }
 
