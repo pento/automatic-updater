@@ -498,6 +498,7 @@ class Automatic_Updater {
 		$source_control = $this->under_source_control();
 
 		if ( $source_control['core'] && 'svn' === $this->options['svn']['core'] ) {
+			$output[] = esc_html__( 'WordPress Core:', 'automatic-updater' );
 			exec( 'svn up ' . ABSPATH, $output, $return );
 
 			if ( 0 !== strpos( $update, "At revision" ) ) {
@@ -533,22 +534,27 @@ class Automatic_Updater {
 				if ( ! array_key_exists( $id, $source_control['plugins'] ) )
 					continue;
 
-				$plugin_upgrades++;
+				$plugin = get_plugin_data( WP_PLUGIN_DIR . '/' . $id );
 
-				$plugin = get_plugin_data( $id );
+				$output[] = '';
+				$output[] = "{$plugin['Name']} ($id):";
 
 				exec( 'svn up ' . WP_PLUGIN_DIR . '/' . plugin_dir_path( $id ), $output, $return );
 
 				$update = end( $output );
 
-				if ( 0 !== $return )
-					$found_error = true;
+				if ( 0 !== strpos( $update, "At revision" ) ) {
+					$plugin_upgrades++;
+					$found_update = true;
 
-				$plugin_message .= "{$plugin['Name']}: $update<br>";
+					if ( 0 !== $return )
+						$found_error = true;
+
+					$plugin_message .= "{$plugin['Name']}: $update<br>";
+				}
 			}
 
 			if ( ! empty( $plugin_message ) ) {
-				$message .= '<br><br>';
 				$message .= esc_html( _n( 'We upgraded the following plugin:', 'We upgraded the following plugins:', $plugin_upgrades, 'automatic-updater' ) );
 				$message .= "<br><br>$plugin_message";
 			}
@@ -567,22 +573,27 @@ class Automatic_Updater {
 				if ( ! array_key_exists( $id, $source_control['themes'] ) )
 					continue;
 
-				$theme_upgrades++;
-
 				$theme = wp_get_theme( $id );
+
+				$output[] = '';
+				$output[] = "{$theme->name} ($id):";
 
 				exec( 'svn up ' . $theme->get_stylesheet_directory(), $output, $return );
 
 				$update = end( $output );
 
-				if ( 0 !== $return )
-					$found_error = true;
+				if ( 0 !== strpos( $update, "At revision" ) ) {
+					$theme_upgrades++;
+					$found_update = true;
 
-				$theme_message .= "{$theme->name}: $update<br>";
+					if ( 0 !== $return )
+						$found_error = true;
+
+					$theme_message .= "{$theme->name}: $update<br>";
+				}
 			}
 
 			if ( ! empty( $theme_message ) ) {
-				$message .= '<br><br>';
 				$message .= esc_html( _n( 'We upgraded the following theme:', 'We upgraded the following themes:', $theme_upgrades, 'automatic-updater' ) );
 				$message .= "<br><br>$theme_message";
 			}
