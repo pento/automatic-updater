@@ -43,6 +43,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.8.1 =
+* FIXED: Some unnecessary characters appearing in Admin when SVN isn't being used
+
 = 0.8 =
 * ADDED: SVN support for plugins and themes
 * ADDED: Retry limits, so broken updates won't keep trying to install

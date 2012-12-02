@@ -185,10 +185,10 @@ class Automatic_Updater_Admin {
 				<?php
 				} else {
 				?>
-					<input type="hidden" name="svn-core" value="0">;
-					<input type="hidden" name="svn-plugins" value="0">;
-					<input type="hidden" name="svn-themes" value="0">;
-					<input type="hidden" name="svn-success-email" value="0">;
+					<input type="hidden" name="svn-core" value="0">
+					<input type="hidden" name="svn-plugins" value="0">
+					<input type="hidden" name="svn-themes" value="0">
+					<input type="hidden" name="svn-success-email" value="0">
 				<?php
 				}
 
