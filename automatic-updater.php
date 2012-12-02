@@ -219,7 +219,7 @@ class Automatic_Updater {
 		if ( $this->running )
 			return;
 
-		if ( $this->options['svn'] )
+		if ( $this->options['svn']['core'] )
 			return;
 
 		// Forgive me father, for I have sinned. I have included wp-admin files in a plugin.
@@ -324,6 +324,10 @@ class Automatic_Updater {
 			if ( version_compare( $plugin->Version, $plugin->update->new_version, '>=' ) )
 				unset( $plugins[ $id ] );
 
+			// Remove any plugins that are marked for SVN update
+			if ( array_key_exists( $id, $options['svn']['plugins'] ) )
+				unset( $plugins[ $id ] );
+
 			// Remove any plugins that have failed to upgrade
 			if ( ! empty( $this->options['retries']['plugins'][ $id ] ) ) {
 				// If there's a new version of a failed plugin, we should give it another go.
@@ -413,6 +417,10 @@ class Automatic_Updater {
 			if ( version_compare( $theme->Version, $theme->update['new_version'], '>=' ) )
 				unset( $themes[ $id ] );
 
+			// Remove any themes that are marked for SVN update
+			if ( array_key_exists( $id, $options['svn']['themes'] ) )
+				unset( $themes[ $id ] );
+
 			// Remove any themes that have failed to upgrade
 			if ( ! empty( $this->options['retries']['themes'][ $id ] ) ) {
 				// If there's a new version of a failed theme, we should give it another go.
@@ -427,7 +435,7 @@ class Automatic_Updater {
 		if ( empty( $themes ) )
 			return;
 
-	$this->running = true;
+		$this->running = true;
 
 		do_action( 'auto_updater_before_update', 'themes' );
 

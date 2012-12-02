@@ -45,6 +45,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.8.1 =
 * FIXED: Some unnecessary characters appearing in Admin when SVN isn't being used
+* FIXED: Sanity checking of normal updates marked for SVN updates
 
 = 0.8 =
 * ADDED: SVN support for plugins and themes
