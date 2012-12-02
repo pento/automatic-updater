@@ -43,6 +43,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.8.2 =
+* UPDATED: Dutch (nl_NL) translation. Props Trifon Rijksen
+
 = 0.8.1 =
 * UPDATED: Language POT file
 * FIXED: Some unnecessary characters appearing in Admin when SVN isn't being used
