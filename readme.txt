@@ -45,6 +45,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.8.2 =
 * UPDATED: Dutch (nl_NL) translation. Props Trifon Rijksen
+* UPDATED: German (de_DE) translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
 
 = 0.8.1 =
 * UPDATED: Language POT file
