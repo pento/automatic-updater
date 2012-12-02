@@ -44,6 +44,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 == Changelog ==
 
 = 0.8.1 =
+* UPDATED: Language POT file
 * FIXED: Some unnecessary characters appearing in Admin when SVN isn't being used
 * FIXED: Sanity checking of normal updates marked for SVN updates
 
