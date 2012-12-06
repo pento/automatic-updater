@@ -505,7 +505,7 @@ class Automatic_Updater {
 
 		$source_control = $this->under_source_control();
 
-		if ( $source_control['core'] && 'svn' === $this->options['svn']['core'] ) {
+		if ( $source_control['core'] && ! empty( $this->options['svn']['core'] ) ) {
 			$output[] = esc_html__( 'WordPress Core:', 'automatic-updater' );
 			exec( 'svn up ' . ABSPATH, $output, $return );
 
