@@ -45,6 +45,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.8.2 =
 * FIXED: SVN updates of WordPress core were not being triggered
+* FIXED: Particularly large SVN updates could cause notification email corruption
 * UPDATED: Dutch (nl_NL) translation. Props Trifon Rijksen
 * UPDATED: German (de_DE) translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
 

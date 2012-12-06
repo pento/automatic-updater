@@ -300,7 +300,7 @@ class Automatic_Updater {
 
 		$message .= '<br>';
 
-		$debug = join( '<br>', $skin->messages );
+		$debug = join( "<br>\n", $skin->messages );
 
 		$this->notification( $message, $debug, $upgrade_failed );
 
@@ -394,7 +394,7 @@ class Automatic_Updater {
 
 		$message .= '<br>' . esc_html__( 'Plugin authors depend on your feedback to make their plugins better, and the WordPress community depends on plugin ratings for checking the quality of a plugin. If you have a couple of minutes, click on the plugin names above, and leave a Compatibility Vote or a Rating!', 'automatic-updater' ) . '<br>';
 
-		$debug = join( '<br>', $skin->messages );
+		$debug = join( "<br>\n", $skin->messages );
 
 		$this->notification( $message, $debug, $upgrade_failed );
 
@@ -487,7 +487,7 @@ class Automatic_Updater {
 
 		$message .= '<br>' . esc_html__( 'Theme authors depend on your feedback to make their plugins better, and the WordPress community depends on theme ratings for checking the quality of a theme. If you have a couple of minutes, click on the theme names above, and leave a Compatibility Vote or a Rating!', 'automatic-updater' ) . '<br>';
 
-		$debug = join( '<br>', $skin->messages );
+		$debug = join( "<br>\n", $skin->messages );
 
 		$this->notification( $message, $debug, $upgrade_failed );
 
@@ -509,10 +509,10 @@ class Automatic_Updater {
 			$output[] = esc_html__( 'WordPress Core:', 'automatic-updater' );
 			exec( 'svn up ' . ABSPATH, $output, $return );
 
+			$update = end( $output );
+
 			if ( 0 !== strpos( $update, "At revision" ) ) {
 				$found_update = true;
-
-				$update = end( $output );
 
 				if ( 0 === $return ) {
 					$message .= esc_html__( 'We successfully upgraded WordPress Core from SVN!', 'automatic-updater' );
@@ -617,7 +617,7 @@ class Automatic_Updater {
 
 		$message .= '<br>';
 
-		$debug = join( '<br>', $output );
+		$debug = join( "<br>\n", $output );
 
 		$this->notification( $message, $debug );
 	}
