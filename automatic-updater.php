@@ -325,7 +325,7 @@ class Automatic_Updater {
 				unset( $plugins[ $id ] );
 
 			// Remove any plugins that are marked for SVN update
-			if ( array_key_exists( $id, $options['svn']['plugins'] ) )
+			if ( array_key_exists( $id, $this->options['svn']['plugins'] ) )
 				unset( $plugins[ $id ] );
 
 			// Remove any plugins that have failed to upgrade
@@ -418,7 +418,7 @@ class Automatic_Updater {
 				unset( $themes[ $id ] );
 
 			// Remove any themes that are marked for SVN update
-			if ( array_key_exists( $id, $options['svn']['themes'] ) )
+			if ( array_key_exists( $id, $this->options['svn']['themes'] ) )
 				unset( $themes[ $id ] );
 
 			// Remove any themes that have failed to upgrade
