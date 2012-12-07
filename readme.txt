@@ -44,7 +44,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 == Changelog ==
 
 = 0.8.3 =
-* FIXED: Theme and Plugin updates not properly skipping those warked for SVN updates
+* FIXED: Theme and Plugin updates not properly skipping those marked for SVN updates
 
 = 0.8.2 =
 * FIXED: SVN updates of WordPress core were not being triggered
