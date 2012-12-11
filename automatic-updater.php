@@ -242,7 +242,7 @@ class Automatic_Updater {
 			return;
 
 		// Check that we haven't failed to upgrade to the updated version in the past
-		if ( version_compare( $update->current, $this->options['retries']['core']['version'], '>=' ) && $this->options['retries']['core']['tries'] >= $this->option['retries-limit'] )
+		if ( version_compare( $update->current, $this->options['retries']['core']['version'], '>=' ) && $this->options['retries']['core']['tries'] >= $this->options['retries-limit'] )
 			return;
 
 		$old_version = $GLOBALS['wp_version'];
