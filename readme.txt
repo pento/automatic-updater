@@ -43,6 +43,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.8.4 =
+* UPDATED: Norwegian Bokmål (nb_NO) translation. Props [Bjørn Johansen](https://twitter.com/bjornjohansen)
+
 = 0.8.3 =
 * FIXED: Bug preventing normal WordPress Core updates from occurring
 * FIXED: Theme and Plugin updates not properly skipping those marked for SVN updates
