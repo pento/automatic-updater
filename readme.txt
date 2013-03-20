@@ -44,6 +44,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 == Changelog ==
 
 = 0.8.4 =
+* ADDED: A link to the SVN log browser for Core, when it updates
 * UPDATED: Norwegian Bokmål (nb_NO) translation. Props [Bjørn Johansen](https://twitter.com/bjornjohansen)
 
 = 0.8.3 =

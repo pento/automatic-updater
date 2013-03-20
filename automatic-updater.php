@@ -516,6 +516,7 @@ class Automatic_Updater {
 
 				if ( 0 === $return ) {
 					$message .= esc_html__( 'We successfully upgraded WordPress Core from SVN!', 'automatic-updater' );
+					$message .= "<br><a href='http://core.trac.wordpress.org/log/'>http://core.trac.wordpress.org/log/</a>";
 					$message .= "<br><br>$update";
 				} else {
 					$found_error = true;
