@@ -45,7 +45,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.8.4 =
 * ADDED: A link to the SVN log browser for Core, when it updates
-* ADDED: Japanese (日本語) (ja) translation. Props[Tai](http://tekapo.com/)
+* ADDED: Japanese (日本語) (ja) translation. Props [Tai](http://tekapo.com/)
 * UPDATED: Norwegian Bokmål (nb_NO) translation. Props [Bjørn Johansen](https://twitter.com/bjornjohansen)
 
 = 0.8.3 =
