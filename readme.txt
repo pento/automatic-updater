@@ -45,6 +45,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.8.5 =
 * FIXED: Disable email notifications option was being set, but not showing up as set
+* FIXED: Only write to the options table when options have actually change
 
 = 0.8.4 =
 * ADDED: A link to the SVN log browser for Core, when it updates

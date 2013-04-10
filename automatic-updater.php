@@ -25,6 +25,7 @@ Automatic_Updater::$basename = plugin_basename( $automatic_updater_file );
 class Automatic_Updater {
 	private $running = false;
 	private $options = array();
+	private $options_serialized = '';
 
 	public static $basename;
 
@@ -43,6 +44,7 @@ class Automatic_Updater {
 
 		// Load the options, and check that they're all up to date.
 		$this->options = get_option( 'automatic-updater', array() );
+		$this->options_serialized = serialize( $this->options );
 		$this->plugin_upgrade();
 
 		add_action( 'shutdown', array( &$this, 'shutdown' ) );
@@ -102,6 +104,10 @@ class Automatic_Updater {
 	}
 
 	function shutdown() {
+		// No need to write to the DB if the options haven't changed
+		if ( serialize( $this->options ) === $this->options_serialized )
+			return;
+
 		update_option( 'automatic-updater', $this->options );
 	}
 
