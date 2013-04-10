@@ -501,13 +501,16 @@ class Automatic_Updater {
 	}
 
 	function update_svn() {
-		$output       = array();
-		$return       = null;
+		$output              = array();
+		$return              = null;
 
-		$message      = '';
+		$message             = '';
 
-		$found_error  = false;
-		$found_update = false;
+		$found_error         = false;
+		$found_update        = false;
+
+		$found_core_update   = false;
+		$found_plugin_update = false;
 
 		$source_control = $this->under_source_control();
 
@@ -519,6 +522,7 @@ class Automatic_Updater {
 
 			if ( 0 !== strpos( $update, "At revision" ) ) {
 				$found_update = true;
+				$found_core_update = true;
 
 				if ( 0 === $return ) {
 					$message .= esc_html__( 'We successfully upgraded WordPress Core from SVN!', 'automatic-updater' );
@@ -561,6 +565,7 @@ class Automatic_Updater {
 				if ( 0 !== strpos( $update, "At revision" ) ) {
 					$plugin_upgrades++;
 					$found_update = true;
+					$found_plugin_update = true;
 
 					if ( 0 !== $return )
 						$found_error = true;
@@ -570,6 +575,8 @@ class Automatic_Updater {
 			}
 
 			if ( ! empty( $plugin_message ) ) {
+				if ( $found_core_update )
+					$message .= '<br><br>';
 				$message .= esc_html( _n( 'We upgraded the following plugin:', 'We upgraded the following plugins:', $plugin_upgrades, 'automatic-updater' ) );
 				$message .= "<br><br>$plugin_message";
 			}
@@ -609,6 +616,8 @@ class Automatic_Updater {
 			}
 
 			if ( ! empty( $theme_message ) ) {
+				if ( $found_core_update || $found_plugin_update )
+					$message .= '<br><br>';
 				$message .= esc_html( _n( 'We upgraded the following theme:', 'We upgraded the following themes:', $theme_upgrades, 'automatic-updater' ) );
 				$message .= "<br><br>$theme_message";
 			}
