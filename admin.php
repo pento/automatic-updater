@@ -105,7 +105,7 @@ class Automatic_Updater_Admin {
 				?>
 
 				<p><?php esc_html_e( "If you don't want to receive an email when updates are installed, you can disable them completely.", 'automatic-updater' ); ?></p>
-				<p><input type="checkbox" name="disable-email" id="disable-email" value="1"> <label for="disable-email"><?php esc_html_e( 'Disable email notifications.', 'automatic-updater' ); ?></label></p>
+				<p><input type="checkbox" name="disable-email" id="disable-email" value="1"<?php echo $checked; ?>> <label for="disable-email"><?php esc_html_e( 'Disable email notifications.', 'automatic-updater' ); ?></label></p>
 
 				<br>
 				<h3><?php esc_html_e( 'Retries', 'automatic-updater' ); ?></h3>

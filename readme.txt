@@ -43,6 +43,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.8.5 =
+* FIXED: Disable email notifications option was being set, but not showing up as set
+
 = 0.8.4 =
 * ADDED: A link to the SVN log browser for Core, when it updates
 * ADDED: Japanese (日本語) (ja) translation. Props [Tai](http://tekapo.com/)
