@@ -1,6 +1,6 @@
 <?php
 
-include ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+include_once( ABSPATH . 'wp-admin/includes/class-wp-upgrader.php' );
 
 class Auto_Updater_Skin extends WP_Upgrader_Skin {
 	var $messages = array();

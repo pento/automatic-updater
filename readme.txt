@@ -47,6 +47,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 * FIXED: Disable email notifications option was being set, but not showing up as set
 * FIXED: Only write to the options table when options have actually change
 * FIXED: Funky email layout if svn up'ing multiple things in one go
+* FIXED: Possible PHP error caused by including some core class definitions multiple times
 
 = 0.8.4 =
 * ADDED: A link to the SVN log browser for Core, when it updates
