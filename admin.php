@@ -80,6 +80,19 @@ class Automatic_Updater_Admin {
 				</div>
 			<?php } ?>
 
+			<?php
+			if ( is_plugin_active( 'better-wp-security/better-wp-security.php' ) ) {
+				global $bwpsoptions;
+				if ( ! empty( $bwpsoptions[ 'st_corenot' ] ) || ! empty( $bwpsoptions[ 'st_pluginnot' ] ) || ! empty( $bwpsoptions[ 'st_themenot' ] ) ) {
+			?>
+					<div class="updated">
+						<p><?php echo wp_kses( sprintf( __( 'The Better WP Security plugin is hiding updates, which will prevent Automatic Updater from operating correctly. Please <a href="%s">disable these options</a>.', 'automatic-updater' ), admin_url( 'admin.php?page=better-wp-security-systemtweaks#st_themenot' ) ), array( 'a' => array( 'href' => array() ) ) ); ?></p>
+					</div>
+			<?php
+				}
+			}
+			?>
+
 			<form method="post">
 				<?php wp_nonce_field( 'automatic-updater-settings' ); ?>
 
