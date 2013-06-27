@@ -11,6 +11,12 @@
  * Domain Path: /languages/
  */
 
+// Don't allow the plugin to be loaded directly
+if ( ! function_exists( 'add_action' ) ) {
+	echo "Please enable this plugin from your wp-admin.";
+	exit;
+}
+
 $automatic_updater_file = __FILE__;
 
 if ( isset( $plugin ) )

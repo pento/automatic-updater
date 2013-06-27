@@ -45,6 +45,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.9 =
 * ADDED: Warning when Better WP Security is hiding update info
+* ADDED: Sanity check to make sure the plugin isn't accessed directly
 
 = 0.8.5 =
 * FIXED: Disable email notifications option was being set, but not showing up as set
