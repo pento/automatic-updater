@@ -76,7 +76,8 @@ class Automatic_Updater {
 			if ( ! wp_next_scheduled( 'auto_updater_svn_event' ) )
 				wp_schedule_event( time(), 'hourly', 'auto_updater_svn_event' );
 		} else {
-			if ( $timestamp = wp_next_scheduled( 'auto_updater_svn_event' ) )
+			$timestamp = wp_next_scheduled( 'auto_updater_svn_event' );
+			if ( $timestamp )
 				wp_unschedule_event( $timestamp, 'auto_updater_svn_event' );
 		}
 
@@ -219,12 +220,13 @@ class Automatic_Updater {
 			$this->options['svn-success-email'] = true;
 
 		// SVN support for themes and plugins added in 0.8
-		if ( ! is_array( $this->options['svn'] ) )
+		if ( ! is_array( $this->options['svn'] ) ) {
 			$this->options['svn'] =  array(
 										'core'    => $this->options['svn'],
 										'plugins' => array(),
 										'themes'  => array(),
 								);
+		}
 	}
 
 	function update_core() {
@@ -244,7 +246,7 @@ class Automatic_Updater {
 		if ( empty( $updates ) )
 			return;
 
-		if ( 'development' == $updates[0]->response )
+		if ( 'development' === $updates[0]->response )
 			$update = $updates[0];
 		else
 			$update = find_core_update( $updates[0]->current, $updates[0]->locale );
@@ -260,11 +262,11 @@ class Automatic_Updater {
 		$old_version = $GLOBALS['wp_version'];
 
 		// Sanity check that the new upgrade is actually an upgrade
-		if ( 'development' != $update->response && version_compare( $old_version, $update->current, '>=' ) )
+		if ( 'development' !== $update->response && version_compare( $old_version, $update->current, '>=' ) )
 			return;
 
 		// Only do development version updates once every 24 hours
-		if ( 'development' == $update->response ) {
+		if ( 'development' === $update->response ) {
 			if ( time() < $this->options['next-development-update'] )
 				return;
 
@@ -284,7 +286,7 @@ class Automatic_Updater {
 		do_action( 'auto_updater_after_update', 'core' );
 
 		if ( is_wp_error( $result ) ) {
-			if ( $this->options['tries']['core']['version'] != $update->current )
+			if ( $this->options['tries']['core']['version'] !== $update->current )
 				$this->options['tries']['core']['version'] = $update->current;
 
 			$this->options['tries']['core']['tries']++;
@@ -296,7 +298,7 @@ class Automatic_Updater {
 			$message .= sprintf( esc_html__( 'We\'re sorry it didn\'t work out. Please try upgrading manually, instead. This is attempt %1$d of %2$d.', 'automatic-updater' ),
 							$this->options['tries']['core']['tries'],
 							$this->option['retries-limit'] );
-		} else if( 'development' == $update->response ) {
+		} else if ( 'development' === $update->response ) {
 			$message = esc_html__( "We've successfully upgraded WordPress to the latest nightly build!", 'automatic-updater' );
 			$message .= '<br><br>' . esc_html__( 'Have fun!', 'automatic-updater' );
 
@@ -343,7 +345,7 @@ class Automatic_Updater {
 			// Remove any plugins that have failed to upgrade
 			if ( ! empty( $this->options['retries']['plugins'][ $id ] ) ) {
 				// If there's a new version of a failed plugin, we should give it another go.
-				if ( $this->options['retries']['plugins'][ $id ]['version'] != $plugin->update->new_version )
+				if ( $this->options['retries']['plugins'][ $id ]['version'] !== $plugin->update->new_version )
 					unset( $this->options['retries']['plugins'][ $id ] );
 				// If the plugin has already had it's chance, move on.
 				else if ($this->options['retries']['plugins'][ $id ]['tries'] > $this->options['retries-limit'] )
@@ -371,13 +373,14 @@ class Automatic_Updater {
 
 		foreach ( $plugins as $id => $plugin ) {
 			if ( is_wp_error( $result[ $id ] ) ) {
-				if ( empty( $this->options['retries']['plugins'][ $id ] ) )
+				if ( empty( $this->options['retries']['plugins'][ $id ] ) ) {
 					$this->options['retries']['plugins'][ $id ] = array(
 															'tries' => 1,
 															'version' => $plugin->update->new_version,
 														);
-				else
+				} else {
 					$this->options['retries']['plugins'][ $id ]['tries']++;
+				}
 
 				$upgrade_failed = true;
 
@@ -436,7 +439,7 @@ class Automatic_Updater {
 			// Remove any themes that have failed to upgrade
 			if ( ! empty( $this->options['retries']['themes'][ $id ] ) ) {
 				// If there's a new version of a failed theme, we should give it another go.
-				if ( $this->options['retries']['themes'][ $id ]['version'] != $theme->update['new_version'] )
+				if ( $this->options['retries']['themes'][ $id ]['version'] !== $theme->update['new_version'] )
 					unset( $this->options['retries']['themes'][ $id ] );
 				// If the themes has already had it's chance, move on.
 				else if ($this->options['retries']['themes'][ $id ]['tries'] > $this->options['retries-limit'] )
@@ -464,13 +467,14 @@ class Automatic_Updater {
 
 		foreach ( $themes as $id => $theme ) {
 			if ( is_wp_error( $result[ $id ] ) ) {
-				if ( empty( $this->options['retries']['themes'][ $id ] ) )
+				if ( empty( $this->options['retries']['themes'][ $id ] ) ) {
 					$this->options['retries']['themes'][ $id ] = array(
 															'tries' => 1,
 															'version' => $themes->update['new_version'],
 														);
-				else
+				} else {
 					$this->options['retries']['themes'][ $id ]['tries']++;
+				}
 
 				$upgrade_failed = true;
 
@@ -712,7 +716,7 @@ class Automatic_Updater {
 
 		if ( function_exists( 'get_core_updates' ) ) {
 			$update_wordpress = get_core_updates( array( 'dismissed' => false ) );
-			if ( ! empty( $update_wordpress ) && 'latest' != $update_wordpress[0]->response )
+			if ( ! empty( $update_wordpress ) && 'latest' !== $update_wordpress[0]->response )
 				$counts['wordpress'] = 1;
 		}
 
@@ -746,18 +750,21 @@ class Automatic_Updater {
 				$return['core'] = $type;
 
 			foreach ( $plugins as $id => $plugin )
-				if ( plugin_dir_path( $id ) != './' && is_dir( WP_PLUGIN_DIR . '/' . plugin_dir_path( $id ) . ".$type" ) )
+				if ( plugin_dir_path( $id ) !== './' && is_dir( WP_PLUGIN_DIR . '/' . plugin_dir_path( $id ) . ".$type" ) ) {
 					$return['plugins'][ $id ] = array(
 													'type'   => $type,
 													'plugin' => $plugin
 					);
+				}
 
-			foreach ( $themes as $id => $theme )
-				if ( is_dir( $theme->get_stylesheet_directory() . "/.$type" ) )
+			foreach ( $themes as $id => $theme ) {
+				if ( is_dir( $theme->get_stylesheet_directory() . "/.$type" ) ) {
 					$return['themes'][ $id ] = array(
 													'type'  => $type,
 													'theme' => $theme
 					);
+				}
+			}
 		}
 
 		return $return;

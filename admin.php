@@ -239,8 +239,9 @@ class Automatic_Updater_Admin {
 		}
 
 		$top_options = array( 'override-email', 'retries-limit' );
-		foreach ( $top_options as $option )
+		foreach ( $top_options as $option ) {
 			$this->automatic_updater->update_option( $option, $_REQUEST[ $option ] );
+		}
 
 		$svn_options = array(
 							'core'    => false,

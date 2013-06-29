@@ -12,16 +12,15 @@ class Auto_Updater_Skin extends WP_Upgrader_Skin {
 	function feedback( $data ) {
 		if ( is_wp_error( $data ) )
 			$string = $data->get_error_message();
-		else if ( is_array( $data ) ) {
+		else if ( is_array( $data ) )
 			return;
-		}
 		else
 			$string = $data;
 
 		if ( ! empty( $this->upgrader->strings[ $string ] ) )
 			$string = $this->upgrader->strings[ $string ];
 
-		if ( strpos($string, '%') !== false ) {
+		if ( strpos( $string, '%' ) !== false ) {
 			$args = func_get_args();
 			$args = array_splice( $args, 1 );
 			if ( ! empty( $args ) )
