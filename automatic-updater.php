@@ -285,6 +285,12 @@ class Automatic_Updater {
 
 		do_action( 'auto_updater_after_update', 'core' );
 
+		include( ABSPATH . WPINC . '/version.php' );
+		if ( $old_version === $wp_version ) {
+			// Huh, I guess it didn't really need to do that upgrade
+			return;
+		}
+
 		if ( is_wp_error( $result ) ) {
 			if ( $this->options['tries']['core']['version'] !== $update->current )
 				$this->options['tries']['core']['version'] = $update->current;
@@ -299,7 +305,7 @@ class Automatic_Updater {
 							$this->options['tries']['core']['tries'],
 							$this->option['retries-limit'] );
 		} else if ( 'development' === $update->response ) {
-			$message = esc_html__( "We've successfully upgraded WordPress to the latest nightly build!", 'automatic-updater' );
+			$message = sprintf( esc_html__( 'We\'ve successfully upgraded WordPress from version %1$s to version %2$s, the latest nightly build!', 'automatic-updater' ), $old_version, $wp_version );
 			$message .= '<br><br>' . esc_html__( 'Have fun!', 'automatic-updater' );
 
 			$this->options['tries']['core']['version'] = 0;
