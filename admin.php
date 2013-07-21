@@ -2,6 +2,7 @@
 
 class Automatic_Updater_Admin {
 	private $automatic_updater;
+	private $adminPage;
 
 	function init( $automatic_updater ) {
 		static $instance = false;
@@ -15,23 +16,26 @@ class Automatic_Updater_Admin {
 	function __construct( $automatic_updater ) {
 		$this->automatic_updater = $automatic_updater;
 
-		if ( is_multisite() )
+		if ( is_multisite() ) {
+			$this->adminPage = 'settings.php';
 			add_action( 'network_admin_menu', array( &$this, 'plugin_menu' ) );
-		else
+		} else {
+			$this->adminPage = 'options-general.php';
 			add_action( 'admin_menu', array( &$this, 'plugin_menu' ) );
+		}
+
+		add_action( 'wp_ajax_automatic-updater-hide-connection-warning', array( &$this, 'ajax_hide_connection_warning' ) );
 
 		add_filter( 'plugin_action_links_' . Automatic_Updater::$basename, array( &$this, 'plugin_row_links' ) );
 		add_filter( 'network_admin_plugin_action_links_' . Automatic_Updater::$basename, array( &$this, 'plugin_row_links' ) );
 	}
 
 	function plugin_menu() {
-		$slug = 'options-general.php';
-		if ( is_multisite() )
-			$slug = 'settings.php';
-
-		$hook = add_submenu_page( $slug, esc_html__( 'Automatic Updater', 'automatic-updater' ), esc_html__( 'Automatic Updater', 'automatic-updater' ), 'update_core', 'automatic-updater', array( &$this, 'settings' ) );
+		$hook = add_submenu_page( $this->adminPage, esc_html__( 'Automatic Updater', 'automatic-updater' ), esc_html__( 'Automatic Updater', 'automatic-updater' ), 'update_core', 'automatic-updater', array( &$this, 'settings' ) );
 
 		add_action( "load-$hook", array( &$this, 'settings_loader' ) );
+
+		add_action( "admin_footer-$hook", array( &$this, 'footer' ) );
 	}
 
 	function settings_loader() {
@@ -49,7 +53,8 @@ class Automatic_Updater_Admin {
 			'<p><a href="http://wordpress.org/support/plugin/automatic-updater">' . esc_html__( 'Support Forums', 'automatic-updater' ) . '</a></p>'
 		);
 
-		wp_enqueue_style( 'automatic-updater-admin', plugins_url( 'css/admin.css', __FILE__ ) );
+		wp_enqueue_style(  'automatic-updater-admin', plugins_url( 'css/admin.css', Automatic_Updater::$basename ) );
+		wp_enqueue_script( 'automatic-updater-admin', plugins_url( 'js/admin.js',   Automatic_Updater::$basename ) );
 	}
 
 	function settings() {
@@ -64,12 +69,13 @@ class Automatic_Updater_Admin {
 			$message = esc_html__( 'Settings updated', 'automatic-updater' );
 		}
 
-		$messages = array(
-						'core' => wp_kses( __( 'Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>', 'automatic-updater' ), array( 'strong' => array() ) ),
-						'plugins' => esc_html__( 'Update your plugins automatically?', 'automatic-updater' ),
-						'themes' => esc_html__( 'Update your themes automatically?', 'automatic-updater' )
-					);
+		if ( ! empty( $_REQUEST['action'] ) && 'hide-connection-warning' === $_REQUEST['action'] ) {
+			check_admin_referer( 'automatic-updater-hide-connection-warning' );
+
+			$this->automatic_updater->update_option( 'show-connection-warning', false );
+		}
 		?>
+
 		<div class="wrap">
 			<?php screen_icon( 'tools' ); ?>
 			<h2><?php esc_html_e( 'Automatic Updater', 'automatic-updater' ); ?></h2>
@@ -79,6 +85,23 @@ class Automatic_Updater_Admin {
 					<p><?php echo $message; ?></p>
 				</div>
 			<?php } ?>
+
+			<?php
+				if ( $this->automatic_updater->get_option( 'show-connection-warning' ) ) {
+					// If it isn't a direct connection
+					$method = get_filesystem_method();
+					if ( 'direct' !== $method && ! defined( 'FTP_USER' ) ) {
+						// Using a remote login method, and the upgrade info probably isn't defined
+						$admin_url = wp_nonce_url( admin_url( "{$this->adminPage}?page=automatic-updater&action=hide-connection-warning" ), 'automatic-updater-hide-connection-warning' );
+			?>
+						<div class="updated">
+							<p><?php echo wp_kses( sprintf( __( 'It looks like Automatic Updater may not be able to run automatically, due to not having permission to write to the WordPress directory, or connect to the server over FTP. If you usually upgrade by entering your FTP login details, please read <a href="%s">this documentation</a> on storing your connection details.', 'automatic-updater' ), 'http://codex.wordpress.org/Editing_wp-config.php#WordPress_Upgrade_Constants' ), array( 'a' => array( 'href' => array() ) ) ); ?></p>
+							<p><?php echo wp_kses( sprintf( __( 'Alternatively, if WordPress normally upgrades immediately when you click the Update button, or if you don\'t want to see this message again, feel free to <a href="%1$s" id="%2$s">hide it</a>.', 'automatic-updater' ), $admin_url, 'automatic-updater-hide-connection-warning' ), array( 'a' => array( 'href' => array(), 'id' => array() ) ) ); ?></p>
+						</div>
+			<?php
+					}
+				}
+			?>
 
 			<?php
 			if ( is_plugin_active( 'better-wp-security/better-wp-security.php' ) ) {
@@ -97,6 +120,12 @@ class Automatic_Updater_Admin {
 				<?php wp_nonce_field( 'automatic-updater-settings' ); ?>
 
 				<?php
+				$messages = array(
+								'core' => wp_kses( __( 'Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>', 'automatic-updater' ), array( 'strong' => array() ) ),
+								'plugins' => esc_html__( 'Update your plugins automatically?', 'automatic-updater' ),
+								'themes' => esc_html__( 'Update your themes automatically?', 'automatic-updater' )
+							);
+
 				foreach ( $this->automatic_updater->get_option( 'update' ) as $type => $enabled ) {
 					$checked = '';
 					if ( $enabled )
@@ -271,10 +300,23 @@ class Automatic_Updater_Admin {
 		$this->automatic_updater->update_option( 'svn', $svn_options );
 	}
 
+	function ajax_hide_connection_warning() {
+		$this->automatic_updater->update_option( 'show-connection-warning', false );
+		die();
+	}
+
+	function footer() {
+	?>
+	<script type='text/javascript'>
+	/* <![CDATA[ */
+		var automaticUpdaterSettings = { 'nonce': '<?php echo wp_create_nonce( 'automatic-updater' ); ?>' };
+	/* ]]> */
+	</script>
+	<?php
+	}
+
 	function plugin_row_links( $links ) {
-		$url = admin_url( 'options-general.php?page=automatic-updater' );
-		if ( is_multisite() )
-			$url = network_admin_url( 'settings.php?page=automatic-updater' );
+		$url = admin_url( "{$this->adminPage}?page=automatic-updater" );
 
 		array_unshift( $links, "<a href='$url'>" . esc_html__( 'Settings', 'automatic-updater' ) . '</a>' );
 

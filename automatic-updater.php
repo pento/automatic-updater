@@ -227,6 +227,11 @@ class Automatic_Updater {
 										'themes'  => array(),
 								);
 		}
+
+		// Warning for incorrect permissions added in 0.9
+		if ( ! array_key_exists( 'show-connection-warning', $this->options ) ) {
+			$this->options['show-connection-warning'] = true;
+		}
 	}
 
 	function update_core() {
