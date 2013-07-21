@@ -313,7 +313,7 @@ class Automatic_Updater {
 			$message .= '<br><br>' . $result->get_error_message() . '<br><br>';
 			$message .= sprintf( esc_html__( 'We\'re sorry it didn\'t work out. Please try upgrading manually, instead. This is attempt %1$d of %2$d.', 'automatic-updater' ),
 							$this->options['tries']['core']['tries'],
-							$this->option['retries-limit'] );
+							$this->options['retries-limit'] );
 		} else if ( 'development' === $update->response ) {
 			$message = sprintf( esc_html__( 'We\'ve successfully upgraded WordPress from version %1$s to version %2$s, the latest nightly build!', 'automatic-updater' ), $old_version, $wp_version );
 			$message .= '<br><br>' . esc_html__( 'Have fun!', 'automatic-updater' );
