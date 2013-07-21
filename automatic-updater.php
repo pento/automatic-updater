@@ -55,10 +55,12 @@ class Automatic_Updater {
 
 		add_action( 'shutdown', array( &$this, 'shutdown' ) );
 
-		add_action( 'auto_updater_core_event', array( &$this, 'update_core' ) );
-		add_action( 'auto_updater_plugins_event', array( &$this, 'update_plugins' ) );
-		add_action( 'auto_updater_themes_event', array( &$this, 'update_themes' ) );
-		add_action( 'auto_updater_svn_event', array( &$this, 'update_svn' ) );
+		if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || ! AUTOMATIC_UPDATER_DISABLED ) { 
+			add_action( 'auto_updater_core_event', array( &$this, 'update_core' ) );
+			add_action( 'auto_updater_plugins_event', array( &$this, 'update_plugins' ) );
+			add_action( 'auto_updater_themes_event', array( &$this, 'update_themes' ) );
+			add_action( 'auto_updater_svn_event', array( &$this, 'update_svn' ) );
+		}
 
 		// Nothing else matters if we're on WPMS and not on the main site
 		if ( is_multisite() && ! is_main_site() )
@@ -68,6 +70,9 @@ class Automatic_Updater {
 			include_once( dirname( __FILE__ ) . '/admin.php' );
 			Automatic_Updater_Admin::init( $this );
 		}
+
+		if ( defined( 'AUTOMATIC_UPDATER_DISABLED' ) && AUTOMATIC_UPDATER_DISABLED )
+			return;
 
 		add_action( 'admin_init', array( &$this, 'check_wordpress_version' ) );
 

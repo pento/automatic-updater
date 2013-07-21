@@ -46,6 +46,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 = 0.9 =
 * ADDED: Warning when Better WP Security is hiding update info
 * ADDED: Warning when the user can't update directly, but hasn't defined S/FTP login details
+* ADDED: AUTOMATIC_UPDATER_DISABLED wp-config option, for forcing updates to never happen
 * ADDED: Sanity check to make sure the plugin isn't accessed directly
 * CHANGED: For nightly build upgrade notification emails, include the build numbers
 * FIXED: Don't send a notification email if the core upgrade didn't change versions (ie, a nightly build with no changes)
