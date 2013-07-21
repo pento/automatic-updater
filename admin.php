@@ -185,13 +185,16 @@ class Automatic_Updater_Admin {
 						<p><?php esc_html_e( "Running plugins from SVN is great for helping plugin devs fine tune them before release, so on behalf of all of us, thanks! If you see Akismet here and don't have it coming from a custom repository, it will probably automatically update when the WordPress Core SVN update occurs.", 'automatic-updater' ); ?></p>
 					<?php
 						foreach ( $source_control['plugins'] as $id => $plugin ) {
-							if ( ! is_writable( WP_PLUGIN_DIR . '/' . plugin_dir_path( $id ) . '/.svn' ) )
+							$class = '';
+							if ( ! is_writable( WP_PLUGIN_DIR . '/' . plugin_dir_path( $id ) . '/.svn' ) ) {
 								$writable_error = true;
+								$class = ' class="form-invalid"';
+							}
 
 							$checked = '';
 							if ( array_key_exists( $id, $svn_options['plugins'] ) )
 								$checked = ' checked="checked"';
-							echo "<input type='checkbox' name='svn-plugins[]' id='$id' value='$id'$checked /> <label for='$id'>{$plugin['plugin']['Name']} ($id)</label><br/>";
+							echo "<input type='checkbox' name='svn-plugins[]' id='$id' value='$id'$checked /> <label for='$id'$class>{$plugin['plugin']['Name']} ($id)</label><br/>";
 						}
 					}
 
@@ -201,13 +204,16 @@ class Automatic_Updater_Admin {
 						<p><?php esc_html_e( "Running themes from SVN makes you an excellent person who makes the WordPress community better - thank you! If you see any of the default Twenty Ten, Eleven or Twelve themes, these will probably automatically update when the WordPress Core SVN update occurs.", 'automatic-updater' ); ?></p>
 					<?php
 						foreach ( $source_control['themes'] as $id => $theme ) {
-							if ( ! is_writable( $theme['theme']->get_stylesheet_directory() . '/.svn' ) )
+							$class = '';
+							if ( ! is_writable( $theme['theme']->get_stylesheet_directory() . '/.svn' ) ) {
 								$writable_error = true;
+								$class = ' class="form-invalid"';
+							}
 
 							$checked = '';
 							if ( array_key_exists( $id, $svn_options['themes'] ) )
 								$checked = ' checked="checked"';
-							echo "<input type='checkbox' name='svn-themes[]' id='$id' value='$id'$checked /> <label for='$id'>{$theme['theme']->name} ($id)</label><br/>";
+							echo "<input type='checkbox' name='svn-themes[]' id='$id' value='$id'$checked /> <label for='$id'$class>{$theme['theme']->name} ($id)</label><br/>";
 						}
 					}
 

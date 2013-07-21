@@ -51,6 +51,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 * CHANGED: For nightly build upgrade notification emails, include the build numbers
 * FIXED: Don't send a notification email if the core upgrade didn't change versions (ie, a nightly build with no changes)
 * FIXED: Settings page CSS wasn't loading if the plugin was installed in a symlink directory
+* FIXED: Themes and plugins in non-writeable directories weren't being highlighted correctly
 
 = 0.8.5 =
 * FIXED: Disable email notifications option was being set, but not showing up as set
