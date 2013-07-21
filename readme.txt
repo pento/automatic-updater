@@ -3,7 +3,7 @@ Contributors: pento
 Donate link: http://pento.net/donate/
 Tags: updates, core, plugins, themes, stable, nightly, svn, wordpress automatic upgrader
 Requires at least: 3.4
-Tested up to: 3.5
+Tested up to: 3.6
 Stable tag: 0.8.5
 License: GPL2+
 
@@ -47,6 +47,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 * ADDED: AUTOMATIC_UPDATER_DISABLED wp-config option, for forcing updates to never happen
 * ADDED: Sanity check to make sure the plugin isn't accessed directly
 * CHANGED: For nightly build upgrade notification emails, include the build numbers
+* UPDATED: Tested up to WordPress 3.6
 * FIXED: Don't send a notification email if the core upgrade didn't change versions (ie, a nightly build with no changes)
 * FIXED: Settings page CSS wasn't loading if the plugin was installed in a symlink directory
 * FIXED: Themes and plugins in non-writeable directories weren't being highlighted correctly on the settings page
