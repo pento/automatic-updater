@@ -55,7 +55,7 @@ class Automatic_Updater {
 
 		add_action( 'shutdown', array( &$this, 'shutdown' ) );
 
-		if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || ! AUTOMATIC_UPDATER_DISABLED ) { 
+		if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || ! AUTOMATIC_UPDATER_DISABLED ) {
 			add_action( 'auto_updater_core_event', array( &$this, 'update_core' ) );
 			add_action( 'auto_updater_plugins_event', array( &$this, 'update_plugins' ) );
 			add_action( 'auto_updater_themes_event', array( &$this, 'update_themes' ) );
