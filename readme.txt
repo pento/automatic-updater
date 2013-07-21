@@ -17,8 +17,6 @@ If you're working on a WordPress Multisite install, it will properly restrict th
 
 While this will be useful for the vast majority of sites, please exercise caution, particularly if you have any custom themes or plugins running on your site.
 
-You should also be aware that this will only work on WordPress installs that have the appropriate file permissions to update through the web interface - it will not work if you usually FTP updates to your server.
-
 There are some Actions and Filters provided, check the [Documentation](http://pento.net/projects/automatic-updater-for-wordpress/) for more details.
 
 == Installation ==
