@@ -42,6 +42,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 == Changelog ==
 
 = 0.9.1 =
+* UPDATED: Language POT file
 * FIXED: Removed pass-by-reference, it's too old school for @wonderboymusic
 
 = 0.9 =
