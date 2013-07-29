@@ -56,10 +56,10 @@ class Automatic_Updater {
 		add_action( 'shutdown', array( $this, 'shutdown' ) );
 
 		if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || ! AUTOMATIC_UPDATER_DISABLED ) {
-			add_action( 'auto_updater_core_event', array( $this, 'update_core' ) );
+			add_action( 'auto_updater_core_event',    array( $this, 'update_core' ) );
 			add_action( 'auto_updater_plugins_event', array( $this, 'update_plugins' ) );
-			add_action( 'auto_updater_themes_event', array( $this, 'update_themes' ) );
-			add_action( 'auto_updater_svn_event', array( $this, 'update_svn' ) );
+			add_action( 'auto_updater_themes_event',  array( $this, 'update_themes' ) );
+			add_action( 'auto_updater_svn_event',     array( $this, 'update_svn' ) );
 		}
 
 		// Nothing else matters if we're on WPMS and not on the main site
@@ -99,7 +99,7 @@ class Automatic_Updater {
 			// We're in a cron, do updates now
 			foreach ( $types as $type ) {
 				if ( ! empty( $this->options['update'][ $type ] ) ) {
-					add_action( "set_site_transient_update_$type", array( $this, "update_$type" ) );
+					add_action( "set_site_transient_update_$type",                 array( $this, "update_$type" ) );
 					add_action( "set_site_transient__site_transient_update_$type", array( $this, "update_$type" ) );
 				}
 			}
@@ -161,18 +161,18 @@ class Automatic_Updater {
 
 			$this->options = array(
 						'update'                  => array(
-									                  'core'    => $core_updates_enabled,
-									                  'plugins' => false,
-									                  'themes'  => false,
+														'core'    => $core_updates_enabled,
+														'plugins' => false,
+														'themes'  => false,
 						),
 						'retries-limit'           => 3,
 						'tries'                   => array(
-									                  'core' => array(
-												                 'version' => 0,
-												                 'tries'   => 0,
-									                   ),
-									                  'plugins' => array(),
-									                  'themes' => array(),
+														'core' => array(
+																	'version' => 0,
+																	'tries'   => 0,
+														),
+														'plugins' => array(),
+														'themes' => array(),
 						),
 						'svn'                     => array(
 														'core'    => false,
@@ -212,8 +212,8 @@ class Automatic_Updater {
 			$this->options['retries-limit'] = 3;
 			$this->options['tries'] = array(
 									'core'    => array(
-												   'version' => 0,
-												   'tries'   => 0,
+													'version' => 0,
+													'tries'   => 0,
 									),
 									'plugins' => array(),
 									'themes'  => array(),
@@ -368,7 +368,7 @@ class Automatic_Updater {
 				if ( $this->options['retries']['plugins'][ $id ]['version'] !== $plugin->update->new_version )
 					unset( $this->options['retries']['plugins'][ $id ] );
 				// If the plugin has already had it's chance, move on.
-				else if ($this->options['retries']['plugins'][ $id ]['tries'] > $this->options['retries-limit'] )
+				else if ( $this->options['retries']['plugins'][ $id ]['tries'] > $this->options['retries-limit'] )
 					unset( $plugins[ $id ] );
 			}
 		}
@@ -395,7 +395,7 @@ class Automatic_Updater {
 			if ( is_wp_error( $result[ $id ] ) ) {
 				if ( empty( $this->options['retries']['plugins'][ $id ] ) ) {
 					$this->options['retries']['plugins'][ $id ] = array(
-															'tries' => 1,
+															'tries'   => 1,
 															'version' => $plugin->update->new_version,
 														);
 				} else {
@@ -462,7 +462,7 @@ class Automatic_Updater {
 				if ( $this->options['retries']['themes'][ $id ]['version'] !== $theme->update['new_version'] )
 					unset( $this->options['retries']['themes'][ $id ] );
 				// If the themes has already had it's chance, move on.
-				else if ($this->options['retries']['themes'][ $id ]['tries'] > $this->options['retries-limit'] )
+				else if ( $this->options['retries']['themes'][ $id ]['tries'] > $this->options['retries-limit'] )
 					unset( $themes[ $id ] );
 			}
 		}
