@@ -43,6 +43,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 = 0.9.1 =
 * UPDATED: Language POT file
+* UPDATED: German (de_DE) translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
 * FIXED: Removed pass-by-reference, it's too old school for @wonderboymusic
 
 = 0.9 =
