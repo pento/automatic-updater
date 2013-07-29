@@ -41,6 +41,9 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
+= 0.9.1 =
+* FIXED: Removed pass-by-reference, it's too old school for @wonderboymusic
+
 = 0.9 =
 * ADDED: Warning when Better WP Security is hiding update info
 * ADDED: Warning when the user can't update directly, but hasn't defined S/FTP login details

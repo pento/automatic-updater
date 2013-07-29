@@ -18,24 +18,24 @@ class Automatic_Updater_Admin {
 
 		if ( is_multisite() ) {
 			$this->adminPage = 'settings.php';
-			add_action( 'network_admin_menu', array( &$this, 'plugin_menu' ) );
+			add_action( 'network_admin_menu', array( $this, 'plugin_menu' ) );
 		} else {
 			$this->adminPage = 'options-general.php';
-			add_action( 'admin_menu', array( &$this, 'plugin_menu' ) );
+			add_action( 'admin_menu', array( $this, 'plugin_menu' ) );
 		}
 
-		add_action( 'wp_ajax_automatic-updater-hide-connection-warning', array( &$this, 'ajax_hide_connection_warning' ) );
+		add_action( 'wp_ajax_automatic-updater-hide-connection-warning', array( $this, 'ajax_hide_connection_warning' ) );
 
-		add_filter( 'plugin_action_links_' . Automatic_Updater::$basename, array( &$this, 'plugin_row_links' ) );
-		add_filter( 'network_admin_plugin_action_links_' . Automatic_Updater::$basename, array( &$this, 'plugin_row_links' ) );
+		add_filter( 'plugin_action_links_' . Automatic_Updater::$basename, array( $this, 'plugin_row_links' ) );
+		add_filter( 'network_admin_plugin_action_links_' . Automatic_Updater::$basename, array( $this, 'plugin_row_links' ) );
 	}
 
 	function plugin_menu() {
-		$hook = add_submenu_page( $this->adminPage, esc_html__( 'Automatic Updater', 'automatic-updater' ), esc_html__( 'Automatic Updater', 'automatic-updater' ), 'update_core', 'automatic-updater', array( &$this, 'settings' ) );
+		$hook = add_submenu_page( $this->adminPage, esc_html__( 'Automatic Updater', 'automatic-updater' ), esc_html__( 'Automatic Updater', 'automatic-updater' ), 'update_core', 'automatic-updater', array( $this, 'settings' ) );
 
-		add_action( "load-$hook", array( &$this, 'settings_loader' ) );
+		add_action( "load-$hook", array( $this, 'settings_loader' ) );
 
-		add_action( "admin_footer-$hook", array( &$this, 'footer' ) );
+		add_action( "admin_footer-$hook", array( $this, 'footer' ) );
 	}
 
 	function settings_loader() {

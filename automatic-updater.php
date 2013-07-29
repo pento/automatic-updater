@@ -53,13 +53,13 @@ class Automatic_Updater {
 		$this->options_serialized = serialize( $this->options );
 		$this->plugin_upgrade();
 
-		add_action( 'shutdown', array( &$this, 'shutdown' ) );
+		add_action( 'shutdown', array( $this, 'shutdown' ) );
 
 		if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || ! AUTOMATIC_UPDATER_DISABLED ) {
-			add_action( 'auto_updater_core_event', array( &$this, 'update_core' ) );
-			add_action( 'auto_updater_plugins_event', array( &$this, 'update_plugins' ) );
-			add_action( 'auto_updater_themes_event', array( &$this, 'update_themes' ) );
-			add_action( 'auto_updater_svn_event', array( &$this, 'update_svn' ) );
+			add_action( 'auto_updater_core_event', array( $this, 'update_core' ) );
+			add_action( 'auto_updater_plugins_event', array( $this, 'update_plugins' ) );
+			add_action( 'auto_updater_themes_event', array( $this, 'update_themes' ) );
+			add_action( 'auto_updater_svn_event', array( $this, 'update_svn' ) );
 		}
 
 		// Nothing else matters if we're on WPMS and not on the main site
@@ -74,7 +74,7 @@ class Automatic_Updater {
 		if ( defined( 'AUTOMATIC_UPDATER_DISABLED' ) && AUTOMATIC_UPDATER_DISABLED )
 			return;
 
-		add_action( 'admin_init', array( &$this, 'check_wordpress_version' ) );
+		add_action( 'admin_init', array( $this, 'check_wordpress_version' ) );
 
 		// Configure SVN updates cron, if it's enabled
 		if ( $this->options['svn']['core'] || ! empty( $this->options['svn']['plugins'] ) || ! empty( $this->options['svn']['themes'] ) ) {
@@ -99,8 +99,8 @@ class Automatic_Updater {
 			// We're in a cron, do updates now
 			foreach ( $types as $type ) {
 				if ( ! empty( $this->options['update'][ $type ] ) ) {
-					add_action( "set_site_transient_update_$type", array( &$this, "update_$type" ) );
-					add_action( "set_site_transient__site_transient_update_$type", array( &$this, "update_$type" ) );
+					add_action( "set_site_transient_update_$type", array( $this, "update_$type" ) );
+					add_action( "set_site_transient__site_transient_update_$type", array( $this, "update_$type" ) );
 				}
 			}
 		} else {
@@ -141,7 +141,7 @@ class Automatic_Updater {
 		if ( version_compare( $GLOBALS['wp_version'], '3.4', '<' ) ) {
 			if ( is_plugin_active( self::$basename ) ) {
 				deactivate_plugins( self::$basename );
-				add_action( 'admin_notices', array( &$this, 'disabled_notice' ) );
+				add_action( 'admin_notices', array( $this, 'disabled_notice' ) );
 				if ( isset( $_GET['activate'] ) )
 					unset( $_GET['activate'] );
 			}
@@ -714,9 +714,9 @@ class Automatic_Updater {
 						'Content-Type: text/html; charset=UTF-8'
 					);
 
-		add_filter( 'wp_mail_content_type', array( &$this, 'wp_mail_content_type' ) );
+		add_filter( 'wp_mail_content_type', array( $this, 'wp_mail_content_type' ) );
 		wp_mail( $email, $subject, $message, $headers );
-		remove_filter( 'wp_mail_content_type', array( &$this, 'wp_mail_content_type' ) );
+		remove_filter( 'wp_mail_content_type', array( $this, 'wp_mail_content_type' ) );
 	}
 
 	function wp_mail_content_type() {
