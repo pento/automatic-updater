@@ -281,6 +281,10 @@ class Automatic_Updater {
 				return;
 
 			$this->options['next-development-update'] = strtotime( '+24 hours' );
+
+			// It seems the core upgrade process sometimes prevents the shutdown function from running.
+			// Let's force the option to be saved, just to be certain we don't get repeat updates.
+			update_option( 'automatic-updater', $this->options );
 		}
 
 		$this->running = true;
