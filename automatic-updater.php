@@ -550,7 +550,7 @@ class Automatic_Updater {
 
 			$update = end( $output );
 
-			if ( 0 !== strpos( $update, "At revision" ) ) {
+			if ( ! empty( $update ) && 0 !== strpos( $update, "At revision" ) ) {
 				$found_update = true;
 				$found_core_update = true;
 
@@ -592,7 +592,7 @@ class Automatic_Updater {
 
 				$update = end( $output );
 
-				if ( 0 !== strpos( $update, "At revision" ) ) {
+				if ( ! empty( $update ) && 0 !== strpos( $update, "At revision" ) ) {
 					$plugin_upgrades++;
 					$found_update = true;
 					$found_plugin_update = true;
@@ -634,7 +634,7 @@ class Automatic_Updater {
 
 				$update = end( $output );
 
-				if ( 0 !== strpos( $update, "At revision" ) ) {
+				if ( ! empty( $update ) && 0 !== strpos( $update, "At revision" ) ) {
 					$theme_upgrades++;
 					$found_update = true;
 

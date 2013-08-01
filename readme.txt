@@ -45,6 +45,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 * UPDATED: Language POT file
 * UPDATED: German (de_DE) translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
 * UPDATED: Dutch (nl_NL) translation. Props Trifon Rijksen
+* FIXED: If the `svn up` output was empty, don't send an update email
 * FIXED: Removed pass-by-reference, it's too old school for @wonderboymusic
 
 = 0.9 =
