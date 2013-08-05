@@ -47,6 +47,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 * UPDATED: Dutch (nl_NL) translation. Props Trifon Rijksen
 * FIXED: If the `svn up` output was empty, don't send an update email
 * FIXED: Removed pass-by-reference, it's too old school for @wonderboymusic
+* FIXED: The settings link was incorrect in Multisite
 
 = 0.9 =
 * ADDED: Warning when Better WP Security is hiding update info

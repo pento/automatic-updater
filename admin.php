@@ -3,6 +3,7 @@
 class Automatic_Updater_Admin {
 	private $automatic_updater;
 	private $adminPage;
+	private $adminUrl;
 
 	function init( $automatic_updater ) {
 		static $instance = false;
@@ -18,9 +19,13 @@ class Automatic_Updater_Admin {
 
 		if ( is_multisite() ) {
 			$this->adminPage = 'settings.php';
+			$this->adminUrl  = admin_url( 'network/settings.php?page=automatic-updater' );
+
 			add_action( 'network_admin_menu', array( $this, 'plugin_menu' ) );
 		} else {
 			$this->adminPage = 'options-general.php';
+			$this->adminUrl  = admin_url( 'options-general.php?page=automatic-updater' );
+
 			add_action( 'admin_menu', array( $this, 'plugin_menu' ) );
 		}
 
@@ -92,7 +97,7 @@ class Automatic_Updater_Admin {
 					$method = get_filesystem_method();
 					if ( 'direct' !== $method && ! defined( 'FTP_USER' ) ) {
 						// Using a remote login method, and the upgrade info probably isn't defined
-						$admin_url = wp_nonce_url( admin_url( "{$this->adminPage}?page=automatic-updater&action=hide-connection-warning" ), 'automatic-updater-hide-connection-warning' );
+						$admin_url = wp_nonce_url( "{$this->adminUrl}&action=hide-connection-warning", 'automatic-updater-hide-connection-warning' );
 			?>
 						<div class="updated">
 							<p><?php echo wp_kses( sprintf( __( 'It looks like Automatic Updater may not be able to run automatically, due to not having permission to write to the WordPress directory, or connect to the server over FTP. If you usually upgrade by entering your FTP login details, please read <a href="%s">this documentation</a> on storing your connection details.', 'automatic-updater' ), 'http://codex.wordpress.org/Editing_wp-config.php#WordPress_Upgrade_Constants' ), array( 'a' => array( 'href' => array() ) ) ); ?></p>
@@ -322,9 +327,7 @@ class Automatic_Updater_Admin {
 	}
 
 	function plugin_row_links( $links ) {
-		$url = admin_url( "{$this->adminPage}?page=automatic-updater" );
-
-		array_unshift( $links, "<a href='$url'>" . esc_html__( 'Settings', 'automatic-updater' ) . '</a>' );
+		array_unshift( $links, "<a href='{$this->adminUrl}'>" . esc_html__( 'Settings', 'automatic-updater' ) . '</a>' );
 
 		return $links;
 	}
