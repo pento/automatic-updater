@@ -548,9 +548,9 @@ class Automatic_Updater {
 			$output[] = esc_html__( 'WordPress Core:', 'automatic-updater' );
 			exec( 'svn up ' . ABSPATH, $output, $return );
 
-			$update = end( $output );
+			$update = trim( end( $output ) );
 
-			if ( ! empty( $update ) && 0 !== strpos( $update, "At revision" ) ) {
+			if ( 0 === $return && ! empty( $update ) && 0 !== strpos( $update, "At revision" ) ) {
 				$found_update = true;
 				$found_core_update = true;
 
@@ -590,9 +590,9 @@ class Automatic_Updater {
 
 				exec( 'svn up ' . WP_PLUGIN_DIR . '/' . plugin_dir_path( $id ), $output, $return );
 
-				$update = end( $output );
+				$update = trim( end( $output ) );
 
-				if ( ! empty( $update ) && 0 !== strpos( $update, "At revision" ) ) {
+				if ( 0 === $return && ! empty( $update ) && 0 !== strpos( $update, "At revision" ) ) {
 					$plugin_upgrades++;
 					$found_update = true;
 					$found_plugin_update = true;
@@ -632,9 +632,9 @@ class Automatic_Updater {
 
 				exec( 'svn up ' . $theme->get_stylesheet_directory(), $output, $return );
 
-				$update = end( $output );
+				$update = trim( end( $output ) );
 
-				if ( ! empty( $update ) && 0 !== strpos( $update, "At revision" ) ) {
+				if ( 0 === $return && ! empty( $update ) && 0 !== strpos( $update, "At revision" ) ) {
 					$theme_upgrades++;
 					$found_update = true;
 
