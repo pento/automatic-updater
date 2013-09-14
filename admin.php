@@ -5,7 +5,7 @@ class Automatic_Updater_Admin {
 	private $adminPage;
 	private $adminUrl;
 
-	function init( $automatic_updater ) {
+	static function init( $automatic_updater ) {
 		static $instance = false;
 
 		if( ! $instance )

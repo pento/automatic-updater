@@ -35,7 +35,7 @@ class Automatic_Updater {
 
 	public static $basename;
 
-	function init() {
+	static function init() {
 		static $instance = false;
 
 		if( ! $instance )
