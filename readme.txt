@@ -42,7 +42,8 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 == Changelog ==
 
 = 0.9.2 =
-* Fixed a PHP notice in PHP 5.4+ with WP_DEBUG enabled
+* ADDED: Turkish (tr_TR) translation. Props [Tufan Tunç](http://www.wpdestek.com/)
+* FIXED: PHP notice in PHP 5.4+ with WP_DEBUG enabled
 
 = 0.9.1 =
 * UPDATED: Language POT file

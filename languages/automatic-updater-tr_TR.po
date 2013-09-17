@@ -1,0 +1,458 @@
+# Copyright (C) 2013 Automatic Updater
+# This file is distributed under the same license as the Automatic Updater package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Automatic Updater 0.9\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/automatic-updater\n"
+"POT-Creation-Date: 2013-07-29 01:49:13+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-09-18 09:50+1000\n"
+"Last-Translator: Gary Pendergast <gary@pento.net>\n"
+"Language-Team: WPDestek <wpdestek@wpdestek.com>\n"
+"Language: Turkish\n"
+"X-Generator: Poedit 1.5.7\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. #-#-#-#-#  plugin.pot (Automatic Updater 0.9)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: admin.php:34 admin.php:81
+msgid "Automatic Updater"
+msgstr "Otomatik Güncelleyici"
+
+#: admin.php:44
+msgid "Overview"
+msgstr "Genel Görünüm"
+
+#: admin.php:46
+msgid ""
+"This settings page allows you to select whether you would like WordPress "
+"Core, your plugins, and your themes to be automatically updated."
+msgstr ""
+"Bu ayar sayfasında WordPress çekirdeği, eklentileriniz ya da temalarınızın "
+"otomatik güncellenmesi için seçim yapabilirsiniz."
+
+#: admin.php:47
+msgid ""
+"It is very important to keep your WordPress installation up to date for "
+"security reasons, so unless you have a specific reason not to, we recommend "
+"allowing everything to automatically update."
+msgstr ""
+"Güvenlik sebeplerinden dolayı WordPress kurulumunuzu güncel tutmanız çok "
+"önemlidir, bu nedenle özel bir nedeniniz yoksa herşeyin otomatik "
+"güncellenmesine izin vermenizi öneririz."
+
+#: admin.php:51
+msgid "A Plugin By <a href=\"%s\" target=\"_blank\">Gary</a>"
+msgstr ""
+"Bu eklenti <a href=\"%s\" target=\"_blank\">Gary</a> tarafından "
+"geliştirilmiştir."
+
+#: admin.php:52
+msgid "Donations"
+msgstr "Bağış"
+
+#: admin.php:53
+msgid "Support Forums"
+msgstr "Destek Forumları"
+
+#: admin.php:62
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Bu sayfaya erişim izniniz yok."
+
+#: admin.php:69
+msgid "Settings updated"
+msgstr "Ayarlar güncellendi"
+
+#: admin.php:98
+msgid ""
+"It looks like Automatic Updater may not be able to run automatically, due to "
+"not having permission to write to the WordPress directory, or connect to the "
+"server over FTP. If you usually upgrade by entering your FTP login details, "
+"please read <a href=\"%s\">this documentation</a> on storing your connection "
+"details."
+msgstr ""
+"Otomatik Güncelleyici eklentisi otomatik olarak çalışamayacak gibi "
+"görünüyor, WordPress klasöründe yazma yetkiniz yok ya da sunucunuzla FTP "
+"bağlantısı kurulamıyor. Eğer her güncellemede tekrar FTP bilgilerinizi "
+"girmek zorunda kalıyorsanız, <a href=\"%s\">buradaki</a> dokümandan bağlantı "
+"bilgilerinizi nasıl kaydedeceğinizi öğrenebilirsiniz."
+
+#: admin.php:99
+msgid ""
+"Alternatively, if WordPress normally upgrades immediately when you click the "
+"Update button, or if you don't want to see this message again, feel free to "
+"<a href=\"%1$s\" id=\"%2$s\">hide it</a>."
+msgstr ""
+"Alternatif olarak, eğer WordPress'in normal yükseltmelerinin Güncelle "
+"butonuna tıklayarak yapıyorsanız ya da bu mesajı tekrar görmek "
+"istemiyorsanız <a href=\"%1$s\" id=\"%2$s\">gizleyebilirsiniz.</a>."
+
+#: admin.php:112
+msgid ""
+"The Better WP Security plugin is hiding updates, which will prevent "
+"Automatic Updater from operating correctly. Please <a href=\"%s\">disable "
+"these options</a>."
+msgstr ""
+"The Better WP Security eklentisi, Otomatik Güncelleyici eklentisinin doğru "
+"çalışması için gerekli güncellemeleri gizliyor. Lütfen bu <a href=\"%s"
+"\">seçenekleri iptal edin</a>."
+
+#: admin.php:124
+msgid ""
+"Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>"
+msgstr ""
+"WordPress Çekirdeği otomatik güncellensin mi? <strong>(Şiddetle Tavsiye "
+"Edilir)</strong>"
+
+#: admin.php:125
+msgid "Update your plugins automatically?"
+msgstr "Eklentileriniz otomatik güncellensin mi?"
+
+#: admin.php:126
+msgid "Update your themes automatically?"
+msgstr "Temalarınız otomatik güncellensin mi?"
+
+#: admin.php:139
+msgid "Notification Email"
+msgstr "Bilgilendirme E-Postası"
+
+#: admin.php:140
+msgid ""
+"By default, Automatic Updater will send an email to the Site Admin when an "
+"update is performed. If you would like to send that email to a different "
+"address, you can set it here."
+msgstr ""
+"Varsayılan olarak, Otomatik Güncelleyici eklentisi Site Yöneticisine "
+"güncelleme yapıldığında bilgilendirme e-postası gönderir. Eğer farklı "
+"adreslere e-posta gönderilmesini isterseniz, buradan ayarlayabilirsiniz."
+
+#: admin.php:141
+msgid "Override Email Address"
+msgstr "E-posta Adreslerini Geçersiz Kıl"
+
+#: admin.php:149
+msgid ""
+"If you don't want to receive an email when updates are installed, you can "
+"disable them completely."
+msgstr ""
+"Eğer güncelleme yapıldığında e-posta almak istermiyorsanız, burada iptal "
+"edebilirsiniz."
+
+#: admin.php:150
+msgid "Disable email notifications."
+msgstr "Bilgilendirme E-postalarını etkisizleştir."
+
+#: admin.php:153
+msgid "Retries"
+msgstr "Deneme"
+
+#: admin.php:154
+msgid ""
+"To avoid updating when something is broken, Automatic Updater can limit the "
+"number of times it will attempt to update WordPress Core, a plugin or a "
+"theme. If, for example, a plugin update reaches this limit, Automatic "
+"Updater will stop trying to update it until you manually install the update, "
+"or a new version is released."
+msgstr ""
+"Eğer birşeyler yanlış giderse, Otomatik Güncelleyici WordPress Çekirdeğini, "
+"bir eklenti ya da temayı güncelleme denemesini sınırlandırabilir. Örneğin, "
+"bir eklenti bu sınıra ulaşırsa, siz bu eklentiyi kendiniz güncelleyinceye ya "
+"da eklentinin daha yeni bir versiyonu çıkıncaya kadar Otomatik Güncelleyici "
+"daha fazla bu eklentiyi güncellemeye çalışmaz."
+
+#: admin.php:155
+msgid "Retries Limit"
+msgstr "Deneme Sayısı"
+
+#: admin.php:165
+msgid "SVN Support"
+msgstr "SVN Desteği"
+
+#: admin.php:175
+msgid "WordPress Core"
+msgstr "WordPress Çekirdeği"
+
+#: admin.php:176
+msgid ""
+"It looks like you're running an SVN version of WordPress, that's cool! "
+"Automatic Updater can run <tt>svn up</tt> once an hour, to keep you up-to-"
+"date. For safety, enabling this option will disable the normal WordPress "
+"core updates."
+msgstr ""
+"Görünüşe göre WordPress'in SVN versiyonunu kullanıyorsunuz, bu harika! "
+"Otomatik Güncelleyici güncel tutmak için her saat başı <tt>svn up</tt> "
+"çalıştırır. Güvenliğiniz için, bu seçeneğin aktifleştirilmesi normal "
+"WordPress güncellemesini etkisizleştirir."
+
+#: admin.php:177
+msgid "Update WordPress Core hourly?"
+msgstr "WordPress saatlik güncellensin mi?"
+
+#: admin.php:184
+msgid "Plugins"
+msgstr "Eklentiler"
+
+#: admin.php:185
+msgid ""
+"Running plugins from SVN is great for helping plugin devs fine tune them "
+"before release, so on behalf of all of us, thanks! If you see Akismet here "
+"and don't have it coming from a custom repository, it will probably "
+"automatically update when the WordPress Core SVN update occurs."
+msgstr ""
+"Eklentileri SVN üzerinde tutmak eklenti geliştiriciler için kararlı sürümü "
+"yayınlamadan önce bizim için son rötuşları yapmaları için yardımcı "
+"olmaktadır. Eğer Akismet'i burada görüyorsanız ve bunu siz eklemediyseniz, "
+"bunun sebebi muhtemelen WordPress'in güncellenmiş olmasıdır."
+
+#: admin.php:203
+msgid "Themes"
+msgstr "Temalar"
+
+#: admin.php:204
+msgid ""
+"Running themes from SVN makes you an excellent person who makes the "
+"WordPress community better - thank you! If you see any of the default Twenty "
+"Ten, Eleven or Twelve themes, these will probably automatically update when "
+"the WordPress Core SVN update occurs."
+msgstr ""
+"Temalarınızı SVN üzerinde tutarak WordPress topluluğunun kalitesini "
+"arttırıyorsunuz, teşekkürler! Eğer Twenty Ten, Eleven veya Twelve gibi "
+"varsayılan temalardan birini burada görüyorsanız, bunun sebebi WordPress'in "
+"güncellenmiş olmasıdır."
+
+#: admin.php:223
+msgid ""
+"The items marked in red don't have their .svn directory writable, so <tt>svn "
+"up</tt> will probably fail when the web server runs it. You need to give the "
+"user <tt>%s</tt> write permissions to your entire WordPress install, "
+"including .svn directories."
+msgstr ""
+"Kırmızı ile işaretli olanlar yazılabilir bir .svn dizinine sahip değildir, "
+"dolayısıyla web sunucusu <tt>svn up</tt> kodunu çalıştırdığında hata ile "
+"karşılaşacaktır. <tt>%s</tt> kullanıcısına .svn dizini de dahil olmak üzere "
+"WordPress kurulumu içerisinde yazma izni vermeniz gerekiyor."
+
+#: admin.php:230
+msgid "SVN Options"
+msgstr "SVN Ayarları"
+
+#: admin.php:231
+msgid ""
+"Send email on <tt>svn up</tt> success? Disabling this will cause "
+"notification emails to only be sent if the <tt>svn up</tt> fails."
+msgstr ""
+"<tt>svn up</tt> başarılı olduğunda e-posta gönderilsin mi? Bu özelliği iptal "
+"ettiğinizde bilgilendirme e-postaları yanlızca <tt>svn up</tt> başarısız "
+"olduğunda gönderilir."
+
+#: admin.php:249
+msgid "Debug Information"
+msgstr "Ayıklama Bilgisi"
+
+#: admin.php:250
+msgid "Show debug information in the notification email."
+msgstr "Bilgilendirme e-postasında ayıklama bilgilerini göster."
+
+#: admin.php:251
+msgid "Save Changes"
+msgstr "Değişiklikleri Kaydet"
+
+#: admin.php:327
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: automatic-updater.php:152
+msgid ""
+"Automatic Updater requires WordPress 3.4 or higher! Please upgrade WordPress "
+"manually, then reactivate Automatic Updater."
+msgstr ""
+"Otomatik Güncelleyici WordPress 3.4 veya daha yüksek bir sürümü "
+"gerektirmektedir! Lütfen WordPress sürümünüzü güncelledikten sonra Otomatik "
+"Güncelleyici eklentisini tekrar etkinleştirin."
+
+#: automatic-updater.php:316
+msgid "While trying to upgrade WordPress, we ran into the following error:"
+msgstr "WordPress güncellemesi sırasında bu hatalarla karşılaşıldı:"
+
+#: automatic-updater.php:318
+msgid ""
+"We're sorry it didn't work out. Please try upgrading manually, instead. This "
+"is attempt %1$d of %2$d."
+msgstr ""
+"Üzgünüz, başarısız oldu. Lütfen kendiniz yükseltmeyi deneyin. Deneme sayısı "
+"%1$d / %2$d."
+
+#: automatic-updater.php:322
+msgid ""
+"We've successfully upgraded WordPress from version %1$s to version %2$s, the "
+"latest nightly build!"
+msgstr "WordPress %1$s sürümünden %2$s sürümüne, yani son sürüme güncellendi."
+
+#: automatic-updater.php:323 automatic-updater.php:329
+msgid "Have fun!"
+msgstr "İyi eğlenceler!"
+
+#: automatic-updater.php:328
+msgid ""
+"We've successfully upgraded WordPress from version %1$s to version %2$s!"
+msgstr "WordPress %1$s sürümünden %2$s sürümüne güncellendi."
+
+#: automatic-updater.php:389
+msgid "We found a plugin upgrade!"
+msgid_plural "We found upgrades for some plugins!"
+msgstr[0] "Eklenti güncellemesi bulundu!"
+msgstr[1] "Eklentiler için güncelleme bulundu!"
+
+#. translators: First argument is the plugin url, second argument is the Plugin
+#. name, third argument is the error encountered while upgrading. The fourth
+#. and fifth arguments refer to how many retries we've had at installing this
+#. plugin.
+#: automatic-updater.php:408
+msgid ""
+"<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this plugin: %3$s "
+"(Attempt %4$d of %5$d)"
+msgstr ""
+"<a href=\"%1$s\">%2$s</a>: Bu eklentiyi güncellerken bir hata ile "
+"karşılaşıldı: %3$s (Deneme %4$d / %5$d)"
+
+#. translators: First argument is the plugin url, second argument is the Plugin
+#. name, third argument is the old version number, fourth argument is the new
+#. version number
+#. translators: First argument is the theme URL, second argument is the Theme
+#. name, third argument is the old version number, fourth argument is the new
+#. version number
+#: automatic-updater.php:417 automatic-updater.php:511
+msgid ""
+"<a href=\"%1$s\">%2$s</a>: Successfully upgraded from version %3$s to %4$s!"
+msgstr ""
+"<a href=\"%1$s\">%2$s</a>: %3$s versiyonundan %4$s versiyonuna başarıyla "
+"güncellendi!"
+
+#: automatic-updater.php:430
+msgid ""
+"Plugin authors depend on your feedback to make their plugins better, and the "
+"WordPress community depends on plugin ratings for checking the quality of a "
+"plugin. If you have a couple of minutes, click on the plugin names above, "
+"and leave a Compatibility Vote or a Rating!"
+msgstr ""
+"Eklenti yapımcıları eklentilerini daha iyi hale getirmek için geri "
+"dönüşlerinizi bekliyor ve WordPress topluluğu kaliteli eklentiler bulmak "
+"için eklentileri oylamanızı istiyor. Eğer birkaç dakikanız varsa, eklenti "
+"ismine tıklayın ve  uyumluluğunu veya kalitesini oylayın."
+
+#: automatic-updater.php:483
+msgid "We found a theme upgrade!"
+msgid_plural "We found upgrades for some themes!"
+msgstr[0] "Tema güncellemesi bulundu!"
+msgstr[1] "Temalar için güncelleme bulundu!"
+
+#. translators: First argument is the theme URL, second argument is the Theme
+#. name, third argument is the error encountered while upgrading. The fourth
+#. and fifth arguments refer to how many retries we've had at installing this
+#. theme.
+#: automatic-updater.php:502
+msgid ""
+"<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this theme: %3$s "
+"(Attempt %4$d of %5$d)"
+msgstr ""
+"<a href=\"%1$s\">%2$s</a>: Bu temayı güncellerken bir hata ile karşılaşıldı: "
+"%3$s (Deneme %4$d / %5$d)"
+
+#: automatic-updater.php:524
+msgid ""
+"Theme authors depend on your feedback to make their plugins better, and the "
+"WordPress community depends on theme ratings for checking the quality of a "
+"theme. If you have a couple of minutes, click on the theme names above, and "
+"leave a Compatibility Vote or a Rating!"
+msgstr ""
+"Tema yapımcıları temalarını daha iyi hale getirmek için geri dönüşlerinizi "
+"bekliyor ve WordPress topluluğu kaliteli temalar bulmak için temaları "
+"oylamanızı istiyor. Eğer birkaç dakikanız varsa, tema ismine tıklayın ve  "
+"uyumluluğunu veya kalitesini oylayın."
+
+#: automatic-updater.php:548
+msgid "WordPress Core:"
+msgstr "WordPress Çekirdeği:"
+
+#: automatic-updater.php:558
+msgid "We successfully upgraded WordPress Core from SVN!"
+msgstr "WordPress'i SVN'den başarıyla güncelledik!"
+
+#: automatic-updater.php:564
+msgid ""
+"While upgrading WordPress Core from SVN, we ran into the following error:"
+msgstr "WordPress'i SVN'den güncellerken bu hata ile karşılaşıldı:"
+
+#: automatic-updater.php:566
+msgid "We're sorry it didn't work out. Please try upgrading manually, instead."
+msgstr ""
+"İşlemi gerçekleştiremediğimiz için üzgünüz. Lütfen güncellemeyi siz yapınız."
+
+#: automatic-updater.php:610
+msgid "We upgraded the following plugin:"
+msgid_plural "We upgraded the following plugins:"
+msgstr[0] "Güncellenen eklenti:"
+msgstr[1] "Güncellenen eklentiler:"
+
+#: automatic-updater.php:651
+msgid "We upgraded the following theme:"
+msgid_plural "We upgraded the following themes:"
+msgstr[0] "Güncellenen tema:"
+msgstr[1] "Güncellenen temalar:"
+
+#: automatic-updater.php:676
+msgid "WordPress Update: %s"
+msgstr "WordPress Güncellemesi: %s"
+
+#: automatic-updater.php:682
+msgid "Howdy!"
+msgstr "Merhaba!"
+
+#: automatic-updater.php:684
+msgid ""
+"Automatic Updater just ran on your site, <a href=\"%1$s\">%1$s</a>, with the "
+"following result:"
+msgstr ""
+"Otomatik Güncelleyici <a href=\"%1$s\">%1$s</a> sitenizde çalıştı, işlem "
+"sonuçları:"
+
+#: automatic-updater.php:692
+msgid ""
+"It looks like something went wrong during the update. Note that, if "
+"Automatic Updater continues to encounter problems, it will stop trying to do "
+"this update, and will not try again until after you manually update."
+msgstr ""
+"Güncelleme işlemi sırasında bir hata ile karşılaşıldı. Unutmayın, Otomatik "
+"Güncelleyici bu hatayı almaya devam ederse, güncelleme yapma çalışmasını "
+"durduracak ve güncellemeyi siz yapana kadar tekrar denemeyecek."
+
+#: automatic-updater.php:696
+msgid "Thanks for using the Automatic Updater plugin!"
+msgstr "Otomatik Güncelleyici eklentisini kullandığınız için teşekkürler!"
+
+#: automatic-updater.php:700
+msgid "Debug Information:"
+msgstr "Ayıklama Bilgisi:"
+
+#. Plugin URI of the plugin/theme
+msgid "http://pento.net/projects/automatic-updater-for-wordpress/"
+msgstr "http://pento.net/projects/automatic-updater-for-wordpress/"
+
+#. Description of the plugin/theme
+msgid ""
+"Automatically update your WordPress site, as soon as updates are released! "
+"Never worry about falling behing on updating again!"
+msgstr ""
+"Güncelleme yayınlanır yayınlanmaz WordPress siteniz otomatik olarak "
+"güncellenecektir. Artık güncellemelerin gerisinde kalacağınız için "
+"endişelenmenize gerek yok!"
+
+#. Author of the plugin/theme
+msgid "pento"
+msgstr "pento"
+
+#. Author URI of the plugin/theme
+msgid "http://pento.net/"
+msgstr "http://pento.net/"
