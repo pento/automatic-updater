@@ -91,6 +91,12 @@ class Automatic_Updater_Admin {
 				</div>
 			<?php } ?>
 
+			<?php if ( defined( 'AUTOMATIC_UPDATER_DISABLED' ) && AUTOMATIC_UPDATER_DISABLED ) { ?>
+				<div class="updated">
+					<p><?php echo wp_kses( __( 'You have the <code>AUTOMATIC_UPDATER_DISABLED</code> constant set.  Automatic updates are disabled.', 'automatic-updater' ), array( 'code' => array() ) ); ?></p>
+				</div>
+			<?php } ?>
+
 			<?php
 				if ( $this->automatic_updater->get_option( 'show-connection-warning' ) ) {
 					// If it isn't a direct connection
