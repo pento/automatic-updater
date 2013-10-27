@@ -29,7 +29,6 @@ else if ( isset( $network_plugin ) )
 Automatic_Updater::$basename = plugin_basename( $automatic_updater_file );
 
 class Automatic_Updater {
-	private $running = false;
 	private $options = array();
 	private $options_serialized = '';
 
@@ -55,13 +54,6 @@ class Automatic_Updater {
 
 		add_action( 'shutdown', array( $this, 'shutdown' ) );
 
-		if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || ! AUTOMATIC_UPDATER_DISABLED ) {
-			add_action( 'auto_updater_core_event',    array( $this, 'update_core' ) );
-			add_action( 'auto_updater_plugins_event', array( $this, 'update_plugins' ) );
-			add_action( 'auto_updater_themes_event',  array( $this, 'update_themes' ) );
-			add_action( 'auto_updater_svn_event',     array( $this, 'update_svn' ) );
-		}
-
 		// Nothing else matters if we're on WPMS and not on the main site
 		if ( is_multisite() && ! is_main_site() )
 			return;
@@ -84,34 +76,6 @@ class Automatic_Updater {
 			$timestamp = wp_next_scheduled( 'auto_updater_svn_event' );
 			if ( $timestamp )
 				wp_unschedule_event( $timestamp, 'auto_updater_svn_event' );
-		}
-
-		// If the update check was one we called manually, don't get into a crazy recursive loop.
-		if ( $this->running )
-			return;
-
-		$types = array(
-					'wordpress' => 'core',
-					'plugins'   => 'plugins',
-					'themes'    => 'themes'
-		);
-		if ( defined( 'DOING_CRON' ) && DOING_CRON ) {
-			// We're in a cron, do updates now
-			foreach ( $types as $type ) {
-				if ( ! empty( $this->options['update'][ $type ] ) ) {
-					add_action( "set_site_transient_update_$type",                 array( $this, "update_$type" ) );
-					add_action( "set_site_transient__site_transient_update_$type", array( $this, "update_$type" ) );
-				}
-			}
-		} else {
-			include_once( ABSPATH . 'wp-admin/includes/update.php' );
-			$update_data = $this->get_update_data();
-			// Not in a cron, schedule updates to happen in the next cron run
-			foreach ( $types as $internal => $type ) {
-				if ( ! empty( $this->options['update'][ $type ] ) && $update_data['counts'][ $internal ] > 0 ) {
-					wp_schedule_single_event( time(), "auto_updater_{$type}_event" );
-				}
-			}
 		}
 	}
 
@@ -184,6 +148,7 @@ class Automatic_Updater {
 						'next-development-update' => time(),
 						'override-email'          => '',
 						'disable-email'           => false,
+						'upgrade-after-3.7'       => true,
 					);
 		}
 
@@ -237,297 +202,17 @@ class Automatic_Updater {
 		if ( ! array_key_exists( 'show-connection-warning', $this->options ) ) {
 			$this->options['show-connection-warning'] = true;
 		}
-	}
 
-	function update_core() {
-		if ( $this->running )
-			return;
-
-		if ( $this->options['svn']['core'] )
-			return;
-
-		// Forgive me father, for I have sinned. I have included wp-admin files in a plugin.
-		include_once( ABSPATH . 'wp-admin/includes/update.php' );
-		include_once( ABSPATH . 'wp-admin/includes/file.php' );
-
-		include_once( dirname( __FILE__ ) . '/updater-skin.php' );
-
-		$updates = get_core_updates();
-		if ( empty( $updates ) )
-			return;
-
-		if ( 'development' === $updates[0]->response )
-			$update = $updates[0];
-		else
-			$update = find_core_update( $updates[0]->current, $updates[0]->locale );
-
-		$update = apply_filters( 'auto_updater_core_updates', $update );
-		if ( empty( $update ) )
-			return;
-
-		// Check that we haven't failed to upgrade to the updated version in the past
-		if ( version_compare( $update->current, $this->options['retries']['core']['version'], '>=' ) && $this->options['retries']['core']['tries'] >= $this->options['retries-limit'] )
-			return;
-
-		$old_version = $GLOBALS['wp_version'];
-
-		// Sanity check that the new upgrade is actually an upgrade
-		if ( 'development' !== $update->response && version_compare( $old_version, $update->current, '>=' ) )
-			return;
-
-		// Only do development version updates once every 24 hours
-		if ( 'development' === $update->response ) {
-			if ( time() < $this->options['next-development-update'] )
-				return;
-
-			$this->options['next-development-update'] = strtotime( '+24 hours' );
-
-			// It seems the core upgrade process sometimes prevents the shutdown function from running.
-			// Let's force the option to be saved, just to be certain we don't get repeat updates.
-			update_option( 'automatic-updater', $this->options );
-		}
-
-		$this->running = true;
-
-		do_action( 'auto_updater_before_update', 'core' );
-
-		$upgrade_failed = false;
-
-		$skin = new Auto_Updater_Skin();
-		$upgrader = new Core_Upgrader( $skin );
-		$result = $upgrader->upgrade( $update );
-
-		do_action( 'auto_updater_after_update', 'core' );
-
-		include( ABSPATH . WPINC . '/version.php' );
-		if ( $old_version === $wp_version ) {
-			// Huh, I guess it didn't really need to do that upgrade
-			return;
-		}
-
-		if ( is_wp_error( $result ) ) {
-			if ( $this->options['tries']['core']['version'] !== $update->current )
-				$this->options['tries']['core']['version'] = $update->current;
-
-			$this->options['tries']['core']['tries']++;
-
-			$upgrade_failed = true;
-
-			$message = esc_html__( "While trying to upgrade WordPress, we ran into the following error:", 'automatic-updater' );
-			$message .= '<br><br>' . $result->get_error_message() . '<br><br>';
-			$message .= sprintf( esc_html__( 'We\'re sorry it didn\'t work out. Please try upgrading manually, instead. This is attempt %1$d of %2$d.', 'automatic-updater' ),
-							$this->options['tries']['core']['tries'],
-							$this->options['retries-limit'] );
-		} else if ( 'development' === $update->response ) {
-			$message = sprintf( esc_html__( 'We\'ve successfully upgraded WordPress from version %1$s to version %2$s, the latest nightly build!', 'automatic-updater' ), $old_version, $wp_version );
-			$message .= '<br><br>' . esc_html__( 'Have fun!', 'automatic-updater' );
-
-			$this->options['tries']['core']['version'] = 0;
-			$this->options['tries']['core']['tries'] = 0;
-		} else {
-			$message = sprintf( esc_html__( 'We\'ve successfully upgraded WordPress from version %1$s to version %2$s!', 'automatic-updater' ), $old_version, $update->current );
-			$message .= '<br><br>' . esc_html__( 'Have fun!', 'automatic-updater' );
-
-			$this->options['tries']['core']['version'] = 0;
-			$this->options['tries']['core']['tries'] = 0;
-		}
-
-		$message .= '<br>';
-
-		$debug = join( "<br>\n", $skin->messages );
-
-		$this->notification( $message, $debug, $upgrade_failed );
-
-		wp_version_check();
-	}
-
-	function update_plugins() {
-		if ( $this->running )
-			return;
-
-		include_once( ABSPATH . 'wp-admin/includes/update.php' );
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		include_once( ABSPATH . 'wp-admin/includes/file.php' );
-
-		include_once( dirname( __FILE__ ) . '/updater-skin.php' );
-
-		$plugins = apply_filters( 'auto_updater_plugin_updates', get_plugin_updates() );
-
-		foreach ( $plugins as $id => $plugin ) {
-			// Remove any plugins from the list that may've already been updated
-			if ( version_compare( $plugin->Version, $plugin->update->new_version, '>=' ) )
-				unset( $plugins[ $id ] );
-
-			// Remove any plugins that are marked for SVN update
-			if ( array_key_exists( $id, $this->options['svn']['plugins'] ) )
-				unset( $plugins[ $id ] );
-
-			// Remove any plugins that have failed to upgrade
-			if ( ! empty( $this->options['retries']['plugins'][ $id ] ) ) {
-				// If there's a new version of a failed plugin, we should give it another go.
-				if ( $this->options['retries']['plugins'][ $id ]['version'] !== $plugin->update->new_version )
-					unset( $this->options['retries']['plugins'][ $id ] );
-				// If the plugin has already had it's chance, move on.
-				else if ( $this->options['retries']['plugins'][ $id ]['tries'] > $this->options['retries-limit'] )
-					unset( $plugins[ $id ] );
+		if ( ! array_key_exists( 'upgrade-after-3.7', $this->options ) ) {
+			$this->options['upgrade-after-3.7'] = true;
+			// Core is handling upgrades now, so we should unschedule our old events
+			foreach ( $this->options['update'] as $type => $update ) {
+				$timestamp = wp_next_scheduled( "auto_updater_{$type}_event" );
+				if ( $timestamp )
+					wp_unschedule_event( $timestamp, "auto_updater_{$type}_event" );
 			}
 		}
 
-		if ( empty( $plugins ) )
-			return;
-
-		$this->running = true;
-
-		do_action( 'auto_updater_before_update', 'plugins' );
-
-		$skin = new Auto_Updater_Skin();
-		$upgrader = new Plugin_Upgrader( $skin );
-		$result = $upgrader->bulk_upgrade( array_keys( $plugins ) );
-
-		do_action( 'auto_updater_after_update', 'plugins' );
-
-		$message = esc_html( _n( 'We found a plugin upgrade!', 'We found upgrades for some plugins!', count( $plugins ), 'automatic-updater' ) );
-		$message .= '<br><br>';
-
-		$upgrade_failed = false;
-
-		foreach ( $plugins as $id => $plugin ) {
-			if ( is_wp_error( $result[ $id ] ) ) {
-				if ( empty( $this->options['retries']['plugins'][ $id ] ) ) {
-					$this->options['retries']['plugins'][ $id ] = array(
-															'tries'   => 1,
-															'version' => $plugin->update->new_version,
-														);
-				} else {
-					$this->options['retries']['plugins'][ $id ]['tries']++;
-				}
-
-				$upgrade_failed = true;
-
-				/* translators: First argument is the plugin url, second argument is the Plugin name, third argument is the error encountered while upgrading. The fourth and fifth arguments refer to how many retries we've had at installing this plugin. */
-				$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: We encounted an error upgrading this plugin: %3$s (Attempt %4$d of %5$d)', 'automatic-updater' ),
-											$plugin->update->url,
-											$plugin->Name,
-											$result[ $id ]->get_error_message(),
-											$this->options['retries']['plugins'][ $id ]['tries'],
-											$this->options['retries-limit'] ),
-									array( 'a' => array( 'href' => array() ) ) );
-			} else {
-				/* translators: First argument is the plugin url, second argument is the Plugin name, third argument is the old version number, fourth argument is the new version number */
-				$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: Successfully upgraded from version %3$s to %4$s!', 'automatic-updater' ),
-											$plugin->update->url,
-											$plugin->Name,
-											$plugin->Version,
-											$plugin->update->new_version ), array( 'a' => array( 'href' => array() ) ) );
-
-				if ( ! empty( $this->options['retries']['plugins'][ $id ] ) )
-					unset( $this->options['retries']['plugins'][ $id ] );
-			}
-
-			$message .= '<br>';
-		}
-
-		$message .= '<br>' . esc_html__( 'Plugin authors depend on your feedback to make their plugins better, and the WordPress community depends on plugin ratings for checking the quality of a plugin. If you have a couple of minutes, click on the plugin names above, and leave a Compatibility Vote or a Rating!', 'automatic-updater' ) . '<br>';
-
-		$debug = join( "<br>\n", $skin->messages );
-
-		$this->notification( $message, $debug, $upgrade_failed );
-
-		wp_update_plugins();
-	}
-
-	function update_themes() {
-		if ( $this->running )
-			return;
-
-		include_once( ABSPATH . 'wp-admin/includes/update.php' );
-		include_once( ABSPATH . 'wp-admin/includes/file.php' );
-
-		include_once( dirname( __FILE__ ) . '/updater-skin.php' );
-
-		$themes = apply_filters( 'auto_updater_theme_updates', get_theme_updates() );
-
-		foreach ( $themes as $id => $theme ) {
-			// Remove any themes from the list that may've already been updated
-			if ( version_compare( $theme->Version, $theme->update['new_version'], '>=' ) )
-				unset( $themes[ $id ] );
-
-			// Remove any themes that are marked for SVN update
-			if ( array_key_exists( $id, $this->options['svn']['themes'] ) )
-				unset( $themes[ $id ] );
-
-			// Remove any themes that have failed to upgrade
-			if ( ! empty( $this->options['retries']['themes'][ $id ] ) ) {
-				// If there's a new version of a failed theme, we should give it another go.
-				if ( $this->options['retries']['themes'][ $id ]['version'] !== $theme->update['new_version'] )
-					unset( $this->options['retries']['themes'][ $id ] );
-				// If the themes has already had it's chance, move on.
-				else if ( $this->options['retries']['themes'][ $id ]['tries'] > $this->options['retries-limit'] )
-					unset( $themes[ $id ] );
-			}
-		}
-
-		if ( empty( $themes ) )
-			return;
-
-		$this->running = true;
-
-		do_action( 'auto_updater_before_update', 'themes' );
-
-		$skin = new Auto_Updater_Skin();
-		$upgrader = new Theme_Upgrader( $skin );
-		$result = $upgrader->bulk_upgrade( array_keys( $themes ) );
-
-		do_action( 'auto_updater_after_update', 'themes' );
-
-		$message = esc_html( _n( 'We found a theme upgrade!', 'We found upgrades for some themes!', count( $themes ), 'automatic-updater' ) );
-		$message .= '<br><br>';
-
-		$upgrade_failed = false;
-
-		foreach ( $themes as $id => $theme ) {
-			if ( is_wp_error( $result[ $id ] ) ) {
-				if ( empty( $this->options['retries']['themes'][ $id ] ) ) {
-					$this->options['retries']['themes'][ $id ] = array(
-															'tries' => 1,
-															'version' => $themes->update['new_version'],
-														);
-				} else {
-					$this->options['retries']['themes'][ $id ]['tries']++;
-				}
-
-				$upgrade_failed = true;
-
-				/* translators: First argument is the theme URL, second argument is the Theme name, third argument is the error encountered while upgrading. The fourth and fifth arguments refer to how many retries we've had at installing this theme. */
-				$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: We encounted an error upgrading this theme: %3$s (Attempt %4$d of %5$d)', 'automatic-updater' ),
-											$theme->update['url'],
-											$theme->name,
-											$result[ $id ]->get_error_message(),
-											$this->options['retries']['plugins'][ $id ]['tries'],
-											$this->options['retries-limit'] ),
-									array( 'a' => array( 'href' => array() ) ) );
-			} else {
-				/* translators: First argument is the theme URL, second argument is the Theme name, third argument is the old version number, fourth argument is the new version number */
-				$message .= wp_kses( sprintf( __( '<a href="%1$s">%2$s</a>: Successfully upgraded from version %3$s to %4$s!', 'automatic-updater' ),
-											$theme->update['url'],
-											$theme->name,
-											$theme->version,
-											$theme->update['new_version'] ), array( 'a' => array( 'href' => array() ) ) );
-
-				if ( ! empty( $this->options['retries']['themes'][ $id ] ) )
-					unset( $this->options['retries']['themes'][ $id ] );
-			}
-
-			$message .= '<br>';
-		}
-
-		$message .= '<br>' . esc_html__( 'Theme authors depend on your feedback to make their plugins better, and the WordPress community depends on theme ratings for checking the quality of a theme. If you have a couple of minutes, click on the theme names above, and leave a Compatibility Vote or a Rating!', 'automatic-updater' ) . '<br>';
-
-		$debug = join( "<br>\n", $skin->messages );
-
-		$this->notification( $message, $debug, $upgrade_failed );
-
-		wp_update_themes();
 	}
 
 	function update_svn() {
