@@ -1,4 +1,4 @@
-=== Automatic Updater ===
+=== Advanced Automatic Updates ===
 Contributors: pento
 Donate link: http://pento.net/donate/
 Tags: updates, core, plugins, themes, stable, nightly, svn, wordpress automatic upgrader
@@ -7,11 +7,11 @@ Tested up to: 3.8
 Stable tag: 0.9.1
 License: GPL2+
 
-Automatically update WordPress, your themes and plugins! Never have to click the update button again!
+Adds extra options to WordPress' built-in Automatic Updates feature.
 
 == Description ==
 
-Automatic Updater keeps your WordPress install up to date with the latest releases automatically, as soon as the update is available. It supports updating stable releases, nightly releases, or even regular SVN checkouts!
+Advanced Automatic Updates adds extra options to WordPress' built-in Automatic Updates feature. On top of security updates, it also supports installing major releases, plugins, themes, or even regular SVN checkouts!
 
 If you're working on a WordPress Multisite install, it will properly restrict the options page to your Network Admin.
 
@@ -24,8 +24,8 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 = The Good Way =
 
 1. In your WordPress Admin, go to the Add New Plugins page
-1. Search for: automatic updater
-1. Automatic Updater should be the first result. Click the Install link.
+1. Search for: advanced automatic updates
+1. Advanced Automatic Updates should be the first result. Click the Install link.
 
 = The Old Way =
 
@@ -41,7 +41,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 
 == Changelog ==
 
-= 0.9.2 =
+= 1.0 =
 * ADDED: Turkish (tr_TR) translation. Props [Tufan Tunç](http://www.wpdestek.com/)
 * FIXED: PHP notice in PHP 5.4+ with WP_DEBUG enabled
 

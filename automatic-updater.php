@@ -1,8 +1,8 @@
 <?php
 /*
- * Plugin Name: Automatic Updater
+ * Plugin Name: Advanced Automatic Updates
  * Plugin URI: http://pento.net/projects/automatic-updater-for-wordpress/
- * Description: Automatically update your WordPress site, as soon as updates are released! Never worry about falling behing on updating again!
+ * Description: Adds extra options to WordPress' built-in Automatic Updates feature.
  * Author: pento
  * Version: 0.9.1
  * Author URI: http://pento.net/
