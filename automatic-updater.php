@@ -138,7 +138,7 @@ class Automatic_Updater {
 	}
 
 	function check_wordpress_version() {
-		if ( version_compare( $GLOBALS['wp_version'], '3.4', '<' ) ) {
+		if ( version_compare( $GLOBALS['wp_version'], '3.7', '<' ) ) {
 			if ( is_plugin_active( self::$basename ) ) {
 				deactivate_plugins( self::$basename );
 				add_action( 'admin_notices', array( $this, 'disabled_notice' ) );
@@ -149,7 +149,7 @@ class Automatic_Updater {
 	}
 
 	function disabled_notice() {
-		echo '<div class="updated"><p><strong>' . esc_html__( 'Automatic Updater requires WordPress 3.4 or higher! Please upgrade WordPress manually, then reactivate Automatic Updater.', 'automatic-updater' ) . '</strong></p></div>';
+		echo '<div class="updated"><p><strong>' . esc_html__( 'Automatic Updater requires WordPress 3.7 or higher! Please upgrade WordPress manually, then reactivate Automatic Updater.', 'automatic-updater' ) . '</strong></p></div>';
 	}
 
 	function plugin_upgrade() {
