@@ -151,15 +151,6 @@ class Automatic_Updater {
 														'plugins' => false,
 														'themes'  => false,
 						),
-						'retries-limit'           => 3,
-						'tries'                   => array(
-														'core' => array(
-																	'version' => 0,
-																	'tries'   => 0,
-														),
-														'plugins' => array(),
-														'themes' => array(),
-						),
 						'svn'                     => array(
 														'core'    => false,
 														'plugins' => array(),
@@ -194,19 +185,6 @@ class Automatic_Updater {
 		if ( ! array_key_exists( 'disable-email', $this->options ) )
 			$this->options['disable-email'] = false;
 
-		// Ability to limit retries added in version 0.8
-		if ( ! array_key_exists( 'retries-limit', $this->options ) ) {
-			$this->options['retries-limit'] = 3;
-			$this->options['tries'] = array(
-									'core'    => array(
-													'version' => 0,
-													'tries'   => 0,
-									),
-									'plugins' => array(),
-									'themes'  => array(),
-								);
-		}
-
 		// Ability to only send SVN update emails on failure added in 0.8
 		if ( ! array_key_exists( 'svn-success-email', $this->options ) )
 			$this->options['svn-success-email'] = true;
@@ -218,11 +196,6 @@ class Automatic_Updater {
 										'plugins' => array(),
 										'themes'  => array(),
 								);
-		}
-
-		// Warning for incorrect permissions added in 0.9
-		if ( ! array_key_exists( 'show-connection-warning', $this->options ) ) {
-			$this->options['show-connection-warning'] = true;
 		}
 
 		if ( ! array_key_exists( 'upgrade-after-3.7', $this->options ) ) {
