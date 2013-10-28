@@ -181,7 +181,3 @@ With the release of WordPress 3.7, Automatic Updater is now know as Advanced Aut
 
 = 0.1 =
 * Initial release
-
-== Screenshots ==
-
-1. Notification emails are sent to the site admin as soon as an update is complete, confirming if the update was successful or not.
