@@ -138,9 +138,11 @@ class Automatic_Updater {
 	function plugin_upgrade() {
 		if ( empty( $this->options ) ) {
 			// Don't automatically enable core updates in installs coming from a repo
-			$core_updates_enabled = true;
-			if ( is_dir( ABSPATH . '/.svn' ) || is_dir( ABSPATH . '/.git' ) )
-				$core_updates_enabled = false;
+			if ( ! class_exists( 'WP_Automatic_Updater' ) )
+				include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+
+			$wpau = new WP_Automatic_Updater();
+			$core_updates_enabled = $wpau->is_vcs_checkout( ABSPATH );
 
 			$this->options = array(
 						'update'                  => array(
