@@ -57,7 +57,7 @@ class Automatic_Updater_Admin {
 		);
 
 		wp_enqueue_style(  'automatic-updater-admin', plugins_url( 'css/admin.css', Automatic_Updater::$basename ) );
-		wp_enqueue_script( 'automatic-updater-admin', plugins_url( 'js/admin.js',   Automatic_Updater::$basename ) );
+		//wp_enqueue_script( 'automatic-updater-admin', plugins_url( 'js/admin.js',   Automatic_Updater::$basename ) );
 	}
 
 	function settings() {
