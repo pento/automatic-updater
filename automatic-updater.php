@@ -78,6 +78,15 @@ class Automatic_Updater {
 		if ( $this->options['update']['themes'] )
 			add_filter( 'auto_upgrade_theme', '__return_true', 1 );
 
+		if ( $this->options['disable-email'] )
+			add_filter( 'auto_core_update_send_email', '__return_false', 1 );
+
+		if ( ! empty( $this->options['override-email'] ) )
+			add_filter( 'auto_core_update_email', array( $this, 'override_update_email' ), 1, 1 );
+
+		if ( $this->options['debug'] )
+			add_filter( 'automatic_updates_send_debug_email', '__return_true', 1 );
+
 		// Configure SVN updates cron, if it's enabled
 		if ( $this->options['svn']['core'] || ! empty( $this->options['svn']['plugins'] ) || ! empty( $this->options['svn']['themes'] ) ) {
 			if ( ! wp_next_scheduled( 'auto_updater_svn_event' ) )
@@ -233,6 +242,11 @@ class Automatic_Updater {
 												'minor' => $this->options['update']['core'],
 			);
 		}
+	}
+
+	function override_update_email( $email ) {
+		$email['to'] = $this->options['override-email'];
+		return $email;
 	}
 
 	function update_svn() {
