@@ -13,3 +13,11 @@ div.automatic-updater-notice p {
 	margin: .5em 0;
 	padding: 2px;
 }
+
+div.automatic-updater-core-options {
+	margin: 17px 0;
+}
+
+div.automatic-updater-core-options fieldset {
+	margin-left: 20px;
+}

@@ -106,26 +106,23 @@ class Automatic_Updater_Admin {
 			<?php
 				}
 			}
+
+			$update_options = $this->automatic_updater->get_option( 'update' );
 			?>
 
 			<form method="post">
 				<?php wp_nonce_field( 'automatic-updater-settings' ); ?>
 
-				<?php
-				$messages = array(
-								'core' => wp_kses( __( 'Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>', 'automatic-updater' ), array( 'strong' => array() ) ),
-								'plugins' => esc_html__( 'Update your plugins automatically?', 'automatic-updater' ),
-								'themes' => esc_html__( 'Update your themes automatically?', 'automatic-updater' )
-							);
+				<div  class="automatic-updater-core-options"><?php esc_html_e( 'Update WordPress Core automatically?', 'automatic-updater' ); ?>
+					<fieldset>
+						<input type="checkbox" id="core-major" name="core-major" value="1"<?php echo ( $update_options['core']['major'] )?( ' checked="checked"' ):( '' ); ?>> <label for="core-major"><?php echo wp_kses( __( 'Major versions', 'automatic-updater' ), array( 'strong' => array() ) ); ?></label><br>
+						<input type="checkbox" id="core-minor" name="core-minor" value="1"<?php echo ( $update_options['core']['minor'] )?( ' checked="checked"' ):( '' ); ?>> <label for="core-minor"><?php echo wp_kses( __( 'Minor and security versions <strong>(Strongly Recommended)</strong>', 'automatic-updater' ), array( 'strong' => array() ) ); ?></label><br>
+					</fieldset>
+				</div>
 
-				foreach ( $this->automatic_updater->get_option( 'update' ) as $type => $enabled ) {
-					$checked = '';
-					if ( $enabled )
-						$checked = ' checked="checked"';
+				<p><input type="checkbox" id="plugins" name="plugins" value="1"<?php echo ( $update_options['plugins'] )?( ' checked="checked"' ):( '' ); ?>> <label for="plugins"><?php esc_html_e( 'Update your plugins automatically?', 'automatic-updater' ); ?></label><p>
 
-					echo "<p><input type='checkbox' id='$type' name='$type' value='1'$checked> <label for='$type'>{$messages[ $type ]}</label></p>";
-				}
-				?>
+				<p><input type="checkbox" id="themes" name="themes" value="1"<?php echo ( $update_options['themes'] )?( ' checked="checked"' ):( '' ); ?>> <label for="themes"><?php esc_html_e( 'Update your themes automatically?', 'automatic-updater' ); ?></label><p>
 
 				<br>
 				<h3><?php esc_html_e( 'Notification Email', 'automatic-updater' ); ?></h3>
@@ -242,14 +239,14 @@ class Automatic_Updater_Admin {
 	}
 
 	function save_settings() {
-		$types = array( 'core', 'plugins', 'themes' );
-		$update = array();
-		foreach ( $types as $type ) {
-			if ( ! empty( $_REQUEST[ $type ] ) )
-				$update[ $type ] = true;
-			else
-				$update[ $type ] = false;
-		}
+		$update = array(
+					'core' => array(
+								'major' => !empty( $_REQUEST['core-major'] ),
+								'minor' => !empty( $_REQUEST['core-minor'] ),
+					),
+					'plugins' => !empty( $_REQUEST['plugins'] ),
+					'themes'  => !empty( $_REQUEST['themes'] ),
+		);
 		$this->automatic_updater->update_option( 'update', $update );
 
 		$top_bool_options = array( 'debug', 'disable-email' );

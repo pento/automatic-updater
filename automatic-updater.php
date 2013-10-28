@@ -68,6 +68,16 @@ class Automatic_Updater {
 
 		add_action( 'admin_init', array( $this, 'check_wordpress_version' ) );
 
+		// Override the core auto update options. Do this at priority 1, so others can easily override them.
+		if ( $this->options['update']['core']['major'] )
+			add_filter( 'allow_major_auto_core_updates', '__return_true', 1 );
+		if ( $this->options['update']['core']['minor'] )
+			add_filter( 'allow_minor_auto_core_updates', '__return_true', 1 );
+		if ( $this->options['update']['plugins'] )
+			add_filter( 'auto_upgrade_plugin', '__return_true', 1 );
+		if ( $this->options['update']['themes'] )
+			add_filter( 'auto_upgrade_theme', '__return_true', 1 );
+
 		// Configure SVN updates cron, if it's enabled
 		if ( $this->options['svn']['core'] || ! empty( $this->options['svn']['plugins'] ) || ! empty( $this->options['svn']['themes'] ) ) {
 			if ( ! wp_next_scheduled( 'auto_updater_svn_event' ) )
@@ -125,7 +135,10 @@ class Automatic_Updater {
 
 			$this->options = array(
 						'update'                  => array(
-														'core'    => $core_updates_enabled,
+														'core'    => array(
+																		'minor' => $core_updates_enabled,
+																		'major' => $core_updates_enabled,
+														),
 														'plugins' => false,
 														'themes'  => false,
 						),
@@ -213,6 +226,13 @@ class Automatic_Updater {
 			}
 		}
 
+		// Support for different types of core upgrades added in 1.0
+		if ( ! is_array( $this->options['update']['core'] ) ) {
+			$this->options['update']['core'] = array(
+												'major' => $this->options['update']['core'],
+												'minor' => $this->options['update']['core'],
+			);
+		}
 	}
 
 	function update_svn() {
