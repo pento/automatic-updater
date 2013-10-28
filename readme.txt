@@ -44,6 +44,7 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 = 1.0 =
 With the release of WordPress 3.7, Automatic Updater is now know as Advanced Automatic Updates!
 
+* ADDED: Options to enable Major and Minor Core updates
 * ADDED: Warning in wp-admin when AUTOMATIC_UPDATER_DISABLED is set
 * ADDED: Turkish (tr_TR) translation. Props [Tufan Tunç](http://www.wpdestek.com/)
 * FIXED: PHP notice in PHP 5.4+ with WP_DEBUG enabled
