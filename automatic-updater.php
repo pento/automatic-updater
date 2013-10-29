@@ -94,8 +94,10 @@ class Automatic_Updater {
 		else
 			add_filter( 'auto_core_update_send_email', '__return_true', 1 );
 
-		if ( ! empty( $this->options['override-email'] ) )
+		if ( ! empty( $this->options['override-email'] ) ) {
 			add_filter( 'auto_core_update_email', array( $this, 'override_update_email' ), 1, 1 );
+			add_filter( 'auto_update_debug_email', array( $this, 'override_update_email' ), 1, 1 );
+		}
 
 		if ( $this->options['debug'] )
 			add_filter( 'automatic_updates_send_debug_email', '__return_true', 1 );

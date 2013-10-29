@@ -39,6 +39,12 @@ There are some Actions and Filters provided, check the [Documentation](http://pe
 1. Checkout the current development version from http://plugins.svn.wordpress.org/automatic-updater/trunk/
 1. Subscribe to the [RSS feed](http://plugins.trac.wordpress.org/log/automatic-updater?limit=100&mode=stop_on_copy&format=rss) to be notified of changes
 
+== Frequently Asked Questions ==
+
+= Why is the debug email going to the admin email address, instead of the override email address? =
+
+The debug email doesn't provide a filter to allow changing the email address it's being sent to. This will hopefully change in a future release of WordPress, you can follow progress in [this ticket](http://core.trac.wordpress.org/ticket/25756).
+
 == Changelog ==
 
 = 1.0 =
@@ -181,3 +187,8 @@ With the release of WordPress 3.7, Automatic Updater is now know as Advanced Aut
 
 = 0.1 =
 * Initial release
+
+== Upgrade Notice ==
+
+= 1.0 =
+With the release of WordPress 3.7, Automatic Updater is now know as Advanced Automatic Updates!
