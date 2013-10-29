@@ -54,6 +54,7 @@ With the release of WordPress 3.7, Automatic Updater is now know as Advanced Aut
 * ADDED: Warning in wp-admin when AUTOMATIC_UPDATER_DISABLED is set
 * ADDED: Turkish (tr_TR) translation. Props [Tufan Tunç](http://www.wpdestek.com/)
 * CHANGED: Debug Email option now allows enabling only for dev upgrades (default)
+* UPDATED: Language POT file
 * FIXED: PHP notice in PHP 5.4+ with WP_DEBUG enabled
 
 = 0.9.1 =

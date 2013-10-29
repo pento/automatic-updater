@@ -1,10 +1,10 @@
-# Copyright (C) 2013 Automatic Updater
-# This file is distributed under the same license as the Automatic Updater package.
+# Copyright (C) 2013 Advanced Automatic Updates
+# This file is distributed under the same license as the Advanced Automatic Updates package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Automatic Updater 0.9\n"
+"Project-Id-Version: Advanced Automatic Updates 1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/automatic-updater\n"
-"POT-Creation-Date: 2013-07-29 01:49:13+00:00\n"
+"POT-Creation-Date: 2013-10-29 23:01:27+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,152 +12,132 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#. #-#-#-#-#  plugin.pot (Automatic Updater 0.9)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Advanced Automatic Updates 1.0)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: admin.php:34 admin.php:81
-msgid "Automatic Updater"
+#: admin.php:37 admin.php:84
+msgid "Advanced Automatic Updates"
 msgstr ""
 
-#: admin.php:44
+#: admin.php:47
 msgid "Overview"
 msgstr ""
 
-#: admin.php:46
+#: admin.php:49
 msgid ""
 "This settings page allows you to select whether you would like WordPress "
 "Core, your plugins, and your themes to be automatically updated."
 msgstr ""
 
-#: admin.php:47
+#: admin.php:50
 msgid ""
 "It is very important to keep your WordPress installation up to date for "
 "security reasons, so unless you have a specific reason not to, we recommend "
 "allowing everything to automatically update."
 msgstr ""
 
-#: admin.php:51
+#: admin.php:54
 msgid "A Plugin By <a href=\"%s\" target=\"_blank\">Gary</a>"
 msgstr ""
 
-#: admin.php:52
+#: admin.php:55
 msgid "Donations"
 msgstr ""
 
-#: admin.php:53
+#: admin.php:56
 msgid "Support Forums"
 msgstr ""
 
-#: admin.php:62
+#: admin.php:65
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: admin.php:69
+#: admin.php:72
 msgid "Settings updated"
 msgstr ""
 
-#: admin.php:98
+#: admin.php:94
 msgid ""
-"It looks like Automatic Updater may not be able to run automatically, due to "
-"not having permission to write to the WordPress directory, or connect to the "
-"server over FTP. If you usually upgrade by entering your FTP login details, "
-"please read <a href=\"%s\">this documentation</a> on storing your connection "
-"details."
+"You have the <code>AUTOMATIC_UPDATER_DISABLED</code> constant set.  "
+"Automatic updates are disabled."
 msgstr ""
 
-#: admin.php:99
-msgid ""
-"Alternatively, if WordPress normally upgrades immediately when you click the "
-"Update button, or if you don't want to see this message again, feel free to "
-"<a href=\"%1$s\" id=\"%2$s\">hide it</a>."
-msgstr ""
-
-#: admin.php:112
+#: admin.php:104
 msgid ""
 "The Better WP Security plugin is hiding updates, which will prevent "
-"Automatic Updater from operating correctly. Please <a href=\"%s\">disable "
+"Automatic Updates from operating correctly. Please <a href=\"%s\">disable "
 "these options</a>."
 msgstr ""
 
-#: admin.php:124
-msgid ""
-"Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>"
+#: admin.php:116
+msgid "Update WordPress Core automatically?"
 msgstr ""
 
-#: admin.php:125
+#: admin.php:118
+msgid "Major versions"
+msgstr ""
+
+#: admin.php:119
+msgid "Minor and security versions <strong>(Strongly Recommended)</strong>"
+msgstr ""
+
+#: admin.php:123
 msgid "Update your plugins automatically?"
 msgstr ""
 
-#: admin.php:126
+#: admin.php:125
 msgid "Update your themes automatically?"
 msgstr ""
 
-#: admin.php:139
+#: admin.php:128
 msgid "Notification Email"
 msgstr ""
 
-#: admin.php:140
+#: admin.php:129
 msgid ""
-"By default, Automatic Updater will send an email to the Site Admin when an "
+"By default, Automatic Updates will send an email to the Site Admin when an "
 "update is performed. If you would like to send that email to a different "
 "address, you can set it here."
 msgstr ""
 
-#: admin.php:141
+#: admin.php:130
 msgid "Override Email Address"
 msgstr ""
 
-#: admin.php:149
+#: admin.php:138
 msgid ""
 "If you don't want to receive an email when updates are installed, you can "
 "disable them completely."
 msgstr ""
 
-#: admin.php:150
+#: admin.php:139
 msgid "Disable email notifications."
 msgstr ""
 
-#: admin.php:153
-msgid "Retries"
-msgstr ""
-
-#: admin.php:154
-msgid ""
-"To avoid updating when something is broken, Automatic Updater can limit the "
-"number of times it will attempt to update WordPress Core, a plugin or a "
-"theme. If, for example, a plugin update reaches this limit, Automatic "
-"Updater will stop trying to update it until you manually install the update, "
-"or a new version is released."
-msgstr ""
-
-#: admin.php:155
-msgid "Retries Limit"
-msgstr ""
-
-#: admin.php:165
+#: admin.php:149
 msgid "SVN Support"
 msgstr ""
 
-#: admin.php:175
+#: admin.php:159
 msgid "WordPress Core"
 msgstr ""
 
-#: admin.php:176
+#: admin.php:160
 msgid ""
 "It looks like you're running an SVN version of WordPress, that's cool! "
-"Automatic Updater can run <tt>svn up</tt> once an hour, to keep you up-to-"
-"date. For safety, enabling this option will disable the normal WordPress "
-"core updates."
+"Advanced Automatic Updates can run <tt>svn up</tt> once an hour, to keep you "
+"up-to-date. For safety, enabling this option will disable the normal "
+"WordPress core updates."
 msgstr ""
 
-#: admin.php:177
+#: admin.php:161
 msgid "Update WordPress Core hourly?"
 msgstr ""
 
-#: admin.php:184
+#: admin.php:168
 msgid "Plugins"
 msgstr ""
 
-#: admin.php:185
+#: admin.php:169
 msgid ""
 "Running plugins from SVN is great for helping plugin devs fine tune them "
 "before release, so on behalf of all of us, thanks! If you see Akismet here "
@@ -165,11 +145,11 @@ msgid ""
 "automatically update when the WordPress Core SVN update occurs."
 msgstr ""
 
-#: admin.php:203
+#: admin.php:187
 msgid "Themes"
 msgstr ""
 
-#: admin.php:204
+#: admin.php:188
 msgid ""
 "Running themes from SVN makes you an excellent person who makes the "
 "WordPress community better - thank you! If you see any of the default Twenty "
@@ -177,7 +157,7 @@ msgid ""
 "the WordPress Core SVN update occurs."
 msgstr ""
 
-#: admin.php:223
+#: admin.php:207
 msgid ""
 "The items marked in red don't have their .svn directory writable, so <tt>svn "
 "up</tt> will probably fail when the web server runs it. You need to give the "
@@ -185,177 +165,109 @@ msgid ""
 "including .svn directories."
 msgstr ""
 
-#: admin.php:230
+#: admin.php:214
 msgid "SVN Options"
 msgstr ""
 
-#: admin.php:231
+#: admin.php:215
 msgid ""
 "Send email on <tt>svn up</tt> success? Disabling this will cause "
 "notification emails to only be sent if the <tt>svn up</tt> fails."
 msgstr ""
 
-#: admin.php:249
+#: admin.php:229
 msgid "Debug Information"
 msgstr ""
 
-#: admin.php:250
-msgid "Show debug information in the notification email."
+#: admin.php:231
+msgid ""
+"When would you like to receive debug information with your notification "
+"email?"
 msgstr ""
 
-#: admin.php:251
+#: admin.php:235
+msgid "Always"
+msgstr ""
+
+#: admin.php:236
+msgid ""
+"Only when upgrading development versions <strong>(Recommended Minimum)</"
+"strong>"
+msgstr ""
+
+#: admin.php:237
+msgid "Never"
+msgstr ""
+
+#: admin.php:249
 msgid "Save Changes"
 msgstr ""
 
-#: admin.php:327
+#: admin.php:318
 msgid "Settings"
 msgstr ""
 
-#: automatic-updater.php:152
+#: automatic-updater.php:153
 msgid ""
-"Automatic Updater requires WordPress 3.4 or higher! Please upgrade WordPress "
+"Automatic Updater requires WordPress 3.7 or higher! Please upgrade WordPress "
 "manually, then reactivate Automatic Updater."
 msgstr ""
 
-#: automatic-updater.php:316
-msgid "While trying to upgrade WordPress, we ran into the following error:"
-msgstr ""
-
-#: automatic-updater.php:318
-msgid ""
-"We're sorry it didn't work out. Please try upgrading manually, instead. This "
-"is attempt %1$d of %2$d."
-msgstr ""
-
-#: automatic-updater.php:322
-msgid ""
-"We've successfully upgraded WordPress from version %1$s to version %2$s, the "
-"latest nightly build!"
-msgstr ""
-
-#: automatic-updater.php:323 automatic-updater.php:329
-msgid "Have fun!"
-msgstr ""
-
-#: automatic-updater.php:328
-msgid ""
-"We've successfully upgraded WordPress from version %1$s to version %2$s!"
-msgstr ""
-
-#: automatic-updater.php:389
-msgid "We found a plugin upgrade!"
-msgid_plural "We found upgrades for some plugins!"
-msgstr[0] ""
-msgstr[1] ""
-
-#. translators: First argument is the plugin url, second argument is the Plugin
-#. name, third argument is the error encountered while upgrading. The fourth
-#. and fifth arguments refer to how many retries we've had at installing this
-#. plugin.
-#: automatic-updater.php:408
-msgid ""
-"<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this plugin: %3$s "
-"(Attempt %4$d of %5$d)"
-msgstr ""
-
-#. translators: First argument is the plugin url, second argument is the Plugin
-#. name, third argument is the old version number, fourth argument is the new
-#. version number
-#. translators: First argument is the theme URL, second argument is the Theme
-#. name, third argument is the old version number, fourth argument is the new
-#. version number
-#: automatic-updater.php:417 automatic-updater.php:511
-msgid ""
-"<a href=\"%1$s\">%2$s</a>: Successfully upgraded from version %3$s to %4$s!"
-msgstr ""
-
-#: automatic-updater.php:430
-msgid ""
-"Plugin authors depend on your feedback to make their plugins better, and the "
-"WordPress community depends on plugin ratings for checking the quality of a "
-"plugin. If you have a couple of minutes, click on the plugin names above, "
-"and leave a Compatibility Vote or a Rating!"
-msgstr ""
-
-#: automatic-updater.php:483
-msgid "We found a theme upgrade!"
-msgid_plural "We found upgrades for some themes!"
-msgstr[0] ""
-msgstr[1] ""
-
-#. translators: First argument is the theme URL, second argument is the Theme
-#. name, third argument is the error encountered while upgrading. The fourth
-#. and fifth arguments refer to how many retries we've had at installing this
-#. theme.
-#: automatic-updater.php:502
-msgid ""
-"<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this theme: %3$s "
-"(Attempt %4$d of %5$d)"
-msgstr ""
-
-#: automatic-updater.php:524
-msgid ""
-"Theme authors depend on your feedback to make their plugins better, and the "
-"WordPress community depends on theme ratings for checking the quality of a "
-"theme. If you have a couple of minutes, click on the theme names above, and "
-"leave a Compatibility Vote or a Rating!"
-msgstr ""
-
-#: automatic-updater.php:548
+#: automatic-updater.php:268
 msgid "WordPress Core:"
 msgstr ""
 
-#: automatic-updater.php:558
+#: automatic-updater.php:278
 msgid "We successfully upgraded WordPress Core from SVN!"
 msgstr ""
 
-#: automatic-updater.php:564
+#: automatic-updater.php:284
 msgid ""
 "While upgrading WordPress Core from SVN, we ran into the following error:"
 msgstr ""
 
-#: automatic-updater.php:566
+#: automatic-updater.php:286
 msgid "We're sorry it didn't work out. Please try upgrading manually, instead."
 msgstr ""
 
-#: automatic-updater.php:610
+#: automatic-updater.php:330
 msgid "We upgraded the following plugin:"
 msgid_plural "We upgraded the following plugins:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: automatic-updater.php:651
+#: automatic-updater.php:371
 msgid "We upgraded the following theme:"
 msgid_plural "We upgraded the following themes:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: automatic-updater.php:676
+#: automatic-updater.php:396
 msgid "WordPress Update: %s"
 msgstr ""
 
-#: automatic-updater.php:682
+#: automatic-updater.php:402
 msgid "Howdy!"
 msgstr ""
 
-#: automatic-updater.php:684
+#: automatic-updater.php:404
 msgid ""
 "Automatic Updater just ran on your site, <a href=\"%1$s\">%1$s</a>, with the "
 "following result:"
 msgstr ""
 
-#: automatic-updater.php:692
+#: automatic-updater.php:412
 msgid ""
 "It looks like something went wrong during the update. Note that, if "
 "Automatic Updater continues to encounter problems, it will stop trying to do "
 "this update, and will not try again until after you manually update."
 msgstr ""
 
-#: automatic-updater.php:696
+#: automatic-updater.php:416
 msgid "Thanks for using the Automatic Updater plugin!"
 msgstr ""
 
-#: automatic-updater.php:700
+#: automatic-updater.php:420
 msgid "Debug Information:"
 msgstr ""
 
@@ -364,9 +276,7 @@ msgid "http://pento.net/projects/automatic-updater-for-wordpress/"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid ""
-"Automatically update your WordPress site, as soon as updates are released! "
-"Never worry about falling behing on updating again!"
+msgid "Adds extra options to WordPress' built-in Automatic Updates feature."
 msgstr ""
 
 #. Author of the plugin/theme
