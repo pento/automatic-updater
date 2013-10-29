@@ -223,15 +223,29 @@ class Automatic_Updater_Admin {
 					<input type="hidden" name="svn-success-email" value="0">
 				<?php
 				}
-
-				$checked = '';
-				if ( $this->automatic_updater->get_option( 'debug' ) )
-					$checked = ' checked="checked"';
 				?>
 
 				<br>
 				<h3><?php esc_html_e( 'Debug Information', 'automatic-updater' ); ?></h3>
-				<p><input type="checkbox" id="debug" name="debug" value="1"<?php echo $checked; ?>> <label for="debug"><?php esc_html_e( 'Show debug information in the notification email.', 'automatic-updater' ); ?></label></p>
+				<div>
+					<label for="debug"><?php esc_html_e( 'When would you like to receive debug information with your notification email?', 'automatic-updater' ); ?></label>
+					<fieldset id="debug">
+						<?php
+						$debug_options = array(
+							'always' => esc_html__( 'Always', 'automatic-updater' ),
+							'debug'  => wp_kses( __( 'Only when upgrading development versions <strong>(Recommended Minimum)</strong>', 'automatic-updater' ), array( 'strong' => array() ) ),
+							'never'  => esc_html__( 'Never', 'automatic-updater' ),
+						);
+
+						foreach ( $debug_options as $option => $label ) {
+							echo "<input type='radio' name='debug' id='debug-$option' value='$option'";
+							if ( $option === $this->automatic_updater->get_option( 'debug' ) )
+								echo " checked='checked'";
+							echo "> <label for='debug-$option'>$label</label><br>";
+						}
+						?>
+					</fieldset>
+				</div><br>
 				<p><input class="button button-primary" type="submit" name="submit" id="submit" value="<?php esc_attr_e( 'Save Changes', 'automatic-updater' ); ?>" /></p>
 			</form>
 		</div>
@@ -249,7 +263,7 @@ class Automatic_Updater_Admin {
 		);
 		$this->automatic_updater->update_option( 'update', $update );
 
-		$top_bool_options = array( 'debug', 'disable-email' );
+		$top_bool_options = array( 'disable-email' );
 		foreach ( $top_bool_options as $option ) {
 			if ( ! empty( $_REQUEST[ $option ] ) )
 				$this->automatic_updater->update_option( $option, true );
@@ -257,7 +271,7 @@ class Automatic_Updater_Admin {
 				$this->automatic_updater->update_option( $option, false );
 		}
 
-		$top_options = array( 'override-email' );
+		$top_options = array( 'override-email', 'debug' );
 		foreach ( $top_options as $option ) {
 			$this->automatic_updater->update_option( $option, $_REQUEST[ $option ] );
 		}

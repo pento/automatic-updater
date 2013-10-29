@@ -21,3 +21,7 @@ div.automatic-updater-core-options {
 div.automatic-updater-core-options fieldset {
 	margin-left: 20px;
 }
+
+#debug {
+	margin-left: 20px;
+}

@@ -99,9 +99,10 @@ class Automatic_Updater {
 			add_filter( 'auto_update_debug_email', array( $this, 'override_update_email' ), 1, 1 );
 		}
 
-		if ( $this->options['debug'] )
+		// Default is to send the debug email with dev builds, so we don't need to filter for that
+		if ( 'always' === $this->options['debug'] )
 			add_filter( 'automatic_updates_send_debug_email', '__return_true', 1 );
-		else
+		else if ( 'never' === $this->options['debug'] )
 			add_filter( 'automatic_updates_send_debug_email', '__return_false', 1 );
 
 		// Configure SVN updates cron, if it's enabled
@@ -176,7 +177,7 @@ class Automatic_Updater {
 														'themes'  => array(),
 						),
 						'svn-success-email'       => true,
-						'debug'                   => false,
+						'debug'                   => 'debug',
 						'next-development-update' => time(),
 						'override-email'          => '',
 						'disable-email'           => false,
@@ -233,6 +234,14 @@ class Automatic_Updater {
 												'major' => $this->options['update']['core'],
 												'minor' => $this->options['update']['core'],
 			);
+		}
+
+		// debug option changed to send debug email under varying conditions in 1.0
+		if ( is_bool( $this->options['debug'] ) ) {
+			if ( $this->options['debug'] )
+				$this->options['debug'] = 'always';
+			else
+				$this->options['debug'] = 'debug';
 		}
 	}
 
