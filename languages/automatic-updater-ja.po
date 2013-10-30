@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Automatic Updater 0.8\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/automatic-updater\n"
-"POT-Creation-Date: 2012-12-02 05:02:04+00:00\n"
-"PO-Revision-Date: 2013-03-22 16:14+1000\n"
-"Last-Translator: Gary Pendergast <gary@pento.net>\n"
+"POT-Creation-Date: 2013-10-29 23:01:27+00:00\n"
+"PO-Revision-Date: 2013-10-30 22:22+0900\n"
+"Last-Translator: JOTAKI, Taisuke <tekapo@gmail.com>\n"
 "Language-Team: tekapo <tekapo@gmail.com>\n"
 "Language: ja_JP\n"
 "MIME-Version: 1.0\n"
@@ -14,27 +14,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.7\n"
 
-#. #-#-#-#-#  plugin.pot (Automatic Updater 0.8)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Advanced Automatic Updates 1.0)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: admin.php:32 admin.php:75
-msgid "Automatic Updater"
-msgstr "自動アップデーター"
+#: admin.php:37 admin.php:84
+msgid "Advanced Automatic Updates"
+msgstr "アドバンスド自動更新"
 
-#: admin.php:40
+#: admin.php:47
 msgid "Overview"
 msgstr "概要"
 
-#: admin.php:42
+#: admin.php:49
 msgid ""
 "This settings page allows you to select whether you would like WordPress "
 "Core, your plugins, and your themes to be automatically updated."
 msgstr ""
-"この設定ページでは WordPress 本体、プラグイン、テーマを自動的にアップデートす"
-"るかどうかを選択できます。"
+"この設定ページでは WordPress 本体、プラグイン、テーマを自動的に更新するかどう"
+"かを選択できます。"
 
-#: admin.php:43
+#: admin.php:50
 msgid ""
 "It is very important to keep your WordPress installation up to date for "
 "security reasons, so unless you have a specific reason not to, we recommend "
@@ -44,60 +44,81 @@ msgstr ""
 "す。したがって、特に理由がない限り、すべてを自動的にアップデートすることをお"
 "すすめします。"
 
-#: admin.php:47
+#: admin.php:54
 msgid "A Plugin By <a href=\"%s\" target=\"_blank\">Gary</a>"
 msgstr "作成者: <a href=\"%s\" target=\"_blank\">Gary</a>"
 
-#: admin.php:48
+#: admin.php:55
 msgid "Donations"
 msgstr "寄付"
 
-#: admin.php:49
+#: admin.php:56
 msgid "Support Forums"
 msgstr "サポートフォーラム"
 
-#: admin.php:57
+#: admin.php:65
 msgid "You do not have sufficient permissions to access this page."
 msgstr "このページにアクセスするための十分なアクセス権がありません。"
 
-#: admin.php:64
+#: admin.php:72
 msgid "Settings updated"
 msgstr "設定を更新しました"
 
-#: admin.php:68
+#: admin.php:94
 msgid ""
-"Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>"
+"You have the <code>AUTOMATIC_UPDATER_DISABLED</code> constant set.  "
+"Automatic updates are disabled."
 msgstr ""
-"WordPress 本体を自動的にアップデートしますか ? <strong>(強くおすすめします)</"
-"strong>"
+"<code>AUTOMATIC_UPDATER_DISABLED</code> 定数が設定されています。自動更新機能"
+"が無効になっています。"
 
-#: admin.php:69
+#: admin.php:104
+msgid ""
+"The Better WP Security plugin is hiding updates, which will prevent "
+"Automatic Updates from operating correctly. Please <a href=\"%s\">disable "
+"these options</a>."
+msgstr ""
+"Better WP Security プラグインが更新を非表示にしていて自動更新が正しく動作して"
+"いません。<a href=\"%s\">これらの設定を無効にしてください</a>。"
+
+#: admin.php:116
+msgid "Update WordPress Core automatically?"
+msgstr "WordPress 本体を自動的に更新しますか ?"
+
+#: admin.php:118
+msgid "Major versions"
+msgstr "メジャーバージョン"
+
+#: admin.php:119
+msgid "Minor and security versions <strong>(Strongly Recommended)</strong>"
+msgstr "マイナーおよびセキュリティ版 <strong>(強くおすすめします)</strong>"
+
+#: admin.php:123
 msgid "Update your plugins automatically?"
-msgstr "プラグインを自動的にアップデートしますか ?"
+msgstr "プラグインを自動的に更新しますか ?"
 
-#: admin.php:70
+#: admin.php:125
 msgid "Update your themes automatically?"
-msgstr "テーマを自動的にアップデートしますか ?"
+msgstr "テーマを自動的に更新しますか ?"
 
-#: admin.php:97
+#: admin.php:128
 msgid "Notification Email"
 msgstr "通知メール"
 
-#: admin.php:98
+#: admin.php:129
 msgid ""
-"By default, Automatic Updater will send an email to the Site Admin when an "
+"By default, Automatic Updates will send an email to the Site Admin when an "
 "update is performed. If you would like to send that email to a different "
 "address, you can set it here."
 msgstr ""
-"初期設定では、アップデートが実行された時に自動アップデーターはサイト管理者宛"
-"にメールを送ります。別のアドレスにメールを送りたい場合はここでそのアドレスを"
-"設定できます。"
+"初期設定では、更新実行時にサイト管理者宛にメールを送ります。別のアドレスに"
+"メールを送りたい場合はここでそのアドレスを設定できます。"
 
-#: admin.php:99
+#: admin.php:130
 msgid "Override Email Address"
 msgstr "通知先メールアドレス"
 
-#: admin.php:107
+#: admin.php:138
 msgid ""
 "If you don't want to receive an email when updates are installed, you can "
 "disable them completely."
@@ -105,61 +126,39 @@ msgstr ""
 "アップデート実行時にメールでの通知を受けとりたくない場合は、ここでメール送信"
 "を無効にできます。"
 
-#: admin.php:108
+#: admin.php:139
 msgid "Disable email notifications."
 msgstr "メール通知を無効にする"
 
-#: admin.php:111
-msgid "Retries"
-msgstr "再試行"
-
-#: admin.php:112
-msgid ""
-"To avoid updating when something is broken, Automatic Updater can limit the "
-"number of times it will attempt to update WordPress Core, a plugin or a "
-"theme. If, for example, a plugin update reaches this limit, Automatic "
-"Updater will stop trying to update it until you manually install the update, "
-"or a new version is released."
-msgstr ""
-"何かがうまく行かなかった時にアップデートを避けるために、自動アップデーターは "
-"WordPress 本体、プラグイン、テーマのアップデート試行回数を制限することができ"
-"ます。例えば、プラグインの自動アップデートの試行回数がこの制限に達すると、手"
-"動でアップデートを実行するか新しいバージョンがリリースされるまで、自動アップ"
-"デートは停止されます。"
-
-#: admin.php:113
-msgid "Retries Limit"
-msgstr "再試行回数"
-
-#: admin.php:123
+#: admin.php:149
 msgid "SVN Support"
 msgstr "SVN サポート"
 
-#: admin.php:133
+#: admin.php:159
 msgid "WordPress Core"
 msgstr "WordPress コア"
 
-#: admin.php:134
+#: admin.php:160
 msgid ""
 "It looks like you're running an SVN version of WordPress, that's cool! "
-"Automatic Updater can run <tt>svn up</tt> once an hour, to keep you up-to-"
-"date. For safety, enabling this option will disable the normal WordPress "
-"core updates."
+"Advanced Automatic Updates can run <tt>svn up</tt> once an hour, to keep you "
+"up-to-date. For safety, enabling this option will disable the normal "
+"WordPress core updates."
 msgstr ""
-"WordPress のSVN バージョンを利用しているようです。いいですね！ 最新の状態に保"
-"つため、自動アップデーターは１時間に１度 <tt>svn up</tt> を実行させることがで"
-"きます。安全のため、この設定を有効にすると通常の WordPress 本体のアップデート"
-"は無効になります。"
+"WordPress の SVN バージョンを利用しているようです。いいですね ! 最新の状態に"
+"保つため、アドバンスド自動更新プラグインは１時間に１度 <tt>svn up</tt> を実行"
+"させることができます。安全のため、この設定を有効にすると通常の WordPress 本体"
+"のアップデートは無効になります。"
 
-#: admin.php:135
+#: admin.php:161
 msgid "Update WordPress Core hourly?"
 msgstr "WordPress 本体を１時間に１度アップデートしますか ?"
 
-#: admin.php:142
+#: admin.php:168
 msgid "Plugins"
 msgstr "プラグイン"
 
-#: admin.php:143
+#: admin.php:169
 msgid ""
 "Running plugins from SVN is great for helping plugin devs fine tune them "
 "before release, so on behalf of all of us, thanks! If you see Akismet here "
@@ -172,11 +171,11 @@ msgstr ""
 "はないとしたら、WordPress 本体の SVN がアップデート時に Akismet も自動的に"
 "アップデートされると思います。"
 
-#: admin.php:158
+#: admin.php:187
 msgid "Themes"
 msgstr "テーマ"
 
-#: admin.php:159
+#: admin.php:188
 msgid ""
 "Running themes from SVN makes you an excellent person who makes the "
 "WordPress community better - thank you! If you see any of the default Twenty "
@@ -188,7 +187,7 @@ msgstr ""
 "くは Twelve がここに表示されていれば、おそらく WordPress 本体の SVN アップ"
 "デート時に自動的にこれらのテーマもアップデートされます。"
 
-#: admin.php:175
+#: admin.php:207
 msgid ""
 "The items marked in red don't have their .svn directory writable, so <tt>svn "
 "up</tt> will probably fail when the web server runs it. You need to give the "
@@ -200,11 +199,11 @@ msgstr ""
 "ザー <tt>%s</tt> に .svn ディレクトリを含む WordPress 全体への書き込み権限を"
 "付与する必要があります。"
 
-#: admin.php:182
+#: admin.php:214
 msgid "SVN Options"
 msgstr "SVN オプション"
 
-#: admin.php:183
+#: admin.php:215
 msgid ""
 "Send email on <tt>svn up</tt> success? Disabling this will cause "
 "notification emails to only be sent if the <tt>svn up</tt> fails."
@@ -212,187 +211,104 @@ msgstr ""
 "<tt>svn up</tt> 成功時にメールを送信しますか ? この設定を無効にすると "
 "<tt>svn up</tt> に失敗した時だけメールで通知します。"
 
-#: admin.php:201
+#: admin.php:229
 msgid "Debug Information"
 msgstr "デバッグ情報"
 
-#: admin.php:202
-msgid "Show debug information in the notification email."
-msgstr "通知メールにデバッグ情報を表示する。"
+#: admin.php:231
+msgid ""
+"When would you like to receive debug information with your notification "
+"email?"
+msgstr "通知メールにデバッグ情報の表示を含めますか ?"
 
-#: admin.php:203
+#: admin.php:235
+msgid "Always"
+msgstr "常に含める"
+
+#: admin.php:236
+msgid ""
+"Only when upgrading development versions <strong>(Recommended Minimum)</"
+"strong>"
+msgstr "開発版のアップグレード時のみ <strong>(最小限推奨)</strong>"
+
+#: admin.php:237
+msgid "Never"
+msgstr "含めない"
+
+#: admin.php:249
 msgid "Save Changes"
 msgstr "変更を保存"
 
-#: admin.php:265
+#: admin.php:318
 msgid "Settings"
 msgstr "設定"
 
-#: automatic-updater.php:134
+#: automatic-updater.php:153
 msgid ""
-"Automatic Updater requires WordPress 3.4 or higher! Please upgrade WordPress "
+"Automatic Updater requires WordPress 3.7 or higher! Please upgrade WordPress "
 "manually, then reactivate Automatic Updater."
 msgstr ""
-"自動アップデーターは WordPress 3.4 以上で動作します ! WordPress を手動でアッ"
-"プグレードしてから、自動アップデーターを再度有効化してください。"
+"アドバンスド自動更新は WordPress 3.7 以上で動作します ! WordPress を手動で"
+"アップグレードしてから、アドバンスド自動更新プラグインを再度有効化してくださ"
+"い。"
 
-#: automatic-updater.php:282
-msgid "While trying to upgrade WordPress, we ran into the following error:"
-msgstr "WordPress をアップグレード中に次のエラーが発生しました:"
-
-#: automatic-updater.php:284
-msgid ""
-"We're sorry it didn't work out. Please try upgrading manually, instead. This "
-"is attempt %1$d of %2$d."
-msgstr ""
-"自動アップデートに失敗しました。代わりに手動でアップグレードしてみてくださ"
-"い。これは %1$d / %2$d 回目の試みです。"
-
-#: automatic-updater.php:288
-msgid "We've successfully upgraded WordPress to the latest nightly build!"
-msgstr "WordPress の最新のナイトリービルドへのアップグレードに成功しました !"
-
-#: automatic-updater.php:289 automatic-updater.php:295
-msgid "Have fun!"
-msgstr "ではお楽しみください !"
-
-#: automatic-updater.php:294
-msgid ""
-"We've successfully upgraded WordPress from version %1$s to version %2$s!"
-msgstr ""
-"WordPress のバージョン %1$s からバージョン %2$s へのアップグレードに成功しま"
-"した !"
-
-#: automatic-updater.php:351
-msgid "We found a plugin upgrade!"
-msgid_plural "We found upgrades for some plugins!"
-msgstr[0] "プラグインのアップグレードがあります !"
-
-#. translators: First argument is the plugin url, second argument is the Plugin
-#. name, third argument is the error encountered while upgrading. The fourth
-#. and fifth arguments refer to how many retries we've had at installing this
-#. plugin.
-#: automatic-updater.php:369
-msgid ""
-"<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this plugin: %3$s "
-"(Attempt %4$d of %5$d)"
-msgstr ""
-"<a href=\"%1$s\">%2$s</a>: このプラグイン %3$s のアップグレード時にエラーが発"
-"生しました (%4$d / %5$d 回目の試行)"
-
-#. translators: First argument is the plugin url, second argument is the Plugin
-#. name, third argument is the old version number, fourth argument is the new
-#. version number
-#. translators: First argument is the theme URL, second argument is the Theme
-#. name, third argument is the old version number, fourth argument is the new
-#. version number
-#: automatic-updater.php:378 automatic-updater.php:467
-msgid ""
-"<a href=\"%1$s\">%2$s</a>: Successfully upgraded from version %3$s to %4$s!"
-msgstr ""
-"<a href=\"%1$s\">%2$s</a>: バージョン %3$s から %4$s へのアップグレードに成功"
-"しました !"
-
-#: automatic-updater.php:391
-msgid ""
-"Plugin authors depend on your feedback to make their plugins better, and the "
-"WordPress community depends on plugin ratings for checking the quality of a "
-"plugin. If you have a couple of minutes, click on the plugin names above, "
-"and leave a Compatibility Vote or a Rating!"
-msgstr ""
-"プラグイン作者はプラグインの改善ためにみなさんのフィードバックを頼りにしてい"
-"て、WordPress のコミュニティはプラグインの質をチェックするためにプラグインの"
-"レーティングを頼りにしています。もし何分かでもお時間があれば、上のプラグイン"
-"名をクリックして、互換性の投票とレーティングをしてみてください !"
-
-#: automatic-updater.php:440
-msgid "We found a theme upgrade!"
-msgid_plural "We found upgrades for some themes!"
-msgstr[0] "テーマのアップグレードがあります !"
-
-#. translators: First argument is the theme URL, second argument is the Theme
-#. name, third argument is the error encountered while upgrading. The fourth
-#. and fifth arguments refer to how many retries we've had at installing this
-#. theme.
-#: automatic-updater.php:458
-msgid ""
-"<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this theme: %3$s "
-"(Attempt %4$d of %5$d)"
-msgstr ""
-"<a href=\"%1$s\">%2$s</a>: このテーマ %3$s のアップグレード時にエラーが発生し"
-"ました (%4$d / %5$d 回目の試行)"
-
-#: automatic-updater.php:480
-msgid ""
-"Theme authors depend on your feedback to make their plugins better, and the "
-"WordPress community depends on theme ratings for checking the quality of a "
-"theme. If you have a couple of minutes, click on the theme names above, and "
-"leave a Compatibility Vote or a Rating!"
-msgstr ""
-"テーマ作者はテーマの改善ためにみなさんのフィードバックを頼りにしていて、"
-"WordPress のコミュニティはテーマの質をチェックするためにテーマのレーティング"
-"を頼りにしています。もし何分かでもお時間があれば、上のテーマ名をクリックし"
-"て、互換性の投票とレーティングをしてみてください !"
-
-#: automatic-updater.php:501
+#: automatic-updater.php:268
 msgid "WordPress Core:"
 msgstr "WordPress コア:"
 
-#: automatic-updater.php:510
+#: automatic-updater.php:278
 msgid "We successfully upgraded WordPress Core from SVN!"
 msgstr "WordPress 本体の SVN からのアップグレードに成功しました !"
 
-#: automatic-updater.php:515
+#: automatic-updater.php:284
 msgid ""
 "While upgrading WordPress Core from SVN, we ran into the following error:"
 msgstr "WordPress 本体の SVN からのアップグレード中に次のエラーが発生しました:"
 
-#: automatic-updater.php:517
+#: automatic-updater.php:286
 msgid "We're sorry it didn't work out. Please try upgrading manually, instead."
 msgstr ""
-"自動アップデートに失敗しました。代わりに手動でアップグレードしてみてくださ"
-"い。"
+"自動更新機能が失敗しました。代わりに手動でアップグレードしてみてください。"
 
-#: automatic-updater.php:558
+#: automatic-updater.php:330
 msgid "We upgraded the following plugin:"
 msgid_plural "We upgraded the following plugins:"
-msgstr[0] "次のプラグインをアップグレードしました: "
+msgstr[0] "次のプラグインを更新しました: "
 
-#: automatic-updater.php:597
+#: automatic-updater.php:371
 msgid "We upgraded the following theme:"
 msgid_plural "We upgraded the following themes:"
-msgstr[0] "次のテーマをアップグレードしました:"
+msgstr[0] "次のテーマを更新しました:"
 
-#: automatic-updater.php:622
+#: automatic-updater.php:396
 msgid "WordPress Update: %s"
 msgstr "WordPress 更新: %s"
 
-#: automatic-updater.php:628
+#: automatic-updater.php:402
 msgid "Howdy!"
 msgstr "こんにちは ！"
 
-#: automatic-updater.php:630
+#: automatic-updater.php:404
 msgid ""
 "Automatic Updater just ran on your site, <a href=\"%1$s\">%1$s</a>, with the "
 "following result:"
-msgstr ""
-"自動アップデーターが  <a href=\"%1$s\">%1$s</a> で実行されました。実行結果:"
+msgstr "自動更新機能が  <a href=\"%1$s\">%1$s</a> で実行されました。実行結果:"
 
-#: automatic-updater.php:638
+#: automatic-updater.php:412
 msgid ""
 "It looks like something went wrong during the update. Note that, if "
 "Automatic Updater continues to encounter problems, it will stop trying to do "
 "this update, and will not try again until after you manually update."
 msgstr ""
-"アップデート中に何かがうまく行かなかったようです。もし自動アップデーターがこ"
-"の問題に遭遇し続ければ、自動アップデートの実行は停止され、手動でアップデート"
-"されるまで再開されません。"
+"更新中に何かがうまく行かなかったようです。もしアドバンスド自動更新プラグイン"
+"がこの問題に遭遇し続ければ、自動更新の実行は停止され、手動で更新されるまで再"
+"開されません。"
 
-#: automatic-updater.php:642
+#: automatic-updater.php:416
 msgid "Thanks for using the Automatic Updater plugin!"
-msgstr "自動アップデータープラグインをご利用いただき、ありがとうございます。"
+msgstr "アドバンスド自動更新プラグインをご利用いただき、ありがとうございます。"
 
-#: automatic-updater.php:646
+#: automatic-updater.php:420
 msgid "Debug Information:"
 msgstr "デバッグ情報"
 
@@ -401,12 +317,8 @@ msgid "http://pento.net/projects/automatic-updater-for-wordpress/"
 msgstr "http://pento.net/projects/automatic-updater-for-wordpress/"
 
 #. Description of the plugin/theme
-msgid ""
-"Automatically update your WordPress site, as soon as updates are released! "
-"Never worry about falling behing on updating again!"
-msgstr ""
-"アップデートがリリースされるとすぐに WordPress のサイトを自動的にアップデート"
-"します ! アップデートに遅れて心配することはもうありません !"
+msgid "Adds extra options to WordPress' built-in Automatic Updates feature."
+msgstr "WordPress 本体組み込みの自動更新機能にオプションを追加します。"
 
 #. Author of the plugin/theme
 msgid "pento"
@@ -415,3 +327,103 @@ msgstr "pento"
 #. Author URI of the plugin/theme
 msgid "http://pento.net/"
 msgstr "http://pento.net/"
+
+#~ msgid "Retries"
+#~ msgstr "再試行"
+
+#~ msgid ""
+#~ "To avoid updating when something is broken, Automatic Updater can limit "
+#~ "the number of times it will attempt to update WordPress Core, a plugin or "
+#~ "a theme. If, for example, a plugin update reaches this limit, Automatic "
+#~ "Updater will stop trying to update it until you manually install the "
+#~ "update, or a new version is released."
+#~ msgstr ""
+#~ "何かがうまく行かなかった時にアップデートを避けるために、自動アップデーター"
+#~ "は WordPress 本体、プラグイン、テーマのアップデート試行回数を制限すること"
+#~ "ができます。例えば、プラグインの自動アップデートの試行回数がこの制限に達す"
+#~ "ると、手動でアップデートを実行するか新しいバージョンがリリースされるまで、"
+#~ "自動アップデートは停止されます。"
+
+#~ msgid "Retries Limit"
+#~ msgstr "再試行回数"
+
+#~ msgid "While trying to upgrade WordPress, we ran into the following error:"
+#~ msgstr "WordPress をアップグレード中に次のエラーが発生しました:"
+
+#~ msgid ""
+#~ "We're sorry it didn't work out. Please try upgrading manually, instead. "
+#~ "This is attempt %1$d of %2$d."
+#~ msgstr ""
+#~ "自動アップデートに失敗しました。代わりに手動でアップグレードしてみてくださ"
+#~ "い。これは %1$d / %2$d 回目の試みです。"
+
+#~ msgid "We've successfully upgraded WordPress to the latest nightly build!"
+#~ msgstr ""
+#~ "WordPress の最新のナイトリービルドへのアップグレードに成功しました !"
+
+#~ msgid "Have fun!"
+#~ msgstr "ではお楽しみください !"
+
+#~ msgid ""
+#~ "We've successfully upgraded WordPress from version %1$s to version %2$s!"
+#~ msgstr ""
+#~ "WordPress のバージョン %1$s からバージョン %2$s へのアップグレードに成功し"
+#~ "ました !"
+
+#~ msgid "We found a plugin upgrade!"
+#~ msgid_plural "We found upgrades for some plugins!"
+#~ msgstr[0] "プラグインのアップグレードがあります !"
+
+#~ msgid ""
+#~ "<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this plugin: "
+#~ "%3$s (Attempt %4$d of %5$d)"
+#~ msgstr ""
+#~ "<a href=\"%1$s\">%2$s</a>: このプラグイン %3$s のアップグレード時にエラー"
+#~ "が発生しました (%4$d / %5$d 回目の試行)"
+
+#~ msgid ""
+#~ "<a href=\"%1$s\">%2$s</a>: Successfully upgraded from version %3$s to "
+#~ "%4$s!"
+#~ msgstr ""
+#~ "<a href=\"%1$s\">%2$s</a>: バージョン %3$s から %4$s へのアップグレードに"
+#~ "成功しました !"
+
+#~ msgid ""
+#~ "Plugin authors depend on your feedback to make their plugins better, and "
+#~ "the WordPress community depends on plugin ratings for checking the "
+#~ "quality of a plugin. If you have a couple of minutes, click on the plugin "
+#~ "names above, and leave a Compatibility Vote or a Rating!"
+#~ msgstr ""
+#~ "プラグイン作者はプラグインの改善ためにみなさんのフィードバックを頼りにして"
+#~ "いて、WordPress のコミュニティはプラグインの質をチェックするためにプラグイ"
+#~ "ンのレーティングを頼りにしています。もし何分かでもお時間があれば、上のプラ"
+#~ "グイン名をクリックして、互換性の投票とレーティングをしてみてください !"
+
+#~ msgid "We found a theme upgrade!"
+#~ msgid_plural "We found upgrades for some themes!"
+#~ msgstr[0] "テーマのアップグレードがあります !"
+
+#~ msgid ""
+#~ "<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this theme: "
+#~ "%3$s (Attempt %4$d of %5$d)"
+#~ msgstr ""
+#~ "<a href=\"%1$s\">%2$s</a>: このテーマ %3$s のアップグレード時にエラーが発"
+#~ "生しました (%4$d / %5$d 回目の試行)"
+
+#~ msgid ""
+#~ "Theme authors depend on your feedback to make their plugins better, and "
+#~ "the WordPress community depends on theme ratings for checking the quality "
+#~ "of a theme. If you have a couple of minutes, click on the theme names "
+#~ "above, and leave a Compatibility Vote or a Rating!"
+#~ msgstr ""
+#~ "テーマ作者はテーマの改善ためにみなさんのフィードバックを頼りにしていて、"
+#~ "WordPress のコミュニティはテーマの質をチェックするためにテーマのレーティン"
+#~ "グを頼りにしています。もし何分かでもお時間があれば、上のテーマ名をクリック"
+#~ "して、互換性の投票とレーティングをしてみてください !"
+
+#~ msgid ""
+#~ "Automatically update your WordPress site, as soon as updates are "
+#~ "released! Never worry about falling behing on updating again!"
+#~ msgstr ""
+#~ "アップデートがリリースされるとすぐに WordPress のサイトを自動的にアップ"
+#~ "デートします ! アップデートに遅れて心配することはもうありません !"
