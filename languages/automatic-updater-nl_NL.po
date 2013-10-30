@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Automatic Updater 0.9\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/automatic-updater\n"
-"POT-Creation-Date: 2013-07-29 01:49:13+00:00\n"
-"PO-Revision-Date: 2013-07-30 20:42+1000\n"
+"POT-Creation-Date: 2013-10-29 23:01:27+00:00\n"
+"PO-Revision-Date: 2013-10-31 10:08+1000\n"
 "Last-Translator: Gary Pendergast <gary@pento.net>\n"
 "Language-Team: Trifon Rijksen <trifon@tieptoep.nl>\n"
 "Language: Dutch nl_NL\n"
@@ -15,17 +15,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 1.5.7\n"
 
-#. #-#-#-#-#  plugin.pot (Automatic Updater 0.9)  #-#-#-#-#
+#. #-#-#-#-#  plugin.pot (Advanced Automatic Updates 1.0)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: admin.php:34 admin.php:81
-msgid "Automatic Updater"
-msgstr "Automatic Updater"
+#: admin.php:37 admin.php:84
+msgid "Advanced Automatic Updates"
+msgstr "Advanced Automatic Updates"
 
-#: admin.php:44
+#: admin.php:47
 msgid "Overview"
 msgstr "Overzicht"
 
-#: admin.php:46
+#: admin.php:49
 msgid ""
 "This settings page allows you to select whether you would like WordPress "
 "Core, your plugins, and your themes to be automatically updated."
@@ -33,7 +33,7 @@ msgstr ""
 "Op deze instellingen pagina kun je kiezen om je WordPress Core, je plugins "
 "en je thema&#39;s automatisch bij te werken."
 
-#: admin.php:47
+#: admin.php:50
 msgid ""
 "It is very important to keep your WordPress installation up to date for "
 "security reasons, so unless you have a specific reason not to, we recommend "
@@ -43,93 +43,83 @@ msgstr ""
 "veiligheidsredenen, dus tenzij je een specifieke reden hebt, raden we aan om "
 "alles automatisch bij te werken."
 
-#: admin.php:51
+#: admin.php:54
 msgid "A Plugin By <a href=\"%s\" target=\"_blank\">Gary</a>"
 msgstr "Een plugin van <a href=\"%s\" target=\"_blank\">Gary</a>"
 
-#: admin.php:52
+#: admin.php:55
 msgid "Donations"
 msgstr "Donaties"
 
-#: admin.php:53
+#: admin.php:56
 msgid "Support Forums"
 msgstr "Support forums"
 
-#: admin.php:62
+#: admin.php:65
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Je hebt onvoldoende rechten om deze pagina te bekijken."
 
-#: admin.php:69
+#: admin.php:72
 msgid "Settings updated"
 msgstr "Instellingen bijgewerkt"
 
-#: admin.php:98
+#: admin.php:94
 msgid ""
-"It looks like Automatic Updater may not be able to run automatically, due to "
-"not having permission to write to the WordPress directory, or connect to the "
-"server over FTP. If you usually upgrade by entering your FTP login details, "
-"please read <a href=\"%s\">this documentation</a> on storing your connection "
-"details."
+"You have the <code>AUTOMATIC_UPDATER_DISABLED</code> constant set.  "
+"Automatic updates are disabled."
 msgstr ""
-"Het ziet ernaar uit dat Automatic Updater niet automatisch kan werken, omdat "
-"het geen schrijf toestemming heeft in de WordPress map of geen verbinding "
-"kan maken met de server middels FTP. Als je normaal gesproken bijwerkingen "
-"uitvoert door je FTP gegevens in te vullen, lees dan <a href=\"%s\">dit "
-"document</a> over het opslaan van gegevens voor verbinding maken."
+"Je hebt de <code>AUTOMATIC_UPDATER_DISABLED</code> constante aan staan. "
+"Automatisch bijwerken is uitgeschakeld"
 
-#: admin.php:99
-msgid ""
-"Alternatively, if WordPress normally upgrades immediately when you click the "
-"Update button, or if you don't want to see this message again, feel free to "
-"<a href=\"%1$s\" id=\"%2$s\">hide it</a>."
-msgstr ""
-"Echter, als WordPress normaal bijgewerkt wordt nadat je de Bijwerken knop "
-"indrukt, of als je dit bericht niet meer wil zien, <a href=\"%1$s\" id=\"%2$s"
-"\">verberg deze dan</a>."
-
-#: admin.php:112
+#: admin.php:104
 msgid ""
 "The Better WP Security plugin is hiding updates, which will prevent "
-"Automatic Updater from operating correctly. Please <a href=\"%s\">disable "
+"Automatic Updates from operating correctly. Please <a href=\"%s\">disable "
 "these options</a>."
 msgstr ""
-"De Better WP Security plugin verbergt updates, welk voorkomt dat Automatic "
-"Updater correct werkt. Schakel <a href=\"%s\">deze opties</a> alsjeblieft "
-"uit."
+"De Better WP Security plugin verbergt updates, welk voorkomt dat het "
+"automatisch bijwerken correct werkt. Schakel <a href=\"%s\">deze opties</a> "
+"alsjeblieft uit."
 
-#: admin.php:124
-msgid ""
-"Update WordPress Core automatically? <strong>(Strongly Recommended)</strong>"
-msgstr ""
-"WordPress Core automatisch bijwerken? <strong>(Sterk aanbevolen)</strong>"
+#: admin.php:116
+msgid "Update WordPress Core automatically?"
+msgstr "WordPress Core automatisch bijwerken?"
 
-#: admin.php:125
+#: admin.php:118
+msgid "Major versions"
+msgstr "Grote versies"
+
+#: admin.php:119
+msgid "Minor and security versions <strong>(Strongly Recommended)</strong>"
+msgstr "Kleine en beveiligings versies <strong>(Sterk aanbevolen)</strong>"
+
+#: admin.php:123
 msgid "Update your plugins automatically?"
 msgstr "Plugins automatisch bijwerken?"
 
-#: admin.php:126
+#: admin.php:125
 msgid "Update your themes automatically?"
 msgstr "Thema&#39;s automatisch bijwerken?"
 
-#: admin.php:139
+#: admin.php:128
 msgid "Notification Email"
 msgstr "E-mail notificatie"
 
-#: admin.php:140
+#: admin.php:129
 msgid ""
-"By default, Automatic Updater will send an email to the Site Admin when an "
+"By default, Automatic Updates will send an email to the Site Admin when an "
 "update is performed. If you would like to send that email to a different "
 "address, you can set it here."
 msgstr ""
-"Standaard zal Automatic Updater een e-mail sturen naar de Site Admin als er "
-"een update is uitgevoerd. Als je deze e-mail naar een ander adres wilt "
-"sturen, kan je deze hier opgeven."
+"Standaard zal het automatisch bijwerken een e-mail sturen naar de Site Admin "
+"als er een update is uitgevoerd. Als je deze e-mail naar een ander adres "
+"wilt sturen, kan je deze hier opgeven."
 
-#: admin.php:141
+#: admin.php:130
 msgid "Override Email Address"
 msgstr "E-mailadres overschrijven"
 
-#: admin.php:149
+#: admin.php:138
 msgid ""
 "If you don't want to receive an email when updates are installed, you can "
 "disable them completely."
@@ -137,62 +127,39 @@ msgstr ""
 "Als je geen e-mail wilt ontvangen nadat er updates zijn geïnstalleerd, kan "
 "je dit uitschakelen."
 
-#: admin.php:150
+#: admin.php:139
 msgid "Disable email notifications."
 msgstr "E-mail notificatie uitschakelen"
 
-#: admin.php:153
-msgid "Retries"
-msgstr "Pogingen"
-
-#: admin.php:154
-msgid ""
-"To avoid updating when something is broken, Automatic Updater can limit the "
-"number of times it will attempt to update WordPress Core, a plugin or a "
-"theme. If, for example, a plugin update reaches this limit, Automatic "
-"Updater will stop trying to update it until you manually install the update, "
-"or a new version is released."
-msgstr ""
-"Om bijwerken te voorkomen als er iets stuk is, kan Automatic Updater het "
-"aantal pogingen beperken die uitgevoerd worden om WordPress Core, een plugin "
-"of een thema. Als bijvoorbeeld een plugin bijwerken deze limiet bereikt "
-"heeft zal Automatic Updater stoppen met proberen bij te werken, totdat er "
-"een handmatig bijwerken van de plugin gedaan wordt, of er een nieuwe versie "
-"uitgegeven is."
-
-#: admin.php:155
-msgid "Retries Limit"
-msgstr "Aantal pogingen"
-
-#: admin.php:165
+#: admin.php:149
 msgid "SVN Support"
 msgstr "SVN ondersteuning"
 
-#: admin.php:175
+#: admin.php:159
 msgid "WordPress Core"
 msgstr "WordPress Core"
 
-#: admin.php:176
+#: admin.php:160
 msgid ""
 "It looks like you're running an SVN version of WordPress, that's cool! "
-"Automatic Updater can run <tt>svn up</tt> once an hour, to keep you up-to-"
-"date. For safety, enabling this option will disable the normal WordPress "
-"core updates."
+"Advanced Automatic Updates can run <tt>svn up</tt> once an hour, to keep you "
+"up-to-date. For safety, enabling this option will disable the normal "
+"WordPress core updates."
 msgstr ""
 "Het ziet er naar uit dat je een SVN versie van WordPress gebruikt, wat tof! "
-"Automatic Updater can eens per uur <tt>svn up</tt> draaien, om je up-to- "
-"date te houden. Door deze optie aan te zetten zal voor de veiligheid het "
-"normale WordPress core bijwerken uitgeschakeld worden."
+"Advanced Automatic Updates can eens per uur <tt>svn up</tt> draaien, om je "
+"up-to- date te houden. Door deze optie aan te zetten zal voor de veiligheid "
+"het normale WordPress core bijwerken uitgeschakeld worden."
 
-#: admin.php:177
+#: admin.php:161
 msgid "Update WordPress Core hourly?"
 msgstr "WordPress Core ieder uur updaten?"
 
-#: admin.php:184
+#: admin.php:168
 msgid "Plugins"
 msgstr "Plugins"
 
-#: admin.php:185
+#: admin.php:169
 msgid ""
 "Running plugins from SVN is great for helping plugin devs fine tune them "
 "before release, so on behalf of all of us, thanks! If you see Akismet here "
@@ -204,11 +171,11 @@ msgstr ""
 "je Akismet hier ziet en het niet van een aangepast archief gebruikt, zal het "
 "waarschijnlijk automatisch bijwerken als WordPress Core SVN bijgewerkt wordt."
 
-#: admin.php:203
+#: admin.php:187
 msgid "Themes"
 msgstr "Thema&#39;s"
 
-#: admin.php:204
+#: admin.php:188
 msgid ""
 "Running themes from SVN makes you an excellent person who makes the "
 "WordPress community better - thank you! If you see any of the default Twenty "
@@ -220,7 +187,7 @@ msgstr ""
 "Twenty Ten, Eleven of Twelve thema&#39;s hier ziet, zullen deze "
 "waarschijnlijk automatisch bijwerken als WordPress Core SVN bijgewerkt wordt."
 
-#: admin.php:223
+#: admin.php:207
 msgid ""
 "The items marked in red don't have their .svn directory writable, so <tt>svn "
 "up</tt> will probably fail when the web server runs it. You need to give the "
@@ -232,11 +199,11 @@ msgstr ""
 "moet de gebruiker <tt>%s</tt> schrijf toestemmingen geven voor je hele "
 "WordPress installatie, inclusief .svn mappen."
 
-#: admin.php:230
+#: admin.php:214
 msgid "SVN Options"
 msgstr "SVN Opties"
 
-#: admin.php:231
+#: admin.php:215
 msgid ""
 "Send email on <tt>svn up</tt> success? Disabling this will cause "
 "notification emails to only be sent if the <tt>svn up</tt> fails."
@@ -245,176 +212,90 @@ msgstr ""
 "zal alleen een notificatie e-mail verstuurd worden als <tt>svn up</tt> "
 "mislukt."
 
-#: admin.php:249
+#: admin.php:229
 msgid "Debug Information"
 msgstr "Debug informatie"
 
-#: admin.php:250
-msgid "Show debug information in the notification email."
-msgstr "Toon debug informatie in de notificatie e-mail."
+#: admin.php:231
+msgid ""
+"When would you like to receive debug information with your notification "
+"email?"
+msgstr ""
+"Wanneer zou je debug informatie willen ontvangen in je notificatie e-mail?"
 
-#: admin.php:251
+#: admin.php:235
+msgid "Always"
+msgstr "Altijd"
+
+#: admin.php:236
+msgid ""
+"Only when upgrading development versions <strong>(Recommended Minimum)</"
+"strong>"
+msgstr ""
+"Alleen bij het bijwerken naar een ontwikkelaars versie <strong>(Aangeraden "
+"Minimum)</strong> "
+
+#: admin.php:237
+msgid "Never"
+msgstr "Nooit"
+
+#: admin.php:249
 msgid "Save Changes"
 msgstr "Wijzigingen opslaan"
 
-#: admin.php:327
+#: admin.php:318
 msgid "Settings"
 msgstr "Instellingen"
 
-#: automatic-updater.php:152
+#: automatic-updater.php:153
 msgid ""
-"Automatic Updater requires WordPress 3.4 or higher! Please upgrade WordPress "
+"Automatic Updater requires WordPress 3.7 or higher! Please upgrade WordPress "
 "manually, then reactivate Automatic Updater."
 msgstr ""
-"Automatic Updater vereist WordPress 3.4 of hoger! Werk WordPress alsjeblieft "
+"Automatic Updater vereist WordPress 3.7 of hoger! Werk WordPress alsjeblieft "
 "handmatig bij, heractiveer daarna Automatic Updater."
 
-#: automatic-updater.php:316
-msgid "While trying to upgrade WordPress, we ran into the following error:"
-msgstr ""
-"Bij het bijwerken van WordPress, zijn we de volgende fout tegengekomen:"
-
-#: automatic-updater.php:318
-msgid ""
-"We're sorry it didn't work out. Please try upgrading manually, instead. This "
-"is attempt %1$d of %2$d."
-msgstr ""
-"Sorry dat het niet lukte. Voer het bijwerken alsjeblieft handmatig uit. Dit "
-"is poging %1$d van %2$d."
-
-#: automatic-updater.php:322
-#, fuzzy
-msgid ""
-"We've successfully upgraded WordPress from version %1$s to version %2$s, the "
-"latest nightly build!"
-msgstr ""
-"We hebben WordPress succesvol bijgewerkt van versie %1$s naar versie %2$s!"
-
-#: automatic-updater.php:323 automatic-updater.php:329
-msgid "Have fun!"
-msgstr "Veel plezier!"
-
-#: automatic-updater.php:328
-msgid ""
-"We've successfully upgraded WordPress from version %1$s to version %2$s!"
-msgstr ""
-"We hebben WordPress succesvol bijgewerkt van versie %1$s naar versie %2$s!"
-
-#: automatic-updater.php:389
-msgid "We found a plugin upgrade!"
-msgid_plural "We found upgrades for some plugins!"
-msgstr[0] "We hebben een bijgewerkte plugin gevonden!"
-msgstr[1] "We hebben bijgewerkte plugins gevonden!"
-
-#. translators: First argument is the plugin url, second argument is the Plugin
-#. name, third argument is the error encountered while upgrading. The fourth
-#. and fifth arguments refer to how many retries we've had at installing this
-#. plugin.
-#: automatic-updater.php:408
-msgid ""
-"<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this plugin: %3$s "
-"(Attempt %4$d of %5$d)"
-msgstr ""
-"<a href=\"%1$s\">%2$s</a>: Er is een fout opgetreden bij het bijwerken van "
-"deze plugin: %3$s. (Poging %4$d van %5$d.)"
-
-#. translators: First argument is the plugin url, second argument is the Plugin
-#. name, third argument is the old version number, fourth argument is the new
-#. version number
-#. translators: First argument is the theme URL, second argument is the Theme
-#. name, third argument is the old version number, fourth argument is the new
-#. version number
-#: automatic-updater.php:417 automatic-updater.php:511
-msgid ""
-"<a href=\"%1$s\">%2$s</a>: Successfully upgraded from version %3$s to %4$s!"
-msgstr ""
-"<a href=\"%1$s\">%2$s</a>: Successvol bijgewerkt van versie %3$s naar %4$s!"
-
-#: automatic-updater.php:430
-msgid ""
-"Plugin authors depend on your feedback to make their plugins better, and the "
-"WordPress community depends on plugin ratings for checking the quality of a "
-"plugin. If you have a couple of minutes, click on the plugin names above, "
-"and leave a Compatibility Vote or a Rating!"
-msgstr ""
-"Plugin auteurs zijn afhankelijk van je feedback om hun plugins beter te "
-"maken en de WordPress gemeenschap is afhankelijk van de scores voor het "
-"controleren van de kwaliteit van een plugin. Als je een paar minuten hebt, "
-"klik dan op de naam van de plugin hierboven en voer een Compatability Vote "
-"of een Rating in!"
-
-#: automatic-updater.php:483
-msgid "We found a theme upgrade!"
-msgid_plural "We found upgrades for some themes!"
-msgstr[0] "We hebben een bijgewerkt thema gevonden!"
-msgstr[1] "We hebben bijgewerkte thema&#39;s gevonden!"
-
-#. translators: First argument is the theme URL, second argument is the Theme
-#. name, third argument is the error encountered while upgrading. The fourth
-#. and fifth arguments refer to how many retries we've had at installing this
-#. theme.
-#: automatic-updater.php:502
-msgid ""
-"<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this theme: %3$s "
-"(Attempt %4$d of %5$d)"
-msgstr ""
-"<a href=\"%1$s\">%2$s</a>: Er is een fout opgetreden bij het bijwerken van "
-"dit thema: %3$s. (Poging %4$d van %5$d.)"
-
-#: automatic-updater.php:524
-msgid ""
-"Theme authors depend on your feedback to make their plugins better, and the "
-"WordPress community depends on theme ratings for checking the quality of a "
-"theme. If you have a couple of minutes, click on the theme names above, and "
-"leave a Compatibility Vote or a Rating!"
-msgstr ""
-"Thema auteurs zijn afhankelijk van je feedback om hun thema&#39;s beter te "
-"maken en de WordPress gemeenschap is afhankelijk van de scores voor het "
-"controleren van de kwaliteit van een thema. Als je een paar minuten hebt, "
-"klik dan op de naam van het thema hierboven en voer een Compatability Vote "
-"of een Rating in!"
-
-#: automatic-updater.php:548
+#: automatic-updater.php:268
 msgid "WordPress Core:"
 msgstr "WordPress Core:"
 
-#: automatic-updater.php:558
+#: automatic-updater.php:278
 msgid "We successfully upgraded WordPress Core from SVN!"
 msgstr "We hebben WordPress Core succesvol bijgewerkt vanuit SVN!"
 
-#: automatic-updater.php:564
+#: automatic-updater.php:284
 msgid ""
 "While upgrading WordPress Core from SVN, we ran into the following error:"
 msgstr ""
 "Tijdens het bijwerken van WordPress Core vanuit SVN, kwamen we de volgende "
 "fout tegen:"
 
-#: automatic-updater.php:566
+#: automatic-updater.php:286
 msgid "We're sorry it didn't work out. Please try upgrading manually, instead."
 msgstr ""
 "Sorry dat het niet lukte. Voer het bijwerken alsjeblieft handmatig uit."
 
-#: automatic-updater.php:610
+#: automatic-updater.php:330
 msgid "We upgraded the following plugin:"
 msgid_plural "We upgraded the following plugins:"
 msgstr[0] "We hebben de volgende plugin bijgewerkt:"
 msgstr[1] "We hebben de volgende plugins bijgewerkt:"
 
-#: automatic-updater.php:651
+#: automatic-updater.php:371
 msgid "We upgraded the following theme:"
 msgid_plural "We upgraded the following themes:"
 msgstr[0] "We hebben het volgende thema bijgewerkt:"
 msgstr[1] "We hebben de volgende thema&#39;s bijgewerkt:"
 
-#: automatic-updater.php:676
+#: automatic-updater.php:396
 msgid "WordPress Update: %s"
 msgstr "WordPress bijwerken: %s"
 
-#: automatic-updater.php:682
+#: automatic-updater.php:402
 msgid "Howdy!"
 msgstr "Hallo!"
 
-#: automatic-updater.php:684
+#: automatic-updater.php:404
 msgid ""
 "Automatic Updater just ran on your site, <a href=\"%1$s\">%1$s</a>, with the "
 "following result:"
@@ -422,7 +303,7 @@ msgstr ""
 "Automatic Updater is zojuist uitgevoerd op je site, <a href=\"%1$s\">%1$s</"
 "a>, met het volgende resultaat:"
 
-#: automatic-updater.php:692
+#: automatic-updater.php:412
 msgid ""
 "It looks like something went wrong during the update. Note that, if "
 "Automatic Updater continues to encounter problems, it will stop trying to do "
@@ -433,11 +314,11 @@ msgstr ""
 "proberen bij te werken en zal het niet weer proberen tot nadat er een "
 "handmatig bijwerken geschied is."
 
-#: automatic-updater.php:696
+#: automatic-updater.php:416
 msgid "Thanks for using the Automatic Updater plugin!"
 msgstr "Bedankt voor het gebruiken van de Automatic Updater plugin!"
 
-#: automatic-updater.php:700
+#: automatic-updater.php:420
 msgid "Debug Information:"
 msgstr "Debug informatie:"
 
@@ -446,12 +327,10 @@ msgid "http://pento.net/projects/automatic-updater-for-wordpress/"
 msgstr "http://pento.net/projects/automatic-updater-for-wordpress/"
 
 #. Description of the plugin/theme
-msgid ""
-"Automatically update your WordPress site, as soon as updates are released! "
-"Never worry about falling behing on updating again!"
+msgid "Adds extra options to WordPress' built-in Automatic Updates feature."
 msgstr ""
-"Automatisch bijwerken van je WordPress site, zodra een nieuwe versie "
-"beschikbaar is! Maak je nooit meer zorgen om achterop te raken met bijwerken!"
+"Voegt extra opties toe aan WordPress haar ingebouwde automatisch bijwerken "
+"functie."
 
 #. Author of the plugin/theme
 msgid "pento"
@@ -460,6 +339,138 @@ msgstr "pento"
 #. Author URI of the plugin/theme
 msgid "http://pento.net/"
 msgstr "http://pento.net/"
+
+#~ msgid ""
+#~ "It looks like Automatic Updater may not be able to run automatically, due "
+#~ "to not having permission to write to the WordPress directory, or connect "
+#~ "to the server over FTP. If you usually upgrade by entering your FTP login "
+#~ "details, please read <a href=\"%s\">this documentation</a> on storing "
+#~ "your connection details."
+#~ msgstr ""
+#~ "Het ziet ernaar uit dat Automatic Updater niet automatisch kan werken, "
+#~ "omdat het geen schrijf toestemming heeft in de WordPress map of geen "
+#~ "verbinding kan maken met de server middels FTP. Als je normaal gesproken "
+#~ "bijwerkingen uitvoert door je FTP gegevens in te vullen, lees dan <a href="
+#~ "\"%s\">dit document</a> over het opslaan van gegevens voor verbinding "
+#~ "maken."
+
+#~ msgid ""
+#~ "Alternatively, if WordPress normally upgrades immediately when you click "
+#~ "the Update button, or if you don't want to see this message again, feel "
+#~ "free to <a href=\"%1$s\" id=\"%2$s\">hide it</a>."
+#~ msgstr ""
+#~ "Echter, als WordPress normaal bijgewerkt wordt nadat je de Bijwerken knop "
+#~ "indrukt, of als je dit bericht niet meer wil zien, <a href=\"%1$s\" id="
+#~ "\"%2$s\">verberg deze dan</a>."
+
+#~ msgid "Retries"
+#~ msgstr "Pogingen"
+
+#~ msgid ""
+#~ "To avoid updating when something is broken, Automatic Updater can limit "
+#~ "the number of times it will attempt to update WordPress Core, a plugin or "
+#~ "a theme. If, for example, a plugin update reaches this limit, Automatic "
+#~ "Updater will stop trying to update it until you manually install the "
+#~ "update, or a new version is released."
+#~ msgstr ""
+#~ "Om bijwerken te voorkomen als er iets stuk is, kan Automatic Updater het "
+#~ "aantal pogingen beperken die uitgevoerd worden om WordPress Core, een "
+#~ "plugin of een thema. Als bijvoorbeeld een plugin bijwerken deze limiet "
+#~ "bereikt heeft zal Automatic Updater stoppen met proberen bij te werken, "
+#~ "totdat er een handmatig bijwerken van de plugin gedaan wordt, of er een "
+#~ "nieuwe versie uitgegeven is."
+
+#~ msgid "Retries Limit"
+#~ msgstr "Aantal pogingen"
+
+#~ msgid "While trying to upgrade WordPress, we ran into the following error:"
+#~ msgstr ""
+#~ "Bij het bijwerken van WordPress, zijn we de volgende fout tegengekomen:"
+
+#~ msgid ""
+#~ "We're sorry it didn't work out. Please try upgrading manually, instead. "
+#~ "This is attempt %1$d of %2$d."
+#~ msgstr ""
+#~ "Sorry dat het niet lukte. Voer het bijwerken alsjeblieft handmatig uit. "
+#~ "Dit is poging %1$d van %2$d."
+
+#, fuzzy
+#~ msgid ""
+#~ "We've successfully upgraded WordPress from version %1$s to version %2$s, "
+#~ "the latest nightly build!"
+#~ msgstr ""
+#~ "We hebben WordPress succesvol bijgewerkt van versie %1$s naar versie %2$s!"
+
+#~ msgid "Have fun!"
+#~ msgstr "Veel plezier!"
+
+#~ msgid ""
+#~ "We've successfully upgraded WordPress from version %1$s to version %2$s!"
+#~ msgstr ""
+#~ "We hebben WordPress succesvol bijgewerkt van versie %1$s naar versie %2$s!"
+
+#~ msgid "We found a plugin upgrade!"
+#~ msgid_plural "We found upgrades for some plugins!"
+#~ msgstr[0] "We hebben een bijgewerkte plugin gevonden!"
+#~ msgstr[1] "We hebben bijgewerkte plugins gevonden!"
+
+#~ msgid ""
+#~ "<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this plugin: "
+#~ "%3$s (Attempt %4$d of %5$d)"
+#~ msgstr ""
+#~ "<a href=\"%1$s\">%2$s</a>: Er is een fout opgetreden bij het bijwerken "
+#~ "van deze plugin: %3$s. (Poging %4$d van %5$d.)"
+
+#~ msgid ""
+#~ "<a href=\"%1$s\">%2$s</a>: Successfully upgraded from version %3$s to "
+#~ "%4$s!"
+#~ msgstr ""
+#~ "<a href=\"%1$s\">%2$s</a>: Successvol bijgewerkt van versie %3$s naar "
+#~ "%4$s!"
+
+#~ msgid ""
+#~ "Plugin authors depend on your feedback to make their plugins better, and "
+#~ "the WordPress community depends on plugin ratings for checking the "
+#~ "quality of a plugin. If you have a couple of minutes, click on the plugin "
+#~ "names above, and leave a Compatibility Vote or a Rating!"
+#~ msgstr ""
+#~ "Plugin auteurs zijn afhankelijk van je feedback om hun plugins beter te "
+#~ "maken en de WordPress gemeenschap is afhankelijk van de scores voor het "
+#~ "controleren van de kwaliteit van een plugin. Als je een paar minuten "
+#~ "hebt, klik dan op de naam van de plugin hierboven en voer een "
+#~ "Compatability Vote of een Rating in!"
+
+#~ msgid "We found a theme upgrade!"
+#~ msgid_plural "We found upgrades for some themes!"
+#~ msgstr[0] "We hebben een bijgewerkt thema gevonden!"
+#~ msgstr[1] "We hebben bijgewerkte thema&#39;s gevonden!"
+
+#~ msgid ""
+#~ "<a href=\"%1$s\">%2$s</a>: We encounted an error upgrading this theme: "
+#~ "%3$s (Attempt %4$d of %5$d)"
+#~ msgstr ""
+#~ "<a href=\"%1$s\">%2$s</a>: Er is een fout opgetreden bij het bijwerken "
+#~ "van dit thema: %3$s. (Poging %4$d van %5$d.)"
+
+#~ msgid ""
+#~ "Theme authors depend on your feedback to make their plugins better, and "
+#~ "the WordPress community depends on theme ratings for checking the quality "
+#~ "of a theme. If you have a couple of minutes, click on the theme names "
+#~ "above, and leave a Compatibility Vote or a Rating!"
+#~ msgstr ""
+#~ "Thema auteurs zijn afhankelijk van je feedback om hun thema&#39;s beter "
+#~ "te maken en de WordPress gemeenschap is afhankelijk van de scores voor "
+#~ "het controleren van de kwaliteit van een thema. Als je een paar minuten "
+#~ "hebt, klik dan op de naam van het thema hierboven en voer een "
+#~ "Compatability Vote of een Rating in!"
+
+#~ msgid ""
+#~ "Automatically update your WordPress site, as soon as updates are "
+#~ "released! Never worry about falling behing on updating again!"
+#~ msgstr ""
+#~ "Automatisch bijwerken van je WordPress site, zodra een nieuwe versie "
+#~ "beschikbaar is! Maak je nooit meer zorgen om achterop te raken met "
+#~ "bijwerken!"
 
 #~ msgid "We've successfully upgraded WordPress to the latest nightly build!"
 #~ msgstr ""

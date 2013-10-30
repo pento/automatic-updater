@@ -49,6 +49,7 @@ The debug email doesn't provide a filter to allow changing the email address it'
 * UPDATED: German (de_DE) translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
 * UPDATED: Japanese (日本語) (ja) translation. Props [Tai](http://tekapo.com/)
 * UPDATED: Italian (it_IT) translation. Props Stefano Giolo
+* UPDATED: Dutch (nl_NL) translation. Props Trifon Rijksen
 
 = 1.0 =
 With the release of WordPress 3.7, Automatic Updater is now know as Advanced Automatic Updates!
