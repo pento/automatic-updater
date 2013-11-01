@@ -4,7 +4,7 @@ Donate link: http://pento.net/donate/
 Tags: updates, core, plugins, themes, stable, nightly, svn, wordpress automatic upgrader
 Requires at least: 3.7
 Tested up to: 3.8
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPL2+
 
 Adds extra options to WordPress' built-in Automatic Updates feature.
