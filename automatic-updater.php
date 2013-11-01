@@ -160,13 +160,13 @@ class Automatic_Updater {
 				include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 
 			$wpau = new WP_Automatic_Updater();
-			$core_updates_enabled = $wpau->is_vcs_checkout( ABSPATH );
+			$core_updates_enabled = ! $wpau->is_vcs_checkout( ABSPATH );
 
 			$this->options = array(
 						'update'                  => array(
 														'core'    => array(
 																		'minor' => $core_updates_enabled,
-																		'major' => $core_updates_enabled,
+																		'major' => false,
 														),
 														'plugins' => false,
 														'themes'  => false,
