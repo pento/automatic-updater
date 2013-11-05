@@ -96,7 +96,7 @@ class Automatic_Updater {
 
 		if ( ! empty( $this->options['override-email'] ) ) {
 			add_filter( 'auto_core_update_email', array( $this, 'override_update_email' ), 1, 1 );
-			add_filter( 'auto_update_debug_email', array( $this, 'override_update_email' ), 1, 1 );
+			add_filter( 'automatic_updates_debug_email', array( $this, 'override_update_email' ), 1, 1 );
 		}
 
 		// Default is to send the debug email with dev builds, so we don't need to filter for that

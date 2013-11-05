@@ -45,6 +45,9 @@ The debug email doesn't provide a filter to allow changing the email address it'
 
 == Changelog ==
 
+= 1.0.2 =
+* CHANGED: Update filter name for redirecting debug emails (only available in WordPress 3.8+)
+
 = 1.0.1 =
 * CHANGED: Fresh installs now disable Major updates by default, to match Core behaviour
 * UPDATED: German (de_DE) translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
