@@ -46,6 +46,7 @@ The debug email doesn't provide a filter to allow changing the email address it'
 == Changelog ==
 
 = 1.0.2 =
+* ADDED: Strictly disallow activation on versions of WordPress earlier than 3.7
 * CHANGED: Update filter name for redirecting debug emails (only available in WordPress 3.8+)
 
 = 1.0.1 =

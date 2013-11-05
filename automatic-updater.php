@@ -138,6 +138,13 @@ class Automatic_Updater {
 		return null;
 	}
 
+	static function activation_check() {
+		if ( version_compare( $GLOBALS['wp_version'], '3.7', '<' ) ) {
+			deactivate_plugins( self::$basename );
+			wp_die( __( 'Automatic Updater requires WordPress 3.7 or higher! Please upgrade WordPress manually, then reactivate Automatic Updater.' ), '', array( 'back_link' => true ) );
+		}
+	}
+
 	function check_wordpress_version() {
 		if ( version_compare( $GLOBALS['wp_version'], '3.7', '<' ) ) {
 			if ( is_plugin_active( self::$basename ) ) {
@@ -512,3 +519,5 @@ class Automatic_Updater {
 }
 
 add_action( 'init', array( 'Automatic_Updater', 'init' ) );
+
+register_activation_hook( __FILE__, array( 'Automatic_Updater', 'activation_check' ) );
