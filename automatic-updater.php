@@ -54,6 +54,10 @@ class Automatic_Updater {
 
 		add_action( 'shutdown', array( $this, 'shutdown' ) );
 
+		if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || ! AUTOMATIC_UPDATER_DISABLED ) {
+			add_action( 'auto_updater_svn_event', array( $this, 'update_svn' ) );
+		}
+
 		// Nothing else matters if we're on WPMS and not on the main site
 		if ( is_multisite() && ! is_main_site() )
 			return;
