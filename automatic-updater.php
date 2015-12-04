@@ -56,6 +56,7 @@ class Automatic_Updater {
 
 		if ( ! defined( 'AUTOMATIC_UPDATER_DISABLED' ) || ! AUTOMATIC_UPDATER_DISABLED ) {
 			add_action( 'auto_updater_svn_event', array( $this, 'update_svn' ) );
+			add_filter( 'automatic_updates_is_vcs_checkout', '__return_false', 1 );
 		}
 
 		// Nothing else matters if we're on WPMS and not on the main site
