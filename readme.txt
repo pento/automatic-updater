@@ -57,7 +57,7 @@ The debug email doesn't provide a filter to allow changing the email address it'
 * UPDATED: German (de_DE) translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
 * UPDATED: Japanese (日本語) (ja) translation. Props [Tai](http://tekapo.com/)
 * UPDATED: Italian (it_IT) translation. Props Stefano Giolo
-* UPDATED: Dutch (nl_NL) translation. Props Trifon Rijksen
+* UPDATED: Dutch (nl_NL) translation.
 * FIXED: Fresh installs had Minor updates disabled
 
 = 1.0 =
@@ -73,7 +73,7 @@ With the release of WordPress 3.7, Automatic Updater is now know as Advanced Aut
 = 0.9.1 =
 * UPDATED: Language POT file
 * UPDATED: German (de_DE) translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
-* UPDATED: Dutch (nl_NL) translation. Props Trifon Rijksen
+* UPDATED: Dutch (nl_NL) translation.
 * FIXED: If the `svn up` output was empty, don't send an update email
 * FIXED: Removed pass-by-reference, it's too old school for @wonderboymusic
 * FIXED: The settings link was incorrect in Multisite
@@ -109,7 +109,7 @@ With the release of WordPress 3.7, Automatic Updater is now know as Advanced Aut
 = 0.8.2 =
 * FIXED: SVN updates of WordPress core were not being triggered
 * FIXED: Particularly large SVN updates could cause notification email corruption
-* UPDATED: Dutch (nl_NL) translation. Props Trifon Rijksen
+* UPDATED: Dutch (nl_NL) translation.
 * UPDATED: German (de_DE) translation. Props [Alexander Pfabel](http://alexander.pfabel.de/)
 
 = 0.8.1 =
@@ -131,7 +131,7 @@ With the release of WordPress 3.7, Automatic Updater is now know as Advanced Aut
 
 = 0.7.1 =
 * UPDATED: Italian (it_IT) translation. Props Stefano Giolo
-* UPDATED: Dutch (nl_NL) translation. Props Trifon Rijksen
+* UPDATED: Dutch (nl_NL) translation.
 * FIXED: Override email setting wasn't saving correctly
 
 = 0.7 =
@@ -157,7 +157,7 @@ With the release of WordPress 3.7, Automatic Updater is now know as Advanced Aut
 
 = 0.6 =
 * ADDED: Support for nightly builds
-* ADDED: Dutch (nl_NL) translation. Props Trifon Rijksen
+* ADDED: Dutch (nl_NL) translation.
 * UPDATED: Language POT file
 
 = 0.5 =
